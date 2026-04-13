@@ -2,2614 +2,912 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#fef7ff" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <title>Kawas Stock · Material 3</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f2fa" />
+  <title>Kawas Stock Pro</title>
   <style>
-    :root {
-      color-scheme: light;
-      --md-sys-color-primary: #355f9f;
-      --md-sys-color-on-primary: #ffffff;
-      --md-sys-color-primary-container: #d8e2ff;
-      --md-sys-color-on-primary-container: #001b3f;
-      --md-sys-color-secondary: #535f70;
-      --md-sys-color-on-secondary: #ffffff;
-      --md-sys-color-secondary-container: #d7e3f7;
-      --md-sys-color-on-secondary-container: #101c2b;
-      --md-sys-color-tertiary: #6b5778;
-      --md-sys-color-on-tertiary: #ffffff;
-      --md-sys-color-tertiary-container: #f2daff;
-      --md-sys-color-on-tertiary-container: #251431;
-      --md-sys-color-error: #ba1a1a;
-      --md-sys-color-on-error: #ffffff;
-      --md-sys-color-error-container: #ffdad6;
-      --md-sys-color-on-error-container: #410002;
-      --md-sys-color-surface: #f8f9ff;
-      --md-sys-color-surface-dim: #d9d9e0;
-      --md-sys-color-surface-bright: #f8f9ff;
-      --md-sys-color-surface-container-lowest: #ffffff;
-      --md-sys-color-surface-container-low: #f2f3fa;
-      --md-sys-color-surface-container: #eceef5;
-      --md-sys-color-surface-container-high: #e7e8ef;
-      --md-sys-color-surface-container-highest: #e1e2e9;
-      --md-sys-color-on-surface: #191c20;
-      --md-sys-color-on-surface-variant: #43474e;
-      --md-sys-color-outline: #73777f;
-      --md-sys-color-outline-variant: #c3c7cf;
-      --md-sys-color-shadow: rgba(18, 21, 26, 0.08);
-      --md-sys-color-scrim: rgba(0, 0, 0, 0.32);
-      --success: #137333;
-      --success-container: #d8f8dd;
-      --warning: #b06000;
-      --warning-container: #ffddb8;
-      --critical: #ba1a1a;
-      --critical-container: #ffdad6;
-      --info: #00639a;
-      --info-container: #cfe5ff;
-      --radius-xs: 10px;
-      --radius-sm: 16px;
-      --radius-md: 22px;
-      --radius-lg: 28px;
-      --radius-xl: 36px;
-      --elevation-1: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.10);
-      --elevation-2: 0 6px 20px rgba(16,24,40,.08), 0 2px 6px rgba(16,24,40,.08);
-      --elevation-3: 0 12px 28px rgba(16,24,40,.12), 0 4px 10px rgba(16,24,40,.08);
-      --content-width: 520px;
-      --header-height: 84px;
-      --bottom-bar-height: 88px;
-      --transition-fast: 140ms cubic-bezier(.2,.0,.0,1);
-      --transition-med: 220ms cubic-bezier(.2,.0,.0,1);
-      --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html, body {
-      margin: 0;
-      height: 100%;
-      background: linear-gradient(180deg, #fef7ff 0%, #f7f8ff 100%);
-      color: var(--md-sys-color-on-surface);
-      font-family: var(--font-sans);
-      overflow: hidden;
-    }
-
-    body {
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    button, input, textarea, select {
-      font: inherit;
-    }
-
-    input, textarea {
-      border: 0;
-      outline: 0;
-      background: transparent;
-    }
-
-    .material-symbols-rounded {
-      font-family: 'Material Symbols Rounded';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 22px;
-      display: inline-flex;
-      line-height: 1;
-      white-space: nowrap;
-      direction: ltr;
-      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-      user-select: none;
-    }
-
-    .mono { font-family: var(--font-mono); }
-
-    .hidden { display: none !important; }
-
-    .app-shell {
-      height: 100%;
-      width: 100%;
-      max-width: var(--content-width);
-      margin: 0 auto;
-      position: relative;
-      background:
-        radial-gradient(circle at top center, rgba(53,95,159,.10), transparent 35%),
-        linear-gradient(180deg, #fef7ff 0%, #f8f9ff 38%, #f5f7fc 100%);
-      overflow: hidden;
-    }
-
-    .page {
-      height: 100%;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-    }
-
-    .topbar {
-      padding: max(18px, env(safe-area-inset-top)) 18px 10px;
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      background: linear-gradient(180deg, rgba(248,249,255,.95), rgba(248,249,255,.76));
-      backdrop-filter: blur(18px);
-    }
-
-    .topbar-inner {
-      min-height: 56px;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-icon-btn,
-    .icon-btn,
-    .fab,
-    .tab-btn,
-    .segmented-btn,
-    .chip,
-    .filled-btn,
-    .tonal-btn,
-    .text-btn,
-    .list-row,
-    .card-action {
-      border: 0;
-      cursor: pointer;
-      user-select: none;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), opacity var(--transition-fast);
-    }
-
-    .nav-icon-btn:active,
-    .icon-btn:active,
-    .fab:active,
-    .filled-btn:active,
-    .tonal-btn:active,
-    .text-btn:active,
-    .card-action:active,
-    .list-row:active,
-    .chip:active,
-    .segmented-btn:active {
-      transform: scale(.985);
-    }
-
-    .nav-icon-btn,
-    .icon-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
-      background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 72%, white 28%);
-      color: var(--md-sys-color-on-surface-variant);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.45);
-    }
-
-    .topbar-title {
-      min-width: 0;
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      line-height: 1.2;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--md-sys-color-on-surface-variant);
-      opacity: .9;
-      margin-bottom: 3px;
-      font-weight: 700;
-    }
-
-    .headline {
-      font-size: 20px;
-      line-height: 1.15;
-      font-weight: 700;
-      letter-spacing: -.02em;
-      color: var(--md-sys-color-on-surface);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .subhead {
-      color: var(--md-sys-color-on-surface-variant);
-      font-size: 12px;
-      margin-top: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .content {
-      min-height: 0;
-      overflow-y: auto;
-      padding: 0 16px calc(var(--bottom-bar-height) + env(safe-area-inset-bottom) + 18px);
-      scroll-behavior: smooth;
-    }
-
-    .content::-webkit-scrollbar { width: 0; height: 0; }
-
-    .section {
-      margin-bottom: 18px;
-      animation: enterUp var(--transition-med) both;
-    }
-
-    .section-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 14px 2px 10px;
-    }
-
-    .section-title {
-      font-size: 13px;
-      line-height: 1.2;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: var(--md-sys-color-on-surface-variant);
-    }
-
-    .section-meta {
-      font-size: 11px;
-      color: var(--md-sys-color-on-surface-variant);
-    }
-
-    .card,
-    .surface-card {
-      background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.66));
-      border: 1px solid rgba(255,255,255,.72);
-      box-shadow: var(--elevation-1);
-      border-radius: 28px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .surface-card {
-      background: color-mix(in srgb, var(--md-sys-color-surface-container-low) 80%, white 20%);
-    }
-
-    .hero {
-      padding: 18px;
-      border-radius: 30px;
-      background:
-        linear-gradient(135deg, rgba(216,226,255,.95), rgba(255,255,255,.94)),
-        linear-gradient(180deg, rgba(53,95,159,.14), transparent);
-      border: 1px solid rgba(255,255,255,.8);
-      box-shadow: var(--elevation-2);
-    }
-
-    .hero-title {
-      font-size: 24px;
-      line-height: 1.05;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      color: #15315e;
-      margin-bottom: 6px;
-    }
-
-    .hero-text {
-      font-size: 13px;
-      line-height: 1.55;
-      color: #314355;
-      max-width: 36ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .stat-card {
-      border-radius: 24px;
-      padding: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(247,248,252,.92));
-      border: 1px solid rgba(255,255,255,.7);
-      box-shadow: var(--elevation-1);
-      min-height: 104px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -10px -36px auto;
-      width: 84px;
-      height: 84px;
-      border-radius: 999px;
-      background: color-mix(in srgb, currentColor 12%, transparent 88%);
-      opacity: .8;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      line-height: 1.2;
-      color: var(--md-sys-color-on-surface-variant);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
-    .stat-value {
-      font-size: 28px;
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -.03em;
-    }
-
-    .stat-foot {
-      font-size: 11px;
-      color: var(--md-sys-color-on-surface-variant);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .list-row,
-    .category-card,
-    .product-card,
-    .history-card,
-    .alert-card,
-    .subcat-card {
-      width: 100%;
-      text-align: left;
-      display: block;
-      border-radius: 24px;
-      padding: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(248,249,255,.90));
-      border: 1px solid rgba(255,255,255,.78);
-      box-shadow: var(--elevation-1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .category-card {
-      min-height: 126px;
-      padding: 16px;
-    }
-
-    .category-icon-wrap {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-      background: color-mix(in srgb, currentColor 16%, #ffffff 84%);
-    }
-
-    .category-title {
-      font-size: 15px;
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: -.01em;
-      color: var(--md-sys-color-on-surface);
-    }
-
-    .category-meta {
-      font-size: 11px;
-      margin-top: 5px;
-      color: var(--md-sys-color-on-surface-variant);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      padding: 0 7px;
-      font-size: 11px;
-      line-height: 1;
-      font-weight: 800;
-      background: var(--md-sys-color-error);
-      color: var(--md-sys-color-on-error);
-      box-shadow: 0 4px 12px rgba(186,26,26,.20);
-    }
-
-    .search-shell {
-      position: sticky;
-      top: 0;
-      z-index: 12;
-      padding-top: 2px;
-      background: linear-gradient(180deg, rgba(248,249,255,.95), rgba(248,249,255,.72));
-      backdrop-filter: blur(14px);
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 56px;
-      border-radius: 22px;
-      padding: 0 14px;
-      background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 72%, white 28%);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.66);
-    }
-
-    .search-bar input {
-      width: 100%;
-      min-width: 0;
-      font-size: 15px;
-      color: var(--md-sys-color-on-surface);
-    }
-
-    .search-bar input::placeholder {
-      color: color-mix(in srgb, var(--md-sys-color-on-surface-variant) 72%, white 28%);
-    }
-
-    .chips-row,
-    .segmented {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 2px 2px 2px 0;
-      scrollbar-width: none;
-    }
-
-    .chips-row::-webkit-scrollbar,
-    .segmented::-webkit-scrollbar { display: none; }
-
-    .chip,
-    .segmented-btn {
-      min-height: 36px;
-      padding: 0 14px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      background: rgba(255,255,255,.72);
-      color: var(--md-sys-color-on-surface-variant);
-      border: 1px solid rgba(255,255,255,.72);
-      box-shadow: var(--elevation-1);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .chip.is-active,
-    .segmented-btn.is-active {
-      color: var(--md-sys-color-on-secondary-container);
-      background: var(--md-sys-color-secondary-container);
-      border-color: transparent;
-    }
-
-    .filled-btn,
-    .tonal-btn,
-    .text-btn,
-    .fab {
-      min-height: 44px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 0 18px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .01em;
-    }
-
-    .filled-btn {
-      background: linear-gradient(180deg, color-mix(in srgb, var(--md-sys-color-primary) 92%, white 8%), var(--md-sys-color-primary));
-      color: var(--md-sys-color-on-primary);
-      box-shadow: 0 10px 22px rgba(53,95,159,.26);
-    }
-
-    .tonal-btn {
-      background: var(--md-sys-color-primary-container);
-      color: var(--md-sys-color-on-primary-container);
-    }
-
-    .text-btn {
-      background: transparent;
-      color: var(--md-sys-color-primary);
-      padding-inline: 8px;
-    }
-
-    .fab {
-      width: 56px;
-      min-width: 56px;
-      height: 56px;
-      padding: 0;
-      border-radius: 20px;
-      background: linear-gradient(180deg, #6e93cf, var(--md-sys-color-primary));
-      color: #fff;
-      box-shadow: var(--elevation-3);
-    }
-
-    .bottom-bar {
-      position: sticky;
-      bottom: 0;
-      z-index: 50;
-      padding: 10px 12px calc(max(12px, env(safe-area-inset-bottom)));
-      background: linear-gradient(180deg, rgba(248,249,255,0), rgba(248,249,255,.82) 12%, rgba(248,249,255,.96));
-      backdrop-filter: blur(18px);
-    }
-
-    .bottom-bar-inner {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      border-radius: 28px;
-      padding: 10px;
-      background: rgba(255,255,255,.74);
-      border: 1px solid rgba(255,255,255,.78);
-      box-shadow: var(--elevation-2);
-    }
-
-    .tab-btn {
-      min-height: 56px;
-      border-radius: 18px;
-      background: transparent;
-      color: var(--md-sys-color-on-surface-variant);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      position: relative;
-    }
-
-    .tab-btn-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-
-    .tab-btn.is-active {
-      background: var(--md-sys-color-secondary-container);
-      color: var(--md-sys-color-on-secondary-container);
-    }
-
-    .tab-badge-dot {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--md-sys-color-error);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.82);
-    }
-
-    .status-pill,
-    .inline-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      min-height: 28px;
-      border-radius: 999px;
-      padding: 0 10px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-
-    .status-pill.ok { background: var(--success-container); color: var(--success); }
-    .status-pill.low { background: var(--warning-container); color: var(--warning); }
-    .status-pill.crit, .status-pill.zero { background: var(--critical-container); color: var(--critical); }
-
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(67,71,78,.12);
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      border-radius: inherit;
-      transition: width var(--transition-med), background-color var(--transition-med);
-    }
-
-    .product-title,
-    .row-title {
-      font-size: 14px;
-      line-height: 1.3;
-      font-weight: 700;
-      color: var(--md-sys-color-on-surface);
-    }
-
-    .row-subtitle,
-    .helper {
-      font-size: 11px;
-      line-height: 1.4;
-      color: var(--md-sys-color-on-surface-variant);
-    }
-
-    .stock-figure {
-      font-size: 24px;
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -.03em;
-    }
-
-    .detail-hero {
-      padding: 18px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(244,247,255,.96));
-      box-shadow: var(--elevation-2);
-      border: 1px solid rgba(255,255,255,.84);
-    }
-
-    .detail-stock {
-      font-size: 56px;
-      line-height: .9;
-      letter-spacing: -.05em;
-      font-weight: 800;
-      margin-top: 10px;
-    }
-
-    .detail-grid,
-    .projection-grid,
-    .report-kpis {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .mini-stat {
-      border-radius: 20px;
-      padding: 12px 10px;
-      background: rgba(255,255,255,.68);
-      border: 1px solid rgba(255,255,255,.72);
-      text-align: center;
-    }
-
-    .mini-stat-value {
-      font-size: 18px;
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      margin-bottom: 5px;
-    }
-
-    .mini-stat-label {
-      font-size: 10px;
-      color: var(--md-sys-color-on-surface-variant);
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      font-weight: 700;
-    }
-
-    .action-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .action-tile {
-      border-radius: 22px;
-      min-height: 88px;
-      padding: 14px 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: space-between;
-      background: rgba(255,255,255,.76);
-      border: 1px solid rgba(255,255,255,.72);
-      box-shadow: var(--elevation-1);
-    }
-
-    .action-tile .material-symbols-rounded {
-      font-size: 26px;
-    }
-
-    .form-shell {
-      display: grid;
-      gap: 12px;
-      border-radius: 26px;
-      padding: 16px;
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(255,255,255,.74);
-      box-shadow: var(--elevation-1);
-    }
-
-    .field {
-      border-radius: 20px;
-      background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 74%, white 26%);
-      min-height: 60px;
-      padding: 12px 14px;
-      display: grid;
-      gap: 4px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.56);
-    }
-
-    .field-label {
-      font-size: 11px;
-      color: var(--md-sys-color-on-surface-variant);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      font-weight: 700;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      font-size: 15px;
-      color: var(--md-sys-color-on-surface);
-      resize: vertical;
-    }
-
-    .field input[type="number"] {
-      font-size: 26px;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      letter-spacing: -.02em;
-    }
-
-    .projection-card {
-      border-radius: 26px;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,.78);
-      box-shadow: var(--elevation-1);
-      background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(245,247,255,.95));
-    }
-
-    .timeline {
-      margin-top: 12px;
-    }
-
-    .timeline-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 10px;
-      color: var(--md-sys-color-on-surface-variant);
-      margin-bottom: 5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-    }
-
-    .timeline-track {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(67,71,78,.10);
-      overflow: hidden;
-    }
-
-    .timeline-fill {
-      height: 100%;
-      border-radius: inherit;
-    }
-
-    .history-card,
-    .alert-card {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 12px;
-      min-height: 78px;
-    }
-
-    .history-icon,
-    .alert-icon,
-    .avatar-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .history-diff,
-    .alert-stock {
-      text-align: right;
-      min-width: 58px;
-    }
-
-    .empty-state,
-    .login-shell {
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 32px 24px;
-    }
-
-    .login-shell {
-      background:
-        radial-gradient(circle at 50% 0%, rgba(53,95,159,.18), transparent 28%),
-        radial-gradient(circle at 10% 100%, rgba(107,87,120,.10), transparent 26%),
-        linear-gradient(180deg, #fef7ff 0%, #f8f9ff 50%, #f5f7fc 100%);
-    }
-
-    .brand-orb {
-      width: 88px;
-      height: 88px;
-      border-radius: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(180deg, #5d8bd2, #355f9f);
-      color: #fff;
-      box-shadow: 0 18px 44px rgba(53,95,159,.30);
-      margin-bottom: 20px;
-    }
-
-    .brand-title {
-      font-size: 32px;
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -.05em;
-      color: #17325f;
-      margin-bottom: 8px;
-    }
-
-    .brand-text {
-      max-width: 30ch;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #4d5f73;
-      margin-bottom: 28px;
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 360px;
-      border-radius: 32px;
-      padding: 18px;
-      background: rgba(255,255,255,.82);
-      border: 1px solid rgba(255,255,255,.84);
-      box-shadow: var(--elevation-3);
-      text-align: left;
-    }
-
-    .login-pin {
-      min-height: 72px;
-      border-radius: 24px;
-      padding: 16px 18px;
-      background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 75%, white 25%);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.62);
-      display: grid;
-      gap: 6px;
-      margin-top: 12px;
-    }
-
-    .login-pin input {
-      width: 100%;
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: .35em;
-      font-family: var(--font-mono);
-      text-align: center;
-      color: var(--md-sys-color-on-surface);
-    }
-
-    .login-hints {
-      margin-top: 12px;
-      font-size: 11px;
-      line-height: 1.5;
-      color: var(--md-sys-color-on-surface-variant);
-      text-align: center;
-    }
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      top: calc(env(safe-area-inset-top) + 18px);
-      transform: translateX(-50%);
-      z-index: 120;
-      min-width: min(86vw, 320px);
-      max-width: min(90vw, 420px);
-      border-radius: 18px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      box-shadow: var(--elevation-3);
-      animation: toastIn 180ms cubic-bezier(.2,.0,.0,1);
-      backdrop-filter: blur(16px);
-    }
-
-    .toast.ok { background: rgba(19,115,51,.94); }
-    .toast.warn { background: rgba(176,96,0,.96); }
-    .toast.err { background: rgba(186,26,26,.96); }
-
-    .report-card {
-      padding: 16px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(247,248,252,.92));
-      border: 1px solid rgba(255,255,255,.84);
-      box-shadow: var(--elevation-2);
-    }
-
-    .report-kpis {
-      margin-top: 12px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .supporting-list {
-      display: grid;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .supporting-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.68);
-      border: 1px solid rgba(255,255,255,.74);
-    }
-
-    .supporting-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--md-sys-color-primary-container);
-      color: var(--md-sys-color-on-primary-container);
-      flex-shrink: 0;
-    }
-
-    .scrim {
-      position: fixed;
-      inset: 0;
-      background: var(--md-sys-color-scrim);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition-med);
-      z-index: 80;
-      backdrop-filter: blur(4px);
-    }
-
-    .scrim.is-open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .sheet {
-      position: fixed;
-      left: 50%;
-      bottom: 0;
-      width: min(100%, var(--content-width));
-      transform: translate(-50%, calc(100% + 24px));
-      transition: transform var(--transition-med);
-      z-index: 90;
-      border-radius: 28px 28px 0 0;
-      background: linear-gradient(180deg, rgba(252,252,255,.94), rgba(245,247,252,.98));
-      border: 1px solid rgba(255,255,255,.84);
-      border-bottom: 0;
-      box-shadow: 0 -12px 40px rgba(16,24,40,.16);
-      padding: 10px 16px calc(18px + env(safe-area-inset-bottom));
-      max-height: min(76vh, 620px);
-      overflow-y: auto;
-      backdrop-filter: blur(18px);
-    }
-
-    .sheet.is-open {
-      transform: translate(-50%, 0);
-    }
-
-    .sheet-handle {
-      width: 42px;
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(67,71,78,.24);
-      margin: 4px auto 14px;
-    }
-
-    .sheet-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .sheet-title {
-      font-size: 18px;
-      line-height: 1.15;
-      font-weight: 800;
-      letter-spacing: -.02em;
-    }
-
-    .sheet-subtitle {
-      font-size: 12px;
-      color: var(--md-sys-color-on-surface-variant);
-      margin-top: 4px;
-    }
-
-    .utility-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .divider {
-      height: 1px;
-      background: rgba(67,71,78,.14);
-      margin: 12px 0;
-    }
-
-    @keyframes enterUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes toastIn {
-      from { opacity: 0; transform: translate(-50%, -8px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-
-    @media (min-width: 640px) {
-      .content { padding-inline: 20px; }
-      .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .report-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;600;700&display=swap');
+    :root{
+      color-scheme:light;
+      --bg:#f7f2fa;
+      --surface:#fff;
+      --surface-2:#fdf7ff;
+      --surface-3:#f4edff;
+      --text:#1d1b20;
+      --muted:#625b71;
+      --line:#e7e0ec;
+      --primary:#6750a4;
+      --on-primary:#fff;
+      --primary-soft:#ece6f0;
+      --secondary:#625b71;
+      --error:#b3261e;
+      --error-soft:#f9dedc;
+      --warn:#b26a00;
+      --warn-soft:#ffddb0;
+      --success:#386a20;
+      --success-soft:#d8f2c8;
+      --shadow:0 10px 32px rgba(33,24,56,.10);
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:18px;
+      --radius-sm:14px;
+      --app-width:520px;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{height:100%;margin:0;background:radial-gradient(circle at top,#fcfbff 0%,#f7f2fa 55%,#efe7f8 100%);font-family:Roboto,system-ui,sans-serif;color:var(--text)}
+    body{overflow:hidden}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .app-shell{height:100%;max-width:var(--app-width);margin:0 auto;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,255,255,.96));backdrop-filter:blur(20px)}
+    .topbar{padding:22px 18px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{width:42px;height:42px;border-radius:16px;background:linear-gradient(135deg,#20104a,#6750a4 65%,#b39ddb);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:var(--shadow)}
+    .brand h1{font-size:18px;line-height:1.1;margin:0}
+    .brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
+    .icon-btn{width:42px;height:42px;border:none;border-radius:16px;background:var(--surface);box-shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px rgba(34,24,60,.08);display:grid;place-items:center;color:var(--secondary)}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:var(--surface);font-size:12px;color:var(--muted);box-shadow:0 1px 0 rgba(0,0,0,.03)}
+    .hero{padding:0 18px 16px}
+    .hero-card{background:linear-gradient(135deg,#22104a,#4f378b 60%,#7a5dc7);color:#fff;border-radius:30px;padding:20px;box-shadow:0 22px 40px rgba(44,26,88,.28)}
+    .hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+    .mini-kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:12px;text-align:center}
+    .mini-kpi strong{display:block;font-size:22px;font-family:"Roboto Mono",monospace}
+    .mini-kpi span{font-size:10px;opacity:.86;text-transform:uppercase;letter-spacing:.08em}
+    .content{flex:1;overflow:auto;padding:0 18px 104px}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin:12px 0 10px}
+    .section-title h2{font-size:13px;text-transform:uppercase;letter-spacing:.10em;color:var(--muted);margin:0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px;box-shadow:0 8px 28px rgba(30,25,58,.06)}
+    .category-card{position:relative;min-height:118px;display:flex;flex-direction:column;justify-content:space-between}
+    .category-card .accent{position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:0 0 22px 22px;opacity:.9}
+    .badge{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:700}
+    .badge-critical{background:#ffd9d6;color:#8c1d18}
+    .badge-ok{background:#e7f7df;color:#275117}
+    .list{display:grid;gap:10px}
+    .row{display:flex;align-items:center;gap:12px}
+    .item-card{padding:14px 16px}
+    .item-name{font-size:14px;font-weight:600;line-height:1.35}
+    .meta{font-size:11px;color:var(--muted)}
+    .stock{font-family:"Roboto Mono",monospace;font-weight:700;font-size:24px;line-height:1}
+    .progress{margin-top:10px;height:7px;background:#ebe4f1;border-radius:999px;overflow:hidden}
+    .progress > div{height:100%;border-radius:999px}
+    .status-chip{font-size:11px;font-weight:700;padding:6px 10px;border-radius:999px;white-space:nowrap}
+    .status-ok{background:var(--success-soft);color:var(--success)}
+    .status-low{background:var(--warn-soft);color:var(--warn)}
+    .status-critical,.status-zero{background:var(--error-soft);color:var(--error)}
+    .alert-panel{background:linear-gradient(180deg,#fff,#fff7f7);border:1px solid #f0d6d4}
+    .search-box,.field{width:100%;border:none;outline:none;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;color:var(--text);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+    .search-box:focus,.field:focus{border-color:#b7a9df;box-shadow:0 0 0 4px rgba(103,80,164,.12)}
+    .fab-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .action-btn{border:none;border-radius:22px;padding:14px 10px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px}
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-tonal{background:var(--primary-soft);color:var(--primary)}
+    .btn-soft-success{background:var(--success-soft);color:var(--success)}
+    .btn-soft-error{background:var(--error-soft);color:var(--error)}
+    .btn-soft-warn{background:var(--warn-soft);color:var(--warn)}
+    .stack{display:grid;gap:12px}
+    .sheet{background:linear-gradient(180deg,#fff,#fdfcff);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:var(--shadow)}
+    .detail-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .detail-stock{font-family:"Roboto Mono",monospace;font-size:54px;font-weight:700;line-height:1;color:var(--primary)}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .metric{padding:14px;border-radius:20px;background:var(--surface-2);border:1px solid var(--line);text-align:center}
+    .metric strong{display:block;font-family:"Roboto Mono",monospace;font-size:20px}
+    .metric span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .history-row{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid #f0ecf4}
+    .history-row:last-child{border-bottom:none}
+    .history-dot{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;font-weight:700}
+    .empty{padding:36px 16px;text-align:center;color:var(--muted)}
+    .bottom-nav{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(calc(100vw - 24px),calc(var(--app-width) - 24px));background:rgba(255,255,255,.88);backdrop-filter:blur(18px);border:1px solid rgba(231,224,236,.8);box-shadow:0 20px 40px rgba(31,24,44,.12);border-radius:26px;padding:10px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+    .nav-btn{border:none;background:transparent;border-radius:18px;padding:10px 6px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;font-weight:600}
+    .nav-btn.active{background:var(--primary-soft);color:var(--primary)}
+    .nav-dot{width:7px;height:7px;border-radius:50%;background:var(--error);position:absolute;top:8px;right:calc(50% - 14px)}
+    .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:20;max-width:min(92vw,460px);background:#1d1b20;color:#fff;padding:14px 18px;border-radius:18px;box-shadow:0 18px 38px rgba(0,0,0,.24);font-size:13px}
+    .login{height:100%;display:grid;place-items:center;padding:24px}
+    .login-card{width:min(100%,400px);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:34px;padding:28px;box-shadow:0 22px 40px rgba(34,24,60,.12);text-align:center}
+    .pin{font-size:32px;letter-spacing:.45em;text-align:center;font-family:"Roboto Mono",monospace}
+    .small{font-size:12px;color:var(--muted)}
+    .link-btn{border:none;background:none;color:var(--primary);font-weight:700}
+    @media (max-width:430px){
+      .hero-grid,.metric-grid{grid-template-columns:repeat(2,1fr)}
+      .detail-stock{font-size:44px}
+      .grid-2{grid-template-columns:1fr}
+      .fab-row{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <div id="app" class="app-shell"></div>
-  <div id="scrim" class="scrim"></div>
-  <div id="sheet" class="sheet" aria-hidden="true"></div>
-
+  <div id="app"></div>
   <script>
-    (() => {
-      "use strict";
+  const CONFIG = {
+    API_URL: 'https://script.google.com/macros/s/AKfycbw7fYjeLmYICIfKHXWJlv0uN-6SS2nS_7ji9VdfDNkSR6lHAdhDkLPo_Ap2xnNo4Ndhyw/exec',
+    SHEET_URL: 'https://docs.google.com/spreadsheets/d/1eF4MZHXzz_UQOvNbni-g0ljoD1fJIeg_QsHG8H6ievo/edit',
+    STORAGE_KEY: 'kawas-stock-pro-v2',
+    SYNC_TTL_MS: 60 * 1000,
+    USERS: [
+      { name:'Admin', pin:'1234' },
+      { name:'Bodega', pin:'5678' },
+      { name:'Producción', pin:'9012' }
+    ]
+  };
 
-      const CONFIG = {
-        apiUrl: "https://script.google.com/macros/s/AKfycbw7fYjeLmYICIfKHXWJlv0uN-6SS2nS_7ji9VdfDNkSR6lHAdhDkLPo_Ap2xnNo4Ndhyw/exec",
-        sheetUrl: "https://docs.google.com/spreadsheets/d/1eF4MZHXzz_UQOvNbni-g0ljoD1fJIeg_QsHG8H6ievo/edit",
-        storageKey: "kw5_material3_stock",
-        appName: "Kawas Stock",
+  const SEED_ITEMS = [
+    {id:'e1',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Original',stock:600,min:100,unit:'uds',alert:''},
+    {id:'e2',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Frutal',stock:142,min:150,unit:'uds',alert:'Pedir pronto'},
+    {id:'e3',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Bolivia Caranavi Regional',stock:230,min:200,unit:'uds',alert:'Pedir pronto'},
+    {id:'e4',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Colombia Regional',stock:297,min:200,unit:'uds',alert:'Pedir pronto'},
+    {id:'e5',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Brasil Regional',stock:464,min:100,unit:'uds',alert:''},
+    {id:'e6',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Colombia Decaf',stock:114,min:40,unit:'uds',alert:''},
+    {id:'e7',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Peru Cusco',stock:65,min:50,unit:'uds',alert:''},
+    {id:'e8',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Crema',stock:410,min:100,unit:'uds',alert:''},
+    {id:'e9',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Peru Pangoa',stock:457,min:150,unit:'uds',alert:''},
+    {id:'e10',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Col. Antioquia Gabriela',stock:85,min:50,unit:'uds',alert:''},
+    {id:'e11',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Washed Mosto',stock:41,min:30,unit:'uds',alert:''},
+    {id:'m1',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Original 12x5',stock:1091,min:200,unit:'uds',alert:''},
+    {id:'m2',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Colombia Regional 12x5',stock:690,min:200,unit:'uds',alert:''},
+    {id:'m3',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Colombia Decaf 12x5',stock:252,min:150,unit:'uds',alert:''},
+    {id:'m4',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Brasil Regional 12x5',stock:539,min:150,unit:'uds',alert:''},
+    {id:'m5',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Crema 12x5',stock:455,min:150,unit:'uds',alert:''},
+    {id:'m6',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Bolivia Caranavi 12x5',stock:354,min:200,unit:'uds',alert:''},
+    {id:'m7',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Blend Filtrado 12x5',stock:218,min:100,unit:'uds',alert:''},
+    {id:'m8',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Frutal 12x5',stock:360,min:150,unit:'uds',alert:''},
+    {id:'m9',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Costa Rica 120x50',stock:321,min:100,unit:'uds',alert:''},
+    {id:'m10',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Bolivia Typica 113x47',stock:675,min:200,unit:'uds',alert:''},
+    {id:'m11',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Peru Pangoa (Feyser)',stock:250,min:100,unit:'uds',alert:''},
+    {id:'t1',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Original',stock:452,min:150,unit:'uds',alert:''},
+    {id:'t2',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Colombia Regional',stock:400,min:150,unit:'uds',alert:''},
+    {id:'t3',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Colombia Decaf',stock:226,min:100,unit:'uds',alert:''},
+    {id:'t4',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Brasil Regional',stock:450,min:150,unit:'uds',alert:''},
+    {id:'t5',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Crema',stock:419,min:150,unit:'uds',alert:''},
+    {id:'t6',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Bolivia Caranavi',stock:131,min:100,unit:'uds',alert:''},
+    {id:'t7',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Costa Rica',stock:456,min:100,unit:'uds',alert:''},
+    {id:'t8',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Peru Pangoa',stock:429,min:150,unit:'uds',alert:''},
+    {id:'t9',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Frutal',stock:239,min:100,unit:'uds',alert:''},
+    {id:'t10',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Bolivia Typica',stock:88,min:50,unit:'uds',alert:''},
+    {id:'ml1',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Incahuasi 120g',stock:24,min:20,unit:'uds',alert:''},
+    {id:'ml2',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Java Anoxia',stock:46,min:20,unit:'uds',alert:''},
+    {id:'ml3',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Java Lavado',stock:68,min:30,unit:'uds',alert:''},
+    {id:'ml4',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Pacamara Lavado',stock:78,min:30,unit:'uds',alert:''},
+    {id:'ml5',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Catuai Natural',stock:40,min:30,unit:'uds',alert:''},
+    {id:'ml6',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Andino',stock:14,min:20,unit:'uds',alert:'Stock muy bajo'},
+    {id:'ml7',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Inca',stock:57,min:30,unit:'uds',alert:''},
+    {id:'b1',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Impresas 250g',stock:75,min:500,unit:'uds',alert:''},
+    {id:'b2',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Impresas 250g (lote ant.)',stock:125,min:50,unit:'uds',alert:''},
+    {id:'b3',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Espresso 250g',stock:225,min:200,unit:'uds',alert:''},
+    {id:'b4',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Espresso 250g (lote ant.)',stock:275,min:50,unit:'uds',alert:''},
+    {id:'b5',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK 1Kg c/ ziploc',stock:250,min:200,unit:'uds',alert:''},
+    {id:'b6',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Blancas 1Kg',stock:800,min:300,unit:'uds',alert:''},
+    {id:'b7',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Blancas 250g',stock:250,min:100,unit:'uds',alert:''},
+    {id:'b8',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Negras 1Kg',stock:100,min:200,unit:'uds',alert:''},
+    {id:'b9',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Negras 250g',stock:900,min:200,unit:'uds',alert:''},
+    {id:'c1',cat:'Cajas',subcat:'Kawas Grandes',name:'Caja Kawas SYT 12KG',stock:1850,min:500,unit:'uds',alert:''},
+    {id:'c2',cat:'Cajas',subcat:'Kawas Grandes',name:'Cajas formato nuevo 58x30x21',stock:41,min:50,unit:'uds',alert:'Crítico'},
+    {id:'c3',cat:'Cajas',subcat:'Kawas Grandes',name:'Cajas 30x20x20 Castaño',stock:150,min:100,unit:'uds',alert:''},
+    {id:'c4',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Cajas 40x30x20 Kawas 6kg',stock:0,min:50,unit:'uds',alert:''},
+    {id:'c5',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Caja 20x15x10 multibox',stock:63,min:30,unit:'uds',alert:''},
+    {id:'c6',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Caja 25x25x10 multibox 6u',stock:0,min:20,unit:'uds',alert:''},
+    {id:'p1',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Pequeña 20x30x10',stock:117,min:50,unit:'uds',alert:''},
+    {id:'p2',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Mediana 31x33x11',stock:300,min:100,unit:'uds',alert:''},
+    {id:'p3',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Grande 38x44x17',stock:200,min:50,unit:'uds',alert:''},
+    {id:'p4',cat:'Empaque y Despacho',subcat:'',name:'Cinta embalaje Kraft',stock:36,min:20,unit:'rollos',alert:'Pedir'},
+    {id:'p5',cat:'Empaque y Despacho',subcat:'',name:'Cinta embalaje Plástica',stock:24,min:30,unit:'rollos',alert:'Pedir'},
+    {id:'cb1',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Cold Brew Latte Vainilla',stock:139,min:50,unit:'uds',alert:''},
+    {id:'cb2',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Botellas ámbar 200ml',stock:411,min:100,unit:'uds',alert:''},
+    {id:'cb3',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Botellas transparentes 200ml',stock:12,min:50,unit:'uds',alert:'Pedir urgente'},
+    {id:'cb4',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Tapas Negras 200ml',stock:332,min:100,unit:'uds',alert:''},
+    {id:'cb5',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Tapas Blancas 200ml',stock:8,min:50,unit:'uds',alert:'Pedir urgente'},
+    {id:'cb6',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. Nitro Lata 310cc',stock:41,min:30,unit:'uds',alert:''},
+    {id:'cb7',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. CB Original Botella',stock:114,min:50,unit:'uds',alert:''},
+    {id:'cb8',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. CB Avena Botella',stock:70,min:30,unit:'uds',alert:''},
+    {id:'o1',cat:'Otros',subcat:'Sellos Kawas',name:'Sello Redondo 40x40',stock:150,min:100,unit:'uds',alert:'Pedir'},
+    {id:'o2',cat:'Otros',subcat:'Sellos Kawas',name:'Sello Redondo 50x50',stock:0,min:50,unit:'uds',alert:''},
+    {id:'o3',cat:'Otros',subcat:'Marsol',name:'Marsol Mokai',stock:219,min:50,unit:'uds',alert:''},
+    {id:'o4',cat:'Otros',subcat:'Marsol',name:'Marsol Lume',stock:230,min:50,unit:'uds',alert:''}
+  ];
+
+  const ICONS = {
+    'Etiquetas Adhesivas':'🏷️',
+    'Bolsas':'👜',
+    'Cajas':'📦',
+    'Empaque y Despacho':'🚚',
+    'Cold Brew':'🥤',
+    'Otros':'✨'
+  };
+
+  const COLORS = {
+    'Etiquetas Adhesivas':'#4f46b8',
+    'Bolsas':'#0f766e',
+    'Cajas':'#b42318',
+    'Empaque y Despacho':'#a15c00',
+    'Cold Brew':'#00639a',
+    'Otros':'#7e57c2'
+  };
+
+  const Utils = {
+    clone: value => JSON.parse(JSON.stringify(value)),
+    esc: str => String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),
+    fmtInt: n => Number(n || 0).toLocaleString('es-ES'),
+    nowLabel(){
+      const d = new Date();
+      return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    },
+    parseDate(input){
+      if(!input) return null;
+      const direct = new Date(input);
+      if(!Number.isNaN(direct.getTime())) return direct;
+      const m = String(input).match(/^(\d{2})\/(\d{2})(?:\/(\d{2,4}))?\s+(\d{2}):(\d{2})$/);
+      if(!m) return null;
+      let year = Number(m[3] || new Date().getFullYear());
+      if(year < 100) year += 2000;
+      return new Date(year, Number(m[2])-1, Number(m[1]), Number(m[4]), Number(m[5]));
+    },
+    projection(item, history){
+      if(item.stock <= 0) return { title:'Sin stock', days:0, use:'-', date:'-', color:'var(--error)' };
+      const downs = history.filter(h => h.id === item.id && Number(h.ns) < Number(h.os));
+      const totalConsumed = downs.reduce((acc,h) => acc + (Number(h.os) - Number(h.ns)), 0);
+      const dates = downs.map(h => Utils.parseDate(h.ts)).filter(Boolean).sort((a,b) => a-b);
+      let spanDays = 0;
+      if(dates.length >= 2){
+        spanDays = Math.max(1, Math.round((dates.at(-1) - dates[0]) / 86400000));
+      } else if(dates.length === 1){
+        spanDays = Math.max(1, Math.round((Date.now() - dates[0].getTime()) / 86400000));
+      }
+      const fallbackUse = item.min > 0 ? Math.max(1, Math.round(item.min / 14)) : 1;
+      const dailyUse = totalConsumed > 0 && spanDays > 0 ? totalConsumed / spanDays : fallbackUse;
+      const days = Math.max(0, Math.round(item.stock / Math.max(0.1, dailyUse)));
+      const out = new Date(); out.setDate(out.getDate() + days);
+      const color = days <= 7 ? 'var(--error)' : days <= 21 ? 'var(--warn)' : 'var(--success)';
+      return {
+        title: days <= 7 ? 'Agotamiento inminente' : days <= 21 ? 'Pedir pronto' : days <= 45 ? 'Stock moderado' : 'Stock holgado',
+        days,
+        use: dailyUse < 1 ? dailyUse.toFixed(1) : String(Math.round(dailyUse)),
+        date: `${String(out.getDate()).padStart(2,'0')}/${String(out.getMonth()+1).padStart(2,'0')}`,
+        color
       };
+    }
+  };
 
-      const USERS = [
-        { name: "Admin", pin: "1234", role: "Acceso completo" },
-        { name: "Bodega", pin: "5678", role: "Movimientos y control" },
-        { name: "Producción", pin: "9012", role: "Operación diaria" },
+  const Store = {
+    state: {
+      user: null,
+      route: 'home',
+      selectedCategory: null,
+      selectedSubcategory: null,
+      selectedItemId: null,
+      search: '',
+      adjustMode: null,
+      adjustValue: '',
+      adjustNote: '',
+      items: Utils.clone(SEED_ITEMS),
+      history: [],
+      toast: null,
+      syncing: false,
+      syncQueue: [],
+      lastSyncAt: 0
+    },
+    listeners: [],
+    subscribe(fn){ this.listeners.push(fn); },
+    set(patch){ Object.assign(this.state, patch); this.emit(); },
+    emit(){ this.listeners.forEach(fn => fn(this.state)); },
+    persist(){
+      localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
+        user: this.state.user,
+        items: this.state.items,
+        history: this.state.history,
+        syncQueue: this.state.syncQueue,
+        lastSyncAt: this.state.lastSyncAt
+      }));
+    },
+    hydrate(){
+      try{
+        const raw = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY) || '{}');
+        if(Array.isArray(raw.items) && raw.items.length) this.state.items = raw.items;
+        if(Array.isArray(raw.history)) this.state.history = raw.history;
+        if(Array.isArray(raw.syncQueue)) this.state.syncQueue = raw.syncQueue;
+        if(raw.user) this.state.user = raw.user;
+        if(raw.lastSyncAt) this.state.lastSyncAt = raw.lastSyncAt;
+      }catch{}
+    }
+  };
+
+  const Inventory = {
+    get items(){ return Store.state.items; },
+    get history(){ return Store.state.history; },
+    itemById(id){ return this.items.find(x => x.id === id); },
+    groupedByCategory(){ return this.items.reduce((acc,item) => ((acc[item.cat] ??= []).push(item), acc), {}); },
+    groupedSubcategories(cat){
+      return this.items.filter(i => i.cat === cat).reduce((acc,item)=>((acc[item.subcat || 'General'] ??= []).push(item), acc), {});
+    },
+    status(item){
+      if(item.stock <= 0) return 'zero';
+      if(item.stock < Math.max(1, item.min * 0.3)) return 'critical';
+      if(item.stock < item.min) return 'low';
+      return 'ok';
+    },
+    statusMeta(item){
+      const status = this.status(item);
+      return {
+        status,
+        label: ({ok:'OK',low:'Bajo',critical:'Crítico',zero:'Agotado'})[status],
+        color: ({ok:'var(--success)',low:'var(--warn)',critical:'var(--error)',zero:'var(--error)'})[status],
+        className: `status-${status}`
+      };
+    },
+    alerts(){
+      return [...this.items]
+        .filter(item => this.status(item) !== 'ok')
+        .sort((a,b) => {
+          const order = {zero:0,critical:1,low:2,ok:3};
+          return order[this.status(a)] - order[this.status(b)] || a.stock - b.stock;
+        });
+    },
+    metrics(){
+      return {
+        total: this.items.length,
+        low: this.items.filter(x => this.status(x) === 'low').length,
+        critical: this.items.filter(x => this.status(x) === 'critical').length,
+        zero: this.items.filter(x => this.status(x) === 'zero').length,
+        totalStock: this.items.reduce((sum,x)=>sum + Number(x.stock || 0),0)
+      };
+    },
+    searchResults(q){
+      const needle = q.trim().toLowerCase();
+      if(!needle) return [];
+      return this.items.filter(item => [item.name,item.cat,item.subcat,item.alert]
+        .filter(Boolean)
+        .some(value => value.toLowerCase().includes(needle)));
+    },
+    recordMovement({ itemId, newStock, type, note, userName }){
+      const item = this.itemById(itemId);
+      if(!item) return;
+      const oldStock = Number(item.stock);
+      item.stock = Number(newStock);
+      Store.state.history.unshift({
+        id: item.id,
+        nm: item.name,
+        cat: item.cat,
+        tp: type,
+        os: oldStock,
+        ns: Number(newStock),
+        nt: note || '',
+        u: userName,
+        ts: Utils.nowLabel()
+      });
+      Store.state.syncQueue.push({ itemId:item.id, oldStock, newStock:Number(newStock), type, note:note || '', user:userName, createdAt:Date.now() });
+      Store.persist();
+      Store.emit();
+      Api.flushQueueDebounced();
+    }
+  };
+
+  const Api = {
+    activeSyncController: null,
+    isEnabled(){ return /^https:\/\//.test(CONFIG.API_URL); },
+    async request(url, options={}){
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
+      try{
+        const res = await fetch(url, { ...options, signal: controller.signal, cache:'no-store' });
+        if(!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      } finally {
+        clearTimeout(timeout);
+      }
+    },
+    async sync({ force=false } = {}){
+      if(!this.isEnabled()) return;
+      if(Store.state.syncing) return;
+      if(!force && Date.now() - Store.state.lastSyncAt < CONFIG.SYNC_TTL_MS) return;
+      Store.set({ syncing:true });
+      try{
+        const [itemsResp, historyResp] = await Promise.all([
+          this.request(`${CONFIG.API_URL}?action=getAll`),
+          this.request(`${CONFIG.API_URL}?action=getHistory&limit=120`)
+        ]);
+        if(itemsResp.success && Array.isArray(itemsResp.items)){
+          Store.state.items = itemsResp.items.map(x => ({
+            id:String(x.id),
+            cat:String(x.categoria),
+            subcat:String(x.subcategoria || ''),
+            name:String(x.nombre),
+            stock:Number(x.stock) || 0,
+            min:Number(x.minimo) || 0,
+            unit:String(x.unidad || 'uds'),
+            alert:String(x.alerta || '')
+          }));
+        }
+        if(historyResp.success && Array.isArray(historyResp.entries)){
+          Store.state.history = historyResp.entries.map(x => ({
+            id:String(x.itemId),
+            nm:String(x.itemNombre),
+            cat:String(x.categoria),
+            tp:String(x.tipo),
+            os:Number(x.stockAnterior) || 0,
+            ns:Number(x.stockNuevo) || 0,
+            nt:String(x.nota || ''),
+            u:String(x.usuario || '?'),
+            ts:x.timestamp ? x.timestamp.substring(0,16).replace('T',' ') : ''
+          }));
+        }
+        Store.state.lastSyncAt = Date.now();
+        Store.persist();
+        Store.emit();
+      } catch (err) {
+        UI.toast(`Sync parcial: ${err.message}`, 'warn');
+      } finally {
+        Store.set({ syncing:false });
+      }
+    },
+    async flushQueue(){
+      if(!this.isEnabled() || !Store.state.syncQueue.length) return;
+      const batch = [...Store.state.syncQueue];
+      for(const entry of batch){
+        try{
+          const body = JSON.stringify({
+            action:'updateStock',
+            itemId:entry.itemId,
+            newStock:entry.newStock,
+            oldStock:entry.oldStock,
+            tipo:entry.type,
+            usuario:entry.user,
+            nota:entry.note
+          });
+          const resp = await this.request(CONFIG.API_URL, {
+            method:'POST',
+            body,
+            headers:{ 'Content-Type':'text/plain;charset=utf-8' }
+          });
+          if(!resp.success) throw new Error(resp.error || 'sync');
+          Store.state.syncQueue = Store.state.syncQueue.filter(q => q !== entry);
+          Store.persist();
+        } catch (err) {
+          UI.toast('Cambios guardados localmente. Reintentaré sync.', 'warn');
+          break;
+        }
+      }
+    },
+    flushQueueDebounced: (() => {
+      let timer;
+      return () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => Api.flushQueue(), 900);
+      };
+    })()
+  };
+
+  const UI = {
+    app: document.getElementById('app'),
+    toast(message, type='ok'){
+      Store.state.toast = { message, type };
+      Store.emit();
+      clearTimeout(this.toastTimer);
+      this.toastTimer = setTimeout(() => {
+        Store.state.toast = null;
+        Store.emit();
+      }, 2400);
+    },
+    icon(cat){ return ICONS[cat] || '📁'; },
+    accent(cat){ return COLORS[cat] || '#6750a4'; },
+    navTabs(){
+      const tabs = [
+        ['home','Inicio','⌂'],
+        ['search','Buscar','⌕'],
+        ['alerts','Alertas','⚠'],
+        ['history','Historial','◷'],
+        ['report','Reporte','⎙']
       ];
-
-      const SEED_ITEMS = [
-        { id: "e1", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Espresso Original", stock: 600, min: 100, unit: "uds", alert: "" },
-        { id: "e2", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Espresso Frutal", stock: 142, min: 150, unit: "uds", alert: "Pedir pronto" },
-        { id: "e3", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Bolivia Caranavi Regional", stock: 230, min: 200, unit: "uds", alert: "Pedir pronto" },
-        { id: "e4", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Colombia Regional", stock: 297, min: 200, unit: "uds", alert: "Pedir pronto" },
-        { id: "e5", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Brasil Regional", stock: 464, min: 100, unit: "uds", alert: "" },
-        { id: "e6", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Colombia Decaf", stock: 114, min: 40, unit: "uds", alert: "" },
-        { id: "e7", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Peru Cusco", stock: 65, min: 50, unit: "uds", alert: "" },
-        { id: "e8", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Espresso Crema", stock: 410, min: 100, unit: "uds", alert: "" },
-        { id: "e9", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Peru Pangoa", stock: 457, min: 150, unit: "uds", alert: "" },
-        { id: "e10", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Col. Antioquia Gabriela", stock: 85, min: 50, unit: "uds", alert: "" },
-        { id: "e11", cat: "Etiquetas Adhesivas", subcat: "1Kg Funsmart 90×60", name: "Washed Mosto", stock: 41, min: 30, unit: "uds", alert: "" },
-        { id: "m1", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Espresso Original 12x5", stock: 1091, min: 200, unit: "uds", alert: "" },
-        { id: "m2", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Colombia Regional 12x5", stock: 690, min: 200, unit: "uds", alert: "" },
-        { id: "m3", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Colombia Decaf 12x5", stock: 252, min: 150, unit: "uds", alert: "" },
-        { id: "m4", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Brasil Regional 12x5", stock: 539, min: 150, unit: "uds", alert: "" },
-        { id: "m5", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Espresso Crema 12x5", stock: 455, min: 150, unit: "uds", alert: "" },
-        { id: "m6", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Bolivia Caranavi 12x5", stock: 354, min: 200, unit: "uds", alert: "" },
-        { id: "m7", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Blend Filtrado 12x5", stock: 218, min: 100, unit: "uds", alert: "" },
-        { id: "m8", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Espresso Frutal 12x5", stock: 360, min: 150, unit: "uds", alert: "" },
-        { id: "m9", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Costa Rica 120x50", stock: 321, min: 100, unit: "uds", alert: "" },
-        { id: "m10", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Bolivia Typica 113x47", stock: 675, min: 200, unit: "uds", alert: "" },
-        { id: "m11", cat: "Etiquetas Adhesivas", subcat: "250g MTPACK 120×50", name: "Peru Pangoa (Feyser)", stock: 250, min: 100, unit: "uds", alert: "" },
-        { id: "t1", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Espresso Original", stock: 452, min: 150, unit: "uds", alert: "" },
-        { id: "t2", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Colombia Regional", stock: 400, min: 150, unit: "uds", alert: "" },
-        { id: "t3", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Colombia Decaf", stock: 226, min: 100, unit: "uds", alert: "" },
-        { id: "t4", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Brasil Regional", stock: 450, min: 150, unit: "uds", alert: "" },
-        { id: "t5", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Espresso Crema", stock: 419, min: 150, unit: "uds", alert: "" },
-        { id: "t6", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Bolivia Caranavi", stock: 131, min: 100, unit: "uds", alert: "" },
-        { id: "t7", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Costa Rica", stock: 456, min: 100, unit: "uds", alert: "" },
-        { id: "t8", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Peru Pangoa", stock: 429, min: 150, unit: "uds", alert: "" },
-        { id: "t9", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Espresso Frutal", stock: 239, min: 100, unit: "uds", alert: "" },
-        { id: "t10", cat: "Etiquetas Adhesivas", subcat: "1Kg MTPACK 60×80", name: "Bolivia Typica", stock: 88, min: 50, unit: "uds", alert: "" },
-        { id: "ml1", cat: "Etiquetas Adhesivas", subcat: "Microlotes", name: "Geisha Incahuasi 120g", stock: 24, min: 20, unit: "uds", alert: "" },
-        { id: "ml2", cat: "Etiquetas Adhesivas", subcat: "Microlotes", name: "Java Anoxia", stock: 46, min: 20, unit: "uds", alert: "" },
-        { id: "ml3", cat: "Etiquetas Adhesivas", subcat: "Microlotes", name: "Java Lavado", stock: 68, min: 30, unit: "uds", alert: "" },
-        { id: "ml4", cat: "Etiquetas Adhesivas", subcat: "Microlotes", name: "Pacamara Lavado", stock: 78, min: 30, unit: "uds", alert: "" },
-        { id: "ml5", cat: "Etiquetas Adhesivas", subcat: "Microlotes", name: "Catuai Natural", stock: 40, min: 30, unit: "uds", alert: "" },
-        { id: "ml6", cat: "Etiquetas Adhesivas", subcat: "Microlotes", name: "Geisha Andino", stock: 14, min: 20, unit: "uds", alert: "Stock muy bajo" },
-        { id: "ml7", cat: "Etiquetas Adhesivas", subcat: "Microlotes", name: "Geisha Inca", stock: 57, min: 30, unit: "uds", alert: "" },
-        { id: "b1", cat: "Bolsas", subcat: "MTPACK Impresas", name: "MTPACK Impresas 250g", stock: 75, min: 500, unit: "uds", alert: "" },
-        { id: "b2", cat: "Bolsas", subcat: "MTPACK Impresas", name: "MTPACK Impresas 250g (lote ant.)", stock: 125, min: 50, unit: "uds", alert: "" },
-        { id: "b3", cat: "Bolsas", subcat: "MTPACK Impresas", name: "MTPACK Espresso 250g", stock: 225, min: 200, unit: "uds", alert: "" },
-        { id: "b4", cat: "Bolsas", subcat: "MTPACK Impresas", name: "MTPACK Espresso 250g (lote ant.)", stock: 275, min: 50, unit: "uds", alert: "" },
-        { id: "b5", cat: "Bolsas", subcat: "MTPACK Impresas", name: "MTPACK 1Kg c/ ziploc", stock: 250, min: 200, unit: "uds", alert: "" },
-        { id: "b6", cat: "Bolsas", subcat: "Funsmart", name: "Funsmart Blancas 1Kg", stock: 800, min: 300, unit: "uds", alert: "" },
-        { id: "b7", cat: "Bolsas", subcat: "Funsmart", name: "Funsmart Blancas 250g", stock: 250, min: 100, unit: "uds", alert: "" },
-        { id: "b8", cat: "Bolsas", subcat: "Funsmart", name: "Funsmart Negras 1Kg", stock: 100, min: 200, unit: "uds", alert: "" },
-        { id: "b9", cat: "Bolsas", subcat: "Funsmart", name: "Funsmart Negras 250g", stock: 900, min: 200, unit: "uds", alert: "" },
-        { id: "c1", cat: "Cajas", subcat: "Kawas Grandes", name: "Caja Kawas SYT 12KG", stock: 1850, min: 500, unit: "uds", alert: "" },
-        { id: "c2", cat: "Cajas", subcat: "Kawas Grandes", name: "Cajas formato nuevo 58x30x21", stock: 41, min: 50, unit: "uds", alert: "Crítico" },
-        { id: "c3", cat: "Cajas", subcat: "Kawas Grandes", name: "Cajas 30x20x20 Castaño", stock: 150, min: 100, unit: "uds", alert: "" },
-        { id: "c4", cat: "Cajas", subcat: "Multibox / Pequeñas", name: "Cajas 40x30x20 Kawas 6kg", stock: 0, min: 50, unit: "uds", alert: "" },
-        { id: "c5", cat: "Cajas", subcat: "Multibox / Pequeñas", name: "Caja 20x15x10 multibox", stock: 63, min: 30, unit: "uds", alert: "" },
-        { id: "c6", cat: "Cajas", subcat: "Multibox / Pequeñas", name: "Caja 25x25x10 multibox 6u", stock: 0, min: 20, unit: "uds", alert: "" },
-        { id: "p1", cat: "Empaque y Despacho", subcat: "", name: "Bolsa Kraft Pequeña 20x30x10", stock: 117, min: 50, unit: "uds", alert: "" },
-        { id: "p2", cat: "Empaque y Despacho", subcat: "", name: "Bolsa Kraft Mediana 31x33x11", stock: 300, min: 100, unit: "uds", alert: "" },
-        { id: "p3", cat: "Empaque y Despacho", subcat: "", name: "Bolsa Kraft Grande 38x44x17", stock: 200, min: 50, unit: "uds", alert: "" },
-        { id: "p4", cat: "Empaque y Despacho", subcat: "", name: "Cinta embalaje Kraft", stock: 36, min: 20, unit: "rollos", alert: "Pedir" },
-        { id: "p5", cat: "Empaque y Despacho", subcat: "", name: "Cinta embalaje Plástica", stock: 24, min: 30, unit: "rollos", alert: "Pedir" },
-        { id: "cb1", cat: "Cold Brew", subcat: "Botellas y Tapas", name: "Cold Brew Latte Vainilla", stock: 139, min: 50, unit: "uds", alert: "" },
-        { id: "cb2", cat: "Cold Brew", subcat: "Botellas y Tapas", name: "Botellas ámbar 200ml", stock: 411, min: 100, unit: "uds", alert: "" },
-        { id: "cb3", cat: "Cold Brew", subcat: "Botellas y Tapas", name: "Botellas transparentes 200ml", stock: 12, min: 50, unit: "uds", alert: "Pedir urgente" },
-        { id: "cb4", cat: "Cold Brew", subcat: "Botellas y Tapas", name: "Tapas Negras 200ml", stock: 332, min: 100, unit: "uds", alert: "" },
-        { id: "cb5", cat: "Cold Brew", subcat: "Botellas y Tapas", name: "Tapas Blancas 200ml", stock: 8, min: 50, unit: "uds", alert: "Pedir urgente" },
-        { id: "cb6", cat: "Cold Brew", subcat: "Etiquetas Cold Brew", name: "Etiq. Nitro Lata 310cc", stock: 41, min: 30, unit: "uds", alert: "" },
-        { id: "cb7", cat: "Cold Brew", subcat: "Etiquetas Cold Brew", name: "Etiq. CB Original Botella", stock: 114, min: 50, unit: "uds", alert: "" },
-        { id: "cb8", cat: "Cold Brew", subcat: "Etiquetas Cold Brew", name: "Etiq. CB Avena Botella", stock: 70, min: 30, unit: "uds", alert: "" },
-        { id: "o1", cat: "Otros", subcat: "Sellos Kawas", name: "Sello Redondo 40x40", stock: 150, min: 100, unit: "uds", alert: "Pedir" },
-        { id: "o2", cat: "Otros", subcat: "Sellos Kawas", name: "Sello Redondo 50x50", stock: 0, min: 50, unit: "uds", alert: "" },
-        { id: "o3", cat: "Otros", subcat: "Marsol", name: "Marsol Mokai", stock: 219, min: 50, unit: "uds", alert: "" },
-        { id: "o4", cat: "Otros", subcat: "Marsol", name: "Marsol Lume", stock: 230, min: 50, unit: "uds", alert: "" },
-      ];
-
-      const CATEGORY_META = {
-        "Etiquetas Adhesivas": { icon: "label", color: "#355f9f" },
-        "Bolsas": { icon: "shopping_bag", color: "#137333" },
-        "Cajas": { icon: "inventory_2", color: "#ba1a1a" },
-        "Empaque y Despacho": { icon: "deployed_code", color: "#b06000" },
-        "Cold Brew": { icon: "local_cafe", color: "#00639a" },
-        "Otros": { icon: "more_horiz", color: "#6b5778" },
-      };
-
-      const appEl = document.getElementById("app");
-      const scrimEl = document.getElementById("scrim");
-      const sheetEl = document.getElementById("sheet");
-
-      const state = {
-        session: { user: null },
-        ui: {
-          tab: "home",
-          query: "",
-          searchStatus: "all",
-          toast: null,
-          toastTimer: null,
-          sheet: { open: false, mode: null, itemId: null },
-        },
-        navigation: {
-          category: null,
-          subcategory: null,
-          itemId: null,
-        },
-        data: {
-          items: structuredClone(SEED_ITEMS),
-          history: [],
-          lastSyncAt: null,
-          syncing: false,
-        },
-      };
-
-      const Store = {
-        set(patch) {
-          deepMerge(state, patch);
-          persist();
-          render();
-        },
-        mutate(mutator) {
-          mutator(state);
-          persist();
-          render();
-        },
-      };
-
-      function deepMerge(target, patch) {
-        Object.keys(patch).forEach((key) => {
-          const nextValue = patch[key];
-          if (isObject(nextValue) && isObject(target[key]) && !Array.isArray(nextValue)) {
-            deepMerge(target[key], nextValue);
-          } else {
-            target[key] = nextValue;
-          }
-        });
-      }
-
-      function isObject(value) {
-        return value && typeof value === "object" && !Array.isArray(value);
-      }
-
-      const utils = {
-        escape(value) {
-          return String(value ?? "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/\"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-        },
-        number(value) {
-          return Number(value || 0).toLocaleString("es-CL");
-        },
-        nowStamp() {
-          const now = new Date();
-          const pad = (n) => String(n).padStart(2, "0");
-          return `${pad(now.getDate())}/${pad(now.getMonth() + 1)} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
-        },
-        status(item) {
-          if (item.stock <= 0) return "zero";
-          if (item.stock < item.min * 0.3) return "crit";
-          if (item.stock < item.min) return "low";
-          return "ok";
-        },
-        statusMeta(status) {
-          const map = {
-            zero: { label: "Agotado", tone: "zero", color: "var(--critical)", bg: "var(--critical-container)", icon: "block" },
-            crit: { label: "Crítico", tone: "crit", color: "var(--critical)", bg: "var(--critical-container)", icon: "warning" },
-            low: { label: "Bajo", tone: "low", color: "var(--warning)", bg: "var(--warning-container)", icon: "error" },
-            ok: { label: "OK", tone: "ok", color: "var(--success)", bg: "var(--success-container)", icon: "check_circle" },
-          };
-          return map[status] || map.ok;
-        },
-        pct(item) {
-          if (!item.min) return 100;
-          return Math.max(0, Math.min(100, Math.round((item.stock / item.min) * 100)));
-        },
-        progressColor(item) {
-          const status = utils.status(item);
-          if (status === "zero" || status === "crit") return "var(--critical)";
-          if (status === "low") return "var(--warning)";
-          if (utils.pct(item) < 120) return "var(--md-sys-color-primary)";
-          return "var(--success)";
-        },
-        parseFlexibleDate(value) {
-          if (!value) return null;
-          const direct = new Date(value);
-          if (!Number.isNaN(direct.getTime())) return direct;
-          const [datePart, timePart] = String(value).split(" ");
-          if (!datePart || !datePart.includes("/")) return null;
-          const [dd, mm, yy] = datePart.split("/").map(Number);
-          const [hh = 0, mi = 0] = (timePart || "00:00").split(":").map(Number);
-          const year = yy ? (yy < 100 ? yy + 2000 : yy) : new Date().getFullYear();
-          const parsed = new Date(year, (mm || 1) - 1, dd || 1, hh || 0, mi || 0);
-          return Number.isNaN(parsed.getTime()) ? null : parsed;
-        },
-        projection(item) {
-          if (item.stock <= 0) {
-            return {
-              title: "Sin stock disponible",
-              subtitle: "No hay unidades para cubrir demanda.",
-              daysLeft: 0,
-              dailyUse: 0,
-              dateOut: "—",
-              color: "var(--critical)",
-              icon: "dangerous",
-              mode: "empty",
-            };
-          }
-
-          const consumptions = state.data.history
-            .filter((entry) => entry.id === item.id && Number(entry.ns) < Number(entry.os))
-            .map((entry) => ({ amount: Number(entry.os) - Number(entry.ns), date: utils.parseFlexibleDate(entry.ts), type: entry.tp }));
-
-          if (!consumptions.length) {
-            const fallbackUse = Math.max(1, Math.round((item.min || 14) / 14));
-            const fallbackDays = Math.max(1, Math.round(item.stock / fallbackUse));
-            const fallbackDate = addDays(new Date(), fallbackDays);
-            return projectionTone(fallbackDays, {
-              title: "Estimación inicial",
-              subtitle: "Aún no hay suficiente consumo histórico. Se usa un cálculo conservador basado en mínimo.",
-              daysLeft: fallbackDays,
-              dailyUse: fallbackUse,
-              dateOut: shortDate(fallbackDate),
-              mode: "estimated",
-            });
-          }
-
-          const dated = consumptions.filter((entry) => entry.date);
-          let spanDays = 1;
-          if (dated.length >= 2) {
-            dated.sort((a, b) => a.date - b.date);
-            const ms = Math.abs(dated[dated.length - 1].date - dated[0].date);
-            spanDays = Math.max(1, Math.round(ms / 86400000));
-          } else if (dated.length === 1) {
-            spanDays = Math.max(1, Math.round(Math.abs(new Date() - dated[0].date) / 86400000));
-          } else {
-            spanDays = Math.max(1, consumptions.length * 3);
-          }
-
-          const totalConsumed = consumptions.reduce((sum, entry) => sum + entry.amount, 0);
-          const dailyUse = Math.max(.1, totalConsumed / spanDays);
-          const daysLeft = Math.max(0, Math.round(item.stock / dailyUse));
-          const dateOut = daysLeft > 0 ? shortDate(addDays(new Date(), daysLeft)) : "—";
-
-          const movementSummary = summarizeConsumptionTypes(consumptions);
-          return projectionTone(daysLeft, {
-            title: "Cobertura estimada",
-            subtitle: `Basado en ${movementSummary} durante ${spanDays} día${spanDays === 1 ? "" : "s"}.`,
-            daysLeft,
-            dailyUse: dailyUse < 1 ? Number(dailyUse.toFixed(1)) : Math.round(dailyUse),
-            dateOut,
-            mode: "historical",
-          });
-        },
-      };
-
-      function summarizeConsumptionTypes(consumptions) {
-        const counts = consumptions.reduce((acc, entry) => {
-          acc[entry.type] = (acc[entry.type] || 0) + 1;
-          return acc;
-        }, {});
-        const parts = [];
-        if (counts.salida) parts.push(`${counts.salida} salida${counts.salida > 1 ? "s" : ""}`);
-        if (counts.ajuste) parts.push(`${counts.ajuste} ajuste${counts.ajuste > 1 ? "s" : ""}`);
-        if (!parts.length) parts.push(`${consumptions.length} movimiento${consumptions.length > 1 ? "s" : ""}`);
-        return parts.join(" + ");
-      }
-
-      function projectionTone(daysLeft, payload) {
-        if (daysLeft <= 7) return { ...payload, color: "var(--critical)", icon: "emergency_home", tone: "crit" };
-        if (daysLeft <= 21) return { ...payload, color: "var(--warning)", icon: "clock_loader_40", tone: "low" };
-        if (daysLeft <= 45) return { ...payload, color: "var(--info)", icon: "event_upcoming", tone: "mid" };
-        return { ...payload, color: "var(--success)", icon: "verified", tone: "ok" };
-      }
-
-      function shortDate(date) {
-        const pad = (n) => String(n).padStart(2, "0");
-        return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}`;
-      }
-
-      function addDays(date, amount) {
-        const next = new Date(date);
-        next.setDate(next.getDate() + amount);
-        return next;
-      }
-
-      const selectors = {
-        items: () => state.data.items.slice(),
-        itemById: (id) => state.data.items.find((item) => item.id === id) || null,
-        historyForItem: (id) => state.data.history.filter((entry) => entry.id === id),
-        alerts: () => selectors.items()
-          .filter((item) => utils.status(item) !== "ok")
-          .sort((a, b) => statusOrder(utils.status(a)) - statusOrder(utils.status(b)) || a.stock - b.stock),
-        criticals: () => selectors.alerts().filter((item) => ["zero", "crit"].includes(utils.status(item))),
-        categories: () => {
-          const map = new Map();
-          selectors.items().forEach((item) => {
-            if (!map.has(item.cat)) map.set(item.cat, []);
-            map.get(item.cat).push(item);
-          });
-          return Array.from(map.entries()).map(([name, items]) => ({ name, items }));
-        },
-        subcategories: (catName) => {
-          const map = new Map();
-          selectors.items()
-            .filter((item) => item.cat === catName)
-            .forEach((item) => {
-              const sub = item.subcat || "General";
-              if (!map.has(sub)) map.set(sub, []);
-              map.get(sub).push(item);
-            });
-          return Array.from(map.entries()).map(([name, items]) => ({ name, items }));
-        },
-        currentItems: () => {
-          const { category, subcategory } = state.navigation;
-          if (!category) return selectors.items();
-          return selectors.items().filter((item) => {
-            const sameCat = item.cat === category;
-            const sameSub = !subcategory || (item.subcat || "General") === subcategory;
-            return sameCat && sameSub;
-          });
-        },
-        searchResults: () => {
-          const q = state.ui.query.trim().toLowerCase();
-          if (!q) return [];
-          const statusFilter = state.ui.searchStatus;
-          return selectors.items()
-            .filter((item) => {
-              const matchesText = [item.name, item.cat, item.subcat, item.alert]
-                .filter(Boolean)
-                .some((value) => String(value).toLowerCase().includes(q));
-              const matchesStatus = statusFilter === "all" || utils.status(item) === statusFilter;
-              return matchesText && matchesStatus;
-            })
-            .sort((a, b) => statusOrder(utils.status(a)) - statusOrder(utils.status(b)) || a.name.localeCompare(b.name));
-        },
-        metrics: () => {
-          const items = selectors.items();
-          const totalUnits = items.reduce((sum, item) => sum + Number(item.stock || 0), 0);
-          const low = items.filter((item) => utils.status(item) === "low").length;
-          const crit = items.filter((item) => utils.status(item) === "crit").length;
-          const zero = items.filter((item) => utils.status(item) === "zero").length;
-          const ok = items.filter((item) => utils.status(item) === "ok").length;
-          return { totalItems: items.length, totalUnits, low, crit, zero, ok };
-        },
-      };
-
-      function statusOrder(status) {
-        return ({ zero: 0, crit: 1, low: 2, ok: 3 })[status] ?? 99;
-      }
-
-      function categoryMeta(catName) {
-        const known = CATEGORY_META[catName];
-        if (known) return known;
-        const fallback = [
-          { icon: "category", color: "#355f9f" },
-          { icon: "inventory", color: "#137333" },
-          { icon: "deployed_code", color: "#b06000" },
-          { icon: "inventory_2", color: "#ba1a1a" },
-          { icon: "widgets", color: "#6b5778" },
-        ];
-        const index = selectors.categories().findIndex((cat) => cat.name === catName);
-        return fallback[index >= 0 ? index % fallback.length : 0];
-      }
-
-      function persist() {
-        const payload = {
-          session: state.session,
-          data: state.data,
-        };
-        try {
-          localStorage.setItem(CONFIG.storageKey, JSON.stringify(payload));
-        } catch (error) {
-          console.warn("No se pudo persistir el estado", error);
-        }
-      }
-
-      function hydrate() {
-        try {
-          const raw = localStorage.getItem(CONFIG.storageKey);
-          if (!raw) return;
-          const parsed = JSON.parse(raw);
-          if (parsed?.data?.items?.length) state.data.items = parsed.data.items;
-          if (Array.isArray(parsed?.data?.history)) state.data.history = parsed.data.history;
-          if (parsed?.data?.lastSyncAt) state.data.lastSyncAt = parsed.data.lastSyncAt;
-          if (parsed?.session?.user) state.session.user = parsed.session.user;
-        } catch (error) {
-          console.warn("No se pudo hidratar el estado", error);
-        }
-      }
-
-      function isOnlineMode() {
-        const url = CONFIG.apiUrl;
-        return url && url !== "DEMO" && url !== "TU_URL_AQUI";
-      }
-
-      function toast(message, tone = "ok") {
-        if (state.ui.toastTimer) clearTimeout(state.ui.toastTimer);
-        state.ui.toast = { message, tone };
-        render();
-        state.ui.toastTimer = setTimeout(() => {
-          state.ui.toast = null;
-          render();
-        }, 2400);
-      }
-
-      async function syncAll() {
-        if (!isOnlineMode() || state.data.syncing) return;
-        state.data.syncing = true;
-        render();
-        try {
-          const [itemsRes, historyRes] = await Promise.all([
-            fetch(`${CONFIG.apiUrl}?action=getAll`),
-            fetch(`${CONFIG.apiUrl}?action=getHistory&limit=120`),
-          ]);
-          const itemsData = await itemsRes.json();
-          const historyData = await historyRes.json();
-
-          if (itemsData?.success && Array.isArray(itemsData.items)) {
-            state.data.items = itemsData.items.map((row) => ({
-              id: String(row.id),
-              cat: String(row.categoria),
-              subcat: String(row.subcategoria || ""),
-              name: String(row.nombre),
-              stock: Number(row.stock) || 0,
-              min: Number(row.minimo) || 0,
-              unit: String(row.unidad || "uds"),
-              alert: String(row.alerta || ""),
-            }));
-          }
-
-          if (historyData?.success && Array.isArray(historyData.entries)) {
-            state.data.history = historyData.entries.map((row) => ({
-              id: String(row.itemId),
-              nm: String(row.itemNombre || ""),
-              cat: String(row.categoria || ""),
-              tp: String(row.tipo || "ajuste"),
-              os: Number(row.stockAnterior) || 0,
-              ns: Number(row.stockNuevo) || 0,
-              nt: String(row.nota || ""),
-              u: String(row.usuario || "?"),
-              ts: row.timestamp ? String(row.timestamp).replace("T", " ").slice(0, 16) : utils.nowStamp(),
-            }));
-          }
-
-          state.data.lastSyncAt = new Date().toISOString();
-          persist();
-          toast("Sincronización completada");
-        } catch (error) {
-          console.error(error);
-          toast("Error de sincronización. Se conserva copia local.", "warn");
-        } finally {
-          state.data.syncing = false;
-          render();
-        }
-      }
-
-      async function pushUpdate(item, oldStock, newStock, type, note) {
-        if (!isOnlineMode()) return;
-        try {
-          const response = await fetch(CONFIG.apiUrl, {
-            method: "POST",
-            headers: { "Content-Type": "text/plain" },
-            body: JSON.stringify({
-              action: "updateStock",
-              itemId: item.id,
-              oldStock,
-              newStock,
-              tipo: type,
-              usuario: state.session.user?.name || "?",
-              nota: note || "",
-            }),
-          });
-          const data = await response.json();
-          if (!data?.success) {
-            toast(`No se pudo guardar en Sheets${data?.error ? `: ${data.error}` : ""}`, "warn");
-          }
-        } catch (error) {
-          console.error(error);
-          toast("Cambio guardado localmente. Falló envío remoto.", "warn");
-        }
-      }
-
-      function authenticate(pin) {
-        const user = USERS.find((entry) => entry.pin === pin);
-        if (!user) {
-          toast("PIN incorrecto", "err");
-          return false;
-        }
-        state.session.user = { name: user.name, role: user.role };
-        persist();
-        render();
-        toast(`Hola, ${user.name}`);
-        syncAll();
-        return true;
-      }
-
-      function logout() {
-        state.session.user = null;
-        state.navigation.category = null;
-        state.navigation.subcategory = null;
-        state.navigation.itemId = null;
-        state.ui.tab = "home";
-        state.ui.query = "";
-        closeSheet();
-        persist();
-        render();
-      }
-
-      function openItem(id) {
-        state.navigation.itemId = id;
-        render();
-      }
-
-      function closeItem() {
-        state.navigation.itemId = null;
-        closeSheet(false);
-        render();
-      }
-
-      function openCategory(category) {
-        state.navigation.category = category;
-        state.navigation.subcategory = null;
-        state.navigation.itemId = null;
-        render();
-      }
-
-      function openSubcategory(subcategory) {
-        state.navigation.subcategory = subcategory;
-        state.navigation.itemId = null;
-        render();
-      }
-
-      function navigateHome() {
-        state.navigation.category = null;
-        state.navigation.subcategory = null;
-        state.navigation.itemId = null;
-        state.ui.tab = "home";
-        closeSheet(false);
-        render();
-      }
-
-      function goBack() {
-        if (state.navigation.itemId) {
-          closeItem();
-          return;
-        }
-        if (state.navigation.subcategory) {
-          state.navigation.subcategory = null;
-          render();
-          return;
-        }
-        if (state.navigation.category) {
-          state.navigation.category = null;
-          render();
-          return;
-        }
-      }
-
-      function changeTab(tab) {
-        state.ui.tab = tab;
-        state.navigation.category = null;
-        state.navigation.subcategory = null;
-        state.navigation.itemId = null;
-        if (tab !== "search") state.ui.query = "";
-        closeSheet(false);
-        render();
-      }
-
-      function updateSearch(query) {
-        state.ui.query = query;
-        render();
-      }
-
-      function openSheet(mode, itemId) {
-        state.ui.sheet = { open: true, mode, itemId };
-        render();
-      }
-
-      function closeSheet(shouldRender = true) {
-        state.ui.sheet = { open: false, mode: null, itemId: null };
-        if (shouldRender) render();
-      }
-
-      function applyAdjustment(mode, itemId, value, note) {
-        const numeric = Number(value);
-        if (Number.isNaN(numeric) || numeric < 0) {
-          toast("Ingresa un valor válido", "err");
-          return;
-        }
-        const item = selectors.itemById(itemId);
-        if (!item) return;
-        const oldStock = Number(item.stock);
-        const nextStock = mode === "in"
-          ? oldStock + numeric
-          : mode === "out"
-            ? Math.max(0, oldStock - numeric)
-            : numeric;
-
-        state.data.items = state.data.items.map((entry) => (
-          entry.id === itemId ? { ...entry, stock: nextStock } : entry
-        ));
-
-        state.data.history.unshift({
-          id: item.id,
-          nm: item.name,
-          cat: item.cat,
-          tp: mode === "in" ? "ingreso" : mode === "out" ? "salida" : "ajuste",
-          os: oldStock,
-          ns: nextStock,
-          nt: note || "",
-          u: state.session.user?.name || "?",
-          ts: utils.nowStamp(),
-        });
-
-        persist();
-        closeSheet(false);
-        render();
-        pushUpdate(item, oldStock, nextStock, mode === "in" ? "ingreso" : mode === "out" ? "salida" : "ajuste", note);
-        toast(`${item.name}: ${oldStock} → ${nextStock}`);
-      }
-
-      function exportPrintableReport() {
-        const metrics = selectors.metrics();
-        const items = selectors.items().slice().sort((a, b) => {
-          if (a.cat !== b.cat) return a.cat.localeCompare(b.cat);
-          if ((a.subcat || "") !== (b.subcat || "")) return (a.subcat || "").localeCompare(b.subcat || "");
-          return a.name.localeCompare(b.name);
-        });
-        const criticals = selectors.alerts();
-        const dateString = new Date().toLocaleDateString("es-CL", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        });
-
-        const grouped = items.reduce((acc, item) => {
-          const cat = item.cat;
-          const sub = item.subcat || "General";
-          if (!acc[cat]) acc[cat] = {};
-          if (!acc[cat][sub]) acc[cat][sub] = [];
-          acc[cat][sub].push(item);
-          return acc;
-        }, {});
-
-        const reportHtml = `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Reporte Kawas Stock</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; padding: 24px; color: #14212f; font-family: Inter, Arial, sans-serif; background: #fff; }
-    h1, h2, h3, p { margin: 0; }
-    .hero { padding: 18px 20px; border-radius: 24px; background: linear-gradient(135deg, #d8e2ff, #f6f8ff); border: 1px solid #d9e2f1; margin-bottom: 18px; }
-    .hero h1 { font-size: 28px; line-height: 1.05; margin-bottom: 8px; }
-    .hero p { color: #4d5f73; font-size: 13px; }
-    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0 22px; }
-    .kpi { border: 1px solid #e7ebf4; border-radius: 20px; padding: 14px; background: #f8f9ff; }
-    .kpi strong { display: block; font-size: 26px; line-height: 1; }
-    .kpi span { display: block; margin-top: 6px; font-size: 11px; color: #5d6878; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
-    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-    thead th { text-align: left; font-size: 11px; color: #44515f; background: #eef3fb; padding: 10px; }
-    tbody td { border-bottom: 1px solid #edf0f4; padding: 10px; font-size: 12px; vertical-align: top; }
-    .state-ok { color: #137333; font-weight: 700; }
-    .state-low { color: #b06000; font-weight: 700; }
-    .state-crit, .state-zero { color: #ba1a1a; font-weight: 700; }
-    .section { margin-bottom: 24px; }
-    .section h2 { font-size: 18px; margin-bottom: 8px; }
-    .sub { margin-top: 16px; font-size: 13px; font-weight: 800; color: #355f9f; }
-    .note { margin-top: 18px; font-size: 11px; color: #667586; }
-    @media print { body { padding: 16px; } }
-  </style>
-</head>
-<body>
-  <section class="hero">
-    <h1>${utils.escape(CONFIG.appName)} · Reporte operativo</h1>
-    <p>Generado el ${utils.escape(dateString)} · ${metrics.totalItems} productos monitoreados · ${metrics.totalUnits.toLocaleString("es-CL")} unidades en stock.</p>
-  </section>
-
-  <section class="kpis">
-    <div class="kpi"><strong>${metrics.totalItems}</strong><span>Productos</span></div>
-    <div class="kpi"><strong>${metrics.totalUnits.toLocaleString("es-CL")}</strong><span>Stock total</span></div>
-    <div class="kpi"><strong>${metrics.crit + metrics.zero}</strong><span>Críticos</span></div>
-    <div class="kpi"><strong>${metrics.low}</strong><span>Bajo mínimo</span></div>
-  </section>
-
-  <section class="section">
-    <h2>Productos prioritarios</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Categoría</th>
-          <th>Stock</th>
-          <th>Mínimo</th>
-          <th>Estado</th>
-          <th>Días restantes</th>
-          <th>Fecha estimada</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${criticals.map((item) => {
-          const projection = utils.projection(item);
-          const status = utils.status(item);
-          const statusMeta = utils.statusMeta(status);
-          return `<tr>
-            <td>${utils.escape(item.name)}</td>
-            <td>${utils.escape(item.cat)}</td>
-            <td>${utils.escape(String(item.stock))}</td>
-            <td>${utils.escape(String(item.min))}</td>
-            <td class="state-${status}">${utils.escape(statusMeta.label)}</td>
-            <td>${utils.escape(String(projection.daysLeft))}</td>
-            <td>${utils.escape(projection.dateOut)}</td>
-          </tr>`;
-        }).join("")}
-      </tbody>
-    </table>
-  </section>
-
-  ${Object.entries(grouped).map(([cat, subgroups]) => `
-    <section class="section">
-      <h2>${utils.escape(cat)}</h2>
-      ${Object.entries(subgroups).map(([sub, groupItems]) => `
-        <div class="sub">${utils.escape(sub)}</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Stock</th>
-              <th>Mínimo</th>
-              <th>% mínimo</th>
-              <th>Estado</th>
-              <th>Uso diario</th>
-              <th>Días restantes</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${groupItems.map((item) => {
-              const projection = utils.projection(item);
-              const status = utils.status(item);
-              const statusMeta = utils.statusMeta(status);
-              return `<tr>
-                <td>${utils.escape(item.name)}</td>
-                <td>${utils.escape(String(item.stock))}</td>
-                <td>${utils.escape(String(item.min))}</td>
-                <td>${utils.escape(String(utils.pct(item)))}%</td>
-                <td class="state-${status}">${utils.escape(statusMeta.label)}</td>
-                <td>${utils.escape(String(projection.dailyUse))}</td>
-                <td>${utils.escape(String(projection.daysLeft))}</td>
-              </tr>`;
-            }).join("")}
-          </tbody>
-        </table>
-      `).join("")}
-    </section>
-  `).join("")}
-
-  <p class="note">Reporte generado desde la versión Material 3 rediseñada de Kawas Stock.</p>
-  <script>window.onload = () => window.print();</script>
-</body>
-</html>`;
-
-        const popup = window.open("", "_blank");
-        if (!popup) {
-          toast("El navegador bloqueó la ventana del reporte", "warn");
-          return;
-        }
-        popup.document.write(reportHtml);
-        popup.document.close();
-      }
-
-      function icon(name) {
-        return `<span class="material-symbols-rounded">${name}</span>`;
-      }
-
-      function render() {
-        if (!state.session.user) {
-          renderLogin();
-          renderSheet();
-          renderToast();
-          attachGlobalEvents();
-          return;
-        }
-
-        const item = selectors.itemById(state.navigation.itemId);
-        if (item) {
-          renderItemDetail(item);
-        } else if (state.navigation.category && !state.navigation.subcategory) {
-          renderCategoryView();
-        } else if (state.navigation.category && state.navigation.subcategory) {
-          renderSubcategoryView();
-        } else {
-          renderMainShell();
-        }
-
-        renderSheet();
-        renderToast();
-        attachGlobalEvents();
-      }
-
-      function renderToast() {
-        const existing = document.querySelector(".toast");
-        if (existing) existing.remove();
-        if (!state.ui.toast) return;
-        const el = document.createElement("div");
-        el.className = `toast ${state.ui.toast.tone}`;
-        el.innerHTML = `${icon(state.ui.toast.tone === "err" ? "error" : state.ui.toast.tone === "warn" ? "warning" : "check_circle")}<div>${utils.escape(state.ui.toast.message)}</div>`;
-        document.body.appendChild(el);
-      }
-
-      function renderSheet() {
-        const { open, mode, itemId } = state.ui.sheet;
-        scrimEl.classList.toggle("is-open", open);
-        sheetEl.classList.toggle("is-open", open);
-        sheetEl.setAttribute("aria-hidden", String(!open));
-        if (!open) {
-          sheetEl.innerHTML = "";
-          return;
-        }
-        const item = selectors.itemById(itemId);
-        if (!item) {
-          closeSheet();
-          return;
-        }
-        const modeMeta = {
-          in: { title: "Registrar ingreso", icon: "move_down", color: "var(--success)", description: "Suma unidades al inventario actual." },
-          out: { title: "Registrar salida", icon: "move_up", color: "var(--critical)", description: "Descuenta unidades consumidas o despachadas." },
-          set: { title: "Ajustar stock", icon: "tune", color: "var(--md-sys-color-primary)", description: "Define un nuevo stock base para este producto." },
-        }[mode];
-
-        sheetEl.innerHTML = `
-          <div class="sheet-handle"></div>
-          <div class="sheet-header">
-            <div>
-              <div class="sheet-title">${utils.escape(modeMeta.title)}</div>
-              <div class="sheet-subtitle">${utils.escape(item.name)} · Stock actual ${utils.escape(String(item.stock))} ${utils.escape(item.unit)}</div>
-            </div>
-            <button class="icon-btn" data-action="close-sheet">${icon("close")}</button>
-          </div>
-          <div class="helper" style="margin-bottom:12px">${utils.escape(modeMeta.description)}</div>
-          <form id="adjust-form" class="form-shell">
-            <label class="field">
-              <span class="field-label">${mode === "set" ? "Nuevo stock" : "Cantidad"}</span>
-              <input name="value" type="number" min="0" step="1" inputmode="numeric" placeholder="0" required />
-            </label>
-            <label class="field">
-              <span class="field-label">Nota opcional</span>
-              <textarea name="note" rows="2" placeholder="Motivo, lote, observación o referencia"></textarea>
-            </label>
-            <div class="utility-row">
-              <button type="button" class="tonal-btn" data-action="close-sheet">Cancelar</button>
-              <button type="submit" class="filled-btn" style="background:linear-gradient(180deg, color-mix(in srgb, ${modeMeta.color} 92%, white 8%), ${modeMeta.color}); box-shadow: 0 10px 22px color-mix(in srgb, ${modeMeta.color} 26%, transparent 74%);">${icon(modeMeta.icon)} Confirmar</button>
-            </div>
-          </form>
-        `;
-
-        const form = document.getElementById("adjust-form");
-        const input = form?.elements?.value;
-        if (input) setTimeout(() => input.focus(), 20);
-        if (form) {
-          form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const formData = new FormData(form);
-            applyAdjustment(mode, itemId, formData.get("value"), formData.get("note"));
-          });
-        }
-      }
-
-      function renderLogin() {
-        appEl.innerHTML = `
-          <div class="login-shell">
-            <div class="brand-orb">${icon("inventory")}</div>
-            <div class="brand-title">Kawas Stock</div>
-            <div class="brand-text">Control de materiales con una interfaz más clara, ágil y precisa para operación móvil y web.</div>
-            <div class="login-card">
-              <div class="eyebrow">Acceso seguro</div>
-              <div class="headline" style="white-space:normal">Ingresa tu PIN de operación</div>
-              <div class="login-pin">
-                <div class="field-label">PIN</div>
-                <input id="pin-input" type="password" inputmode="numeric" maxlength="4" placeholder="····" aria-label="PIN" />
-              </div>
-              <div class="login-hints">PINs demo: 1234 · 5678 · 9012</div>
-            </div>
-          </div>
-        `;
-
-        const pinInput = document.getElementById("pin-input");
-        if (pinInput) {
-          pinInput.focus();
-          pinInput.addEventListener("input", (event) => {
-            const value = event.target.value;
-            if (value.length === 4) {
-              const ok = authenticate(value);
-              if (!ok) event.target.value = "";
-            }
-          });
-        }
-      }
-
-      function renderMainShell() {
-        const metrics = selectors.metrics();
-        const alerts = selectors.alerts();
-        const categories = selectors.categories();
-
-        appEl.innerHTML = `
-          <div class="page">
-            ${renderTopbar({
-              eyebrow: CONFIG.appName,
-              title: state.ui.tab === "home" ? "Vista general" : state.ui.tab === "search" ? "Búsqueda inteligente" : state.ui.tab === "alerts" ? "Alertas activas" : state.ui.tab === "history" ? "Historial reciente" : "Reporte ejecutivo",
-              subtitle: state.data.syncing
-                ? "Sincronizando datos…"
-                : state.data.lastSyncAt
-                  ? `Última sincronización ${formatSyncLabel(state.data.lastSyncAt)}`
-                  : state.session.user.role,
-              leading: `<button class="nav-icon-btn" data-action="go-home">${icon("home")}</button>`,
-              trailing: `
-                <div class="utility-row" style="justify-content:flex-end">
-                  <button class="icon-btn" data-action="sync">${icon(state.data.syncing ? "progress_activity" : "sync")}</button>
-                  <button class="icon-btn" data-action="logout">${icon("logout")}</button>
-                </div>
-              `,
-            })}
-            <main class="content">
-              ${renderMainContent(metrics, alerts, categories)}
-            </main>
-            ${renderBottomBar()}
-          </div>
-        `;
-
-        const searchInput = document.getElementById("search-input");
-        if (searchInput) {
-          searchInput.value = state.ui.query;
-          searchInput.addEventListener("input", (event) => updateSearch(event.target.value));
-          setTimeout(() => searchInput.focus(), 30);
-        }
-      }
-
-      function renderMainContent(metrics, alerts, categories) {
-        switch (state.ui.tab) {
-          case "search": return renderSearchView();
-          case "alerts": return renderAlertsView(alerts);
-          case "history": return renderHistoryView();
-          case "report": return renderReportView(metrics, alerts);
-          case "home":
-          default:
-            return `
-              <section class="section hero">
-                <div class="eyebrow">Panel operativo</div>
-                <div class="hero-title">Inventario claro, rápido y accionable.</div>
-                <div class="hero-text">Diseño móvil de alta legibilidad, alertas priorizadas y navegación limpia para bodega, producción y control.</div>
-                <div class="hero-actions">
-                  <button class="filled-btn" data-tab="alerts">${icon("priority_high")} Ver críticos</button>
-                  <button class="tonal-btn" data-action="sync">${icon("sync")} Sincronizar</button>
-                </div>
-              </section>
-
-              <section class="section">
-                <div class="section-title-row">
-                  <div class="section-title">Resumen</div>
-                  <div class="section-meta">${utils.escape(state.session.user.name)} · ${utils.escape(state.session.user.role)}</div>
-                </div>
-                <div class="stats-grid">
-                  ${renderStatCard("Productos", metrics.totalItems, "inventory_2", "var(--md-sys-color-primary)")}
-                  ${renderStatCard("Bajo mínimo", metrics.low, "trending_down", "var(--warning)")}
-                  ${renderStatCard("Críticos", metrics.crit, "warning", "var(--critical)")}
-                  ${renderStatCard("Agotados", metrics.zero, "block", "var(--critical)")}
-                </div>
-              </section>
-
-              <section class="section">
-                <div class="section-title-row">
-                  <div class="section-title">Acción inmediata</div>
-                  <button class="text-btn" data-tab="alerts">Ver todo</button>
-                </div>
-                ${alerts.length ? `<div class="list">${alerts.slice(0, 6).map(renderAlertRow).join("")}</div>` : renderEmpty("task_alt", "No hay alertas activas", "Todo el portafolio está dentro de los parámetros definidos.")}
-              </section>
-
-              <section class="section">
-                <div class="section-title-row">
-                  <div class="section-title">Categorías</div>
-                  <div class="section-meta">${categories.length} grupos</div>
-                </div>
-                <div class="category-grid">
-                  ${categories.map(renderCategoryCard).join("")}
-                </div>
-              </section>
-            `;
-        }
-      }
-
-      function renderTopbar({ eyebrow, title, subtitle, leading, trailing }) {
-        return `
-          <header class="topbar">
-            <div class="topbar-inner">
-              <div>${leading || ""}</div>
-              <div class="topbar-title">
-                <div class="eyebrow">${utils.escape(eyebrow || "")}</div>
-                <div class="headline">${utils.escape(title || "")}</div>
-                ${subtitle ? `<div class="subhead">${utils.escape(subtitle)}</div>` : ""}
-              </div>
-              <div>${trailing || ""}</div>
-            </div>
-          </header>
-        `;
-      }
-
-      function renderBottomBar() {
-        const hasCriticalDot = selectors.criticals().length > 0;
-        const tabs = [
-          { id: "home", label: "Inicio", icon: "home" },
-          { id: "search", label: "Buscar", icon: "search" },
-          { id: "alerts", label: "Alertas", icon: "warning" },
-          { id: "history", label: "Historial", icon: "history" },
-          { id: "report", label: "Reporte", icon: "description" },
-        ];
-        return `
-          <footer class="bottom-bar">
-            <div class="bottom-bar-inner">
-              ${tabs.map((tab) => `
-                <button class="tab-btn ${state.ui.tab === tab.id ? "is-active" : ""}" data-tab="${tab.id}">
-                  ${icon(tab.icon)}
-                  <span class="tab-btn-label">${utils.escape(tab.label)}</span>
-                  ${tab.id === "alerts" && hasCriticalDot ? `<span class="tab-badge-dot"></span>` : ""}
-                </button>
-              `).join("")}
-            </div>
-          </footer>
-        `;
-      }
-
-      function renderStatCard(label, value, iconName, color) {
-        return `
-          <div class="stat-card" style="color:${color}">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-              <div class="stat-label">${utils.escape(label)}</div>
-              ${icon(iconName)}
-            </div>
-            <div class="stat-value">${utils.escape(String(value))}</div>
-            <div class="stat-foot">${icon("arrow_outward")} Vista rápida</div>
-          </div>
-        `;
-      }
-
-      function renderAlertRow(item) {
-        const status = utils.status(item);
-        const statusMeta = utils.statusMeta(status);
-        return `
-          <button class="alert-card" data-item-id="${utils.escape(item.id)}">
-            <div class="alert-icon" style="background:${statusMeta.bg}; color:${statusMeta.color};">${icon(statusMeta.icon)}</div>
-            <div style="min-width:0">
-              <div class="row-title">${utils.escape(item.name)}</div>
-              <div class="row-subtitle">${utils.escape(item.cat)}${item.alert ? ` · ${utils.escape(item.alert)}` : ""}</div>
-            </div>
-            <div class="alert-stock">
-              <div class="stock-figure" style="font-size:22px; color:${statusMeta.color}">${utils.escape(String(item.stock))}</div>
-              <div class="status-pill ${statusMeta.tone}">${utils.escape(statusMeta.label)}</div>
-            </div>
-          </button>
-        `;
-      }
-
-      function renderCategoryCard(category) {
-        const meta = categoryMeta(category.name);
-        const activeAlerts = category.items.filter((item) => utils.status(item) !== "ok").length;
-        const subCount = selectors.subcategories(category.name).length;
-        return `
-          <button class="category-card" data-category="${utils.escape(category.name)}">
-            <div class="category-icon-wrap" style="color:${meta.color}">${icon(meta.icon)}</div>
-            <div class="category-title">${utils.escape(category.name)}</div>
-            <div class="category-meta">
-              <span>${category.items.length} ítems</span>
-              <span>·</span>
-              <span>${subCount} subgrupos</span>
-            </div>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:16px;">
-              <span class="row-subtitle">Entrar</span>
-              ${activeAlerts ? `<span class="badge">${activeAlerts}</span>` : `<span style="color:${meta.color}">${icon("arrow_forward")}</span>`}
-            </div>
-          </button>
-        `;
-      }
-
-      function renderSearchView() {
-        const results = selectors.searchResults();
-        const hasQuery = Boolean(state.ui.query.trim());
-        const statusChips = [
-          { id: "all", label: "Todos" },
-          { id: "zero", label: "Agotados" },
-          { id: "crit", label: "Críticos" },
-          { id: "low", label: "Bajo mínimo" },
-        ];
-
-        return `
-          <section class="section search-shell">
-            <div class="search-bar">
-              ${icon("search")}
-              <input id="search-input" placeholder="Buscar por producto, categoría o alerta" value="${utils.escape(state.ui.query)}" />
-              ${hasQuery ? `<button class="icon-btn" data-action="clear-search">${icon("close")}</button>` : `<span style="width:44px"></span>`}
-            </div>
-          </section>
-
-          <section class="section">
-            <div class="segmented">
-              ${statusChips.map((chip) => `
-                <button class="segmented-btn ${state.ui.searchStatus === chip.id ? "is-active" : ""}" data-search-status="${chip.id}">${utils.escape(chip.label)}</button>
-              `).join("")}
-            </div>
-          </section>
-
-          <section class="section">
-            <div class="section-title-row">
-              <div class="section-title">Resultados</div>
-              <div class="section-meta">${hasQuery ? `${results.length} coincidencias` : "Escribe para comenzar"}</div>
-            </div>
-            ${!hasQuery
-              ? renderEmpty("pageview", "Empieza con una búsqueda", "La búsqueda ahora cruza producto, categoría, subcategoría y alertas.")
-              : results.length
-                ? `<div class="list">${results.map(renderProductCard).join("")}</div>`
-                : renderEmpty("search_off", "Sin resultados", "Prueba con otro nombre, categoría o estado.")}
-          </section>
-        `;
-      }
-
-      function renderAlertsView(alerts) {
-        return `
-          <section class="section">
-            <div class="chips-row">
-              <div class="chip is-active">${icon("warning")} ${alerts.length} activas</div>
-              <div class="chip">${icon("priority_high")} ${selectors.criticals().length} críticas</div>
-            </div>
-          </section>
-          <section class="section">
-            ${alerts.length ? `<div class="list">${alerts.map(renderAlertRow).join("")}</div>` : renderEmpty("task_alt", "Todo en orden", "No hay productos fuera de umbral en este momento.")}
-          </section>
-        `;
-      }
-
-      function renderHistoryView() {
-        const entries = state.data.history.slice(0, 80);
-        return `
-          <section class="section">
-            <div class="chips-row">
-              <div class="chip is-active">${icon("history")} ${entries.length} movimientos</div>
-              <div class="chip">${icon("person")} ${utils.escape(state.session.user.name)}</div>
-            </div>
-          </section>
-          <section class="section">
-            ${entries.length ? `<div class="list">${entries.map(renderHistoryCard).join("")}</div>` : renderEmpty("inbox", "Aún no hay movimientos", "Cuando registres ingresos, salidas o ajustes, aparecerán aquí.")}
-          </section>
-        `;
-      }
-
-      function renderHistoryCard(entry) {
-        const diff = Number(entry.ns) - Number(entry.os);
-        const positive = diff > 0;
-        const color = entry.tp === "ingreso" ? "var(--success)" : entry.tp === "salida" ? "var(--critical)" : "var(--md-sys-color-primary)";
-        const background = entry.tp === "ingreso" ? "var(--success-container)" : entry.tp === "salida" ? "var(--critical-container)" : "var(--md-sys-color-primary-container)";
-        return `
-          <div class="history-card">
-            <div class="history-icon" style="background:${background}; color:${color};">${icon(entry.tp === "ingreso" ? "south" : entry.tp === "salida" ? "north" : "edit")}</div>
-            <div style="min-width:0">
-              <div class="row-title">${utils.escape(entry.nm)}</div>
-              <div class="row-subtitle">${utils.escape(entry.cat)} · ${utils.escape(entry.ts)} · ${utils.escape(entry.u)}${entry.nt ? ` · ${utils.escape(entry.nt)}` : ""}</div>
-            </div>
-            <div class="history-diff">
-              <div class="row-subtitle">${utils.escape(String(entry.os))} → ${utils.escape(String(entry.ns))}</div>
-              <div class="stock-figure" style="font-size:18px; color:${color}">${positive ? "+" : ""}${utils.escape(String(diff))}</div>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderReportView(metrics, alerts) {
-        const topItems = alerts.slice(0, 5).map((item) => {
-          const projection = utils.projection(item);
-          return `
-            <div class="supporting-row">
-              <div class="supporting-icon">${icon("insights")}</div>
-              <div style="flex:1; min-width:0">
-                <div class="row-title">${utils.escape(item.name)}</div>
-                <div class="row-subtitle">${utils.escape(item.cat)} · ${projection.daysLeft} días · ${utils.escape(projection.dateOut)}</div>
-              </div>
-            </div>
-          `;
-        }).join("");
-
-        return `
-          <section class="section report-card">
-            <div class="eyebrow">Reporte</div>
-            <div class="headline" style="white-space:normal">Resumen listo para impresión o revisión ejecutiva.</div>
-            <div class="subhead" style="white-space:normal; margin-top:8px;">Genera una vista clara con productos críticos, cobertura estimada y stock consolidado por categoría.</div>
-            <div class="report-kpis">
-              ${renderMiniStat(metrics.totalItems, "Productos")}
-              ${renderMiniStat(metrics.totalUnits.toLocaleString("es-CL"), "Unidades")}
-              ${renderMiniStat(metrics.crit + metrics.zero, "Críticos")}
-              ${renderMiniStat(metrics.low, "Bajo mínimo")}
-            </div>
-            <div class="utility-row" style="margin-top:16px">
-              <button class="filled-btn" data-action="generate-report">${icon("picture_as_pdf")} Abrir reporte</button>
-              <button class="tonal-btn" data-action="open-sheet-url">${icon("table_view")} Abrir base</button>
-            </div>
-            <div class="supporting-list">
-              ${topItems || `<div class="supporting-row"><div class="supporting-icon">${icon("check_circle")}</div><div><div class="row-title">Sin urgencias</div><div class="row-subtitle">No hay productos bajo el mínimo en este momento.</div></div></div>`}
-            </div>
-          </section>
-        `;
-      }
-
-      function renderMiniStat(value, label) {
-        return `
-          <div class="mini-stat">
-            <div class="mini-stat-value">${utils.escape(String(value))}</div>
-            <div class="mini-stat-label">${utils.escape(label)}</div>
-          </div>
-        `;
-      }
-
-      function renderProductCard(item) {
-        const status = utils.status(item);
-        const meta = utils.statusMeta(status);
-        const pct = utils.pct(item);
-        return `
-          <button class="product-card" data-item-id="${utils.escape(item.id)}">
-            <div style="display:grid; grid-template-columns: 1fr auto; gap: 10px; align-items:start;">
-              <div style="min-width:0">
-                <div class="product-title">${utils.escape(item.name)}</div>
-                <div class="row-subtitle">${utils.escape(item.cat)}${item.subcat ? ` · ${utils.escape(item.subcat)}` : ""}${item.alert ? ` · ${utils.escape(item.alert)}` : ""}</div>
-              </div>
-              <div style="text-align:right; min-width:74px;">
-                <div class="stock-figure" style="color:${meta.color}">${utils.escape(String(item.stock))}</div>
-                <div class="row-subtitle">${utils.escape(item.unit)}</div>
-              </div>
-            </div>
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px; margin-bottom:8px;">
-              <span class="status-pill ${meta.tone}">${icon(meta.icon)} ${utils.escape(meta.label)}</span>
-              <span class="row-subtitle">Mín. ${utils.escape(String(item.min))}</span>
-            </div>
-            <div class="progress-track"><div class="progress-fill" style="width:${pct}%; background:${utils.progressColor(item)}"></div></div>
-          </button>
-        `;
-      }
-
-      function renderCategoryView() {
-        const subcategories = selectors.subcategories(state.navigation.category);
-        const total = subcategories.reduce((sum, entry) => sum + entry.items.length, 0);
-        appEl.innerHTML = `
-          <div class="page">
-            ${renderTopbar({
-              eyebrow: state.navigation.category,
-              title: "Subcategorías",
-              subtitle: `${total} productos distribuidos`,
-              leading: `<button class="nav-icon-btn" data-action="back">${icon("arrow_back")}</button>`,
-              trailing: `<button class="icon-btn" data-action="go-home">${icon("home")}</button>`,
-            })}
-            <main class="content">
-              <section class="section">
-                <div class="list">
-                  ${subcategories.map(renderSubcategoryCard).join("")}
-                </div>
-              </section>
-            </main>
-            ${renderBottomBar()}
-          </div>
-        `;
-      }
-
-      function renderSubcategoryCard(subcategory) {
-        const alertCount = subcategory.items.filter((item) => utils.status(item) !== "ok").length;
-        const totalStock = subcategory.items.reduce((sum, item) => sum + item.stock, 0);
-        return `
-          <button class="subcat-card" data-subcategory="${utils.escape(subcategory.name)}">
-            <div style="display:grid; grid-template-columns: 1fr auto; gap: 10px; align-items:center;">
+      const hasCritical = Inventory.alerts().some(x => ['zero','critical'].includes(Inventory.status(x)));
+      return `<nav class="bottom-nav">${tabs.map(([id,label,icon]) => `
+        <button class="nav-btn ${Store.state.route === id ? 'active' : ''}" data-action="go-tab" data-tab="${id}" style="position:relative">
+          <span>${icon}</span><span>${label}</span>${id === 'alerts' && hasCritical ? '<i class="nav-dot"></i>' : ''}
+        </button>`).join('')}</nav>`;
+    },
+    topBar(title='Kawas Stock Pro', subtitle='Inventario inteligente'){
+      return `<header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">K</div>
+          <div><h1>${title}</h1><p>${subtitle}</p></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <span class="pill">${Store.state.user?.name || 'Invitado'}${Store.state.syncQueue.length ? ` · ${Store.state.syncQueue.length} pendientes` : ''}</span>
+          <button class="icon-btn" data-action="sync-manual">↻</button>
+        </div>
+      </header>`;
+    },
+    loginView(){
+      return `<div class="login">
+        <div class="login-card">
+          <div class="brand-mark" style="margin:0 auto 16px">K</div>
+          <h1 style="margin:0 0 8px">Kawas Stock Pro</h1>
+          <p class="small" style="margin:0 0 18px">Refactor Material 3 · mobile first · Google Sheets sync</p>
+          <input class="field pin" id="pin-input" maxlength="4" inputmode="numeric" placeholder="••••" />
+          <p class="small" style="margin-top:16px">PIN demo: 1234 · 5678 · 9012</p>
+        </div>
+      </div>`;
+    },
+    homeView(){
+      const m = Inventory.metrics();
+      const grouped = Inventory.groupedByCategory();
+      const actionItems = Inventory.alerts().slice(0,6);
+      return `${this.topBar()}
+      <div class="content">
+        <section class="hero">
+          <div class="hero-card">
+            <div class="row" style="justify-content:space-between;align-items:flex-start">
               <div>
-                <div class="row-title">${utils.escape(subcategory.name)}</div>
-                <div class="row-subtitle">${subcategory.items.length} productos</div>
+                <div style="font-size:12px;opacity:.86;text-transform:uppercase;letter-spacing:.1em">Resumen operativo</div>
+                <div style="font-size:26px;font-weight:700;margin-top:6px">${m.totalStock.toLocaleString('es-ES')} unidades</div>
+                <div style="font-size:13px;opacity:.9;margin-top:6px">Stock consolidado con alertas, proyecciones y sync optimista.</div>
               </div>
-              <div style="text-align:right;">
-                <div class="stock-figure" style="font-size:22px; color:var(--md-sys-color-primary)">${utils.escape(String(totalStock))}</div>
-                <div class="row-subtitle">stock total</div>
-              </div>
+              <div class="pill" style="background:rgba(255,255,255,.14);color:#fff">${Store.state.syncing ? 'Sincronizando…' : 'Actualizado'}</div>
             </div>
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px;">
-              <span class="row-subtitle">Abrir grupo</span>
-              ${alertCount ? `<span class="badge">${alertCount}</span>` : `${icon("arrow_forward")}`}
+            <div class="hero-grid">
+              <div class="mini-kpi"><strong>${m.total}</strong><span>Items</span></div>
+              <div class="mini-kpi"><strong>${m.low}</strong><span>Bajo</span></div>
+              <div class="mini-kpi"><strong>${m.critical}</strong><span>Crítico</span></div>
+              <div class="mini-kpi"><strong>${m.zero}</strong><span>Agotado</span></div>
             </div>
-          </button>
-        `;
-      }
-
-      function renderSubcategoryView() {
-        const items = selectors.currentItems().sort((a, b) => statusOrder(utils.status(a)) - statusOrder(utils.status(b)) || a.name.localeCompare(b.name));
-        appEl.innerHTML = `
-          <div class="page">
-            ${renderTopbar({
-              eyebrow: state.navigation.category,
-              title: state.navigation.subcategory,
-              subtitle: `${items.length} ítems en esta vista`,
-              leading: `<button class="nav-icon-btn" data-action="back">${icon("arrow_back")}</button>`,
-              trailing: `<button class="icon-btn" data-action="go-home">${icon("home")}</button>`,
-            })}
-            <main class="content">
-              <section class="section">
-                <div class="list">
-                  ${items.map(renderProductCard).join("")}
-                </div>
-              </section>
-            </main>
-            ${renderBottomBar()}
           </div>
-        `;
-      }
-
-      function renderItemDetail(item) {
-        const status = utils.status(item);
-        const statusMeta = utils.statusMeta(status);
-        const projection = utils.projection(item);
-        const history = selectors.historyForItem(item.id).slice(0, 16);
-        const pct = utils.pct(item);
-
-        appEl.innerHTML = `
-          <div class="page">
-            ${renderTopbar({
-              eyebrow: `${item.cat}${item.subcat ? ` · ${item.subcat}` : ""}`,
-              title: item.name,
-              subtitle: item.alert || statusMeta.label,
-              leading: `<button class="nav-icon-btn" data-action="back">${icon("arrow_back")}</button>`,
-              trailing: `<button class="icon-btn" data-action="go-home">${icon("home")}</button>`,
-            })}
-            <main class="content">
-              <section class="section detail-hero">
-                <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
-                  <div>
-                    <div class="eyebrow">Stock actual</div>
-                    <div class="detail-stock mono" style="color:${statusMeta.color}">${utils.escape(String(item.stock))}</div>
-                    <div class="subhead" style="margin-top:6px">${utils.escape(item.unit)} · mínimo ${utils.escape(String(item.min))}</div>
+        </section>
+        ${actionItems.length ? `
+        <section class="stack">
+          <div class="section-title"><h2>Requieren acción</h2><button class="link-btn" data-action="go-tab" data-tab="alerts">Ver todo</button></div>
+          <div class="card alert-panel list">${actionItems.map(item => this.alertRow(item)).join('')}</div>
+        </section>` : ''}
+        <section>
+          <div class="section-title"><h2>Categorías</h2></div>
+          <div class="grid-2">
+            ${Object.entries(grouped).map(([cat,items]) => {
+              const bad = items.filter(i => Inventory.status(i) !== 'ok').length;
+              return `<button class="card category-card" data-action="open-category" data-category="${Utils.esc(cat)}">
+                <div>
+                  <div class="row" style="justify-content:space-between;align-items:flex-start">
+                    <div style="font-size:24px">${this.icon(cat)}</div>
+                    <span class="badge ${bad ? 'badge-critical' : 'badge-ok'}">${bad || 'OK'}</span>
                   </div>
-                  <div class="status-pill ${statusMeta.tone}">${icon(statusMeta.icon)} ${utils.escape(statusMeta.label)}</div>
+                  <div style="font-size:15px;font-weight:700;margin-top:14px;text-align:left">${Utils.esc(cat)}</div>
+                  <div class="meta" style="margin-top:4px;text-align:left">${items.length} ítems · ${Object.keys(Inventory.groupedSubcategories(cat)).length} grupos</div>
                 </div>
-                <div style="margin-top:16px;">
-                  <div class="progress-track"><div class="progress-fill" style="width:${pct}%; background:${utils.progressColor(item)}"></div></div>
-                  <div class="utility-row" style="justify-content:space-between; margin-top:8px;">
-                    <div class="row-subtitle">Cobertura sobre mínimo</div>
-                    <div class="row-subtitle"><strong>${pct}%</strong></div>
-                  </div>
-                </div>
-                ${item.alert ? `<div class="supporting-row" style="margin-top:14px;"><div class="supporting-icon" style="background:var(--warning-container); color:var(--warning)">${icon("bolt")}</div><div><div class="row-title">Observación</div><div class="row-subtitle">${utils.escape(item.alert)}</div></div></div>` : ""}
-              </section>
-
-              <section class="section projection-card" style="border-color: color-mix(in srgb, ${projection.color} 18%, white 82%);">
-                <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-                  <div class="supporting-icon" style="background: color-mix(in srgb, ${projection.color} 18%, white 82%); color:${projection.color}">${icon(projection.icon)}</div>
-                  <div>
-                    <div class="row-title" style="color:${projection.color}">${utils.escape(projection.title)}</div>
-                    <div class="row-subtitle">${utils.escape(projection.subtitle)}</div>
-                  </div>
-                </div>
-                <div class="projection-grid">
-                  ${renderMiniStat(projection.daysLeft, "Días")}
-                  ${renderMiniStat(projection.dailyUse, "Uso diario")}
-                  ${renderMiniStat(projection.dateOut, "Fecha estimada")}
-                </div>
-                <div class="timeline">
-                  <div class="timeline-meta"><span>Hoy</span><span>${utils.escape(projection.dateOut)}</span></div>
-                  <div class="timeline-track"><div class="timeline-fill" style="width:${Math.min(100, Math.max(4, Math.round((projection.daysLeft / 90) * 100)))}%; background:${projection.color}"></div></div>
-                </div>
-              </section>
-
-              <section class="section">
-                <div class="section-title-row">
-                  <div class="section-title">Acciones rápidas</div>
-                </div>
-                <div class="action-grid">
-                  ${renderActionTile("Registrar ingreso", "move_down", "var(--success)", "in", item.id)}
-                  ${renderActionTile("Registrar salida", "move_up", "var(--critical)", "out", item.id)}
-                  ${renderActionTile("Ajustar stock", "tune", "var(--md-sys-color-primary)", "set", item.id)}
-                </div>
-              </section>
-
-              <section class="section">
-                <div class="section-title-row">
-                  <div class="section-title">Historial del producto</div>
-                  <div class="section-meta">${history.length} registros</div>
-                </div>
-                ${history.length ? `<div class="list">${history.map(renderHistoryCard).join("")}</div>` : renderEmpty("inbox", "Sin movimientos aún", "Este producto todavía no tiene registros en el historial.")}
-              </section>
-            </main>
-            ${renderBottomBar()}
+                <div class="accent" style="background:${this.accent(cat)}"></div>
+              </button>`;
+            }).join('')}
           </div>
-        `;
-      }
-
-      function renderActionTile(label, iconName, color, mode, itemId) {
-        return `
-          <button class="action-tile" data-sheet-mode="${mode}" data-sheet-item="${utils.escape(itemId)}">
-            <div style="width:42px; height:42px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb, ${color} 14%, white 86%); color:${color};">${icon(iconName)}</div>
+        </section>
+      </div>
+      ${this.navTabs()}`;
+    },
+    alertRow(item){
+      const meta = Inventory.statusMeta(item);
+      return `<button class="row" data-action="open-item" data-id="${item.id}" style="border:none;background:none;padding:0;text-align:left">
+        <div class="status-chip ${meta.className}">${meta.label}</div>
+        <div style="flex:1;min-width:0">
+          <div class="item-name">${Utils.esc(item.name)}</div>
+          <div class="meta">${Utils.esc(item.cat)}${item.subcat ? ` · ${Utils.esc(item.subcat)}` : ''}</div>
+        </div>
+        <div class="stock" style="font-size:18px;color:${meta.color}">${Utils.fmtInt(item.stock)}</div>
+      </button>`;
+    },
+    categoryView(){
+      const cat = Store.state.selectedCategory;
+      const groups = Inventory.groupedSubcategories(cat);
+      const entries = Object.entries(groups);
+      return `${this.topBar(cat, 'Subcategorías')}
+      <div class="content">
+        <div class="section-title"><button class="link-btn" data-action="back">← Volver</button></div>
+        <div class="list">${entries.map(([sub,items]) => {
+          const issues = items.filter(i => Inventory.status(i) !== 'ok').length;
+          const totalStock = items.reduce((sum,i)=>sum+i.stock,0);
+          return `<button class="card row" data-action="open-subcategory" data-subcategory="${Utils.esc(sub)}" style="justify-content:space-between">
             <div>
-              <div class="row-title">${utils.escape(label)}</div>
-              <div class="row-subtitle">Abrir acción</div>
+              <div class="item-name">${Utils.esc(sub)}</div>
+              <div class="meta">${items.length} productos</div>
             </div>
-          </button>
-        `;
-      }
-
-      function renderEmpty(iconName, title, body) {
-        return `
-          <div class="empty-state surface-card" style="min-height:240px; border-radius:30px;">
-            <div class="brand-orb" style="width:64px; height:64px; border-radius:22px; margin-bottom:16px; box-shadow:none; background:linear-gradient(180deg, #d8e2ff, #c6d7ff); color:#17325f;">${icon(iconName)}</div>
-            <div class="headline" style="white-space:normal; text-align:center;">${utils.escape(title)}</div>
-            <div class="brand-text" style="margin:10px 0 0; max-width:28ch;">${utils.escape(body)}</div>
+            <div style="text-align:right">
+              <div class="stock" style="font-size:18px">${Utils.fmtInt(totalStock)}</div>
+              <div class="meta">${issues ? `${issues} alertas` : 'Sin alertas'}</div>
+            </div>
+          </button>`;
+        }).join('')}</div>
+      </div>
+      ${this.navTabs()}`;
+    },
+    subcategoryView(){
+      const cat = Store.state.selectedCategory;
+      const sub = Store.state.selectedSubcategory;
+      const items = [...(Inventory.groupedSubcategories(cat)[sub] || [])].sort((a,b) => {
+        const order = {zero:0,critical:1,low:2,ok:3};
+        return order[Inventory.status(a)] - order[Inventory.status(b)] || a.name.localeCompare(b.name);
+      });
+      return `${this.topBar(sub, cat)}
+      <div class="content">
+        <div class="section-title"><button class="link-btn" data-action="back">← Volver</button></div>
+        <div class="list">${items.map(item => this.itemCard(item)).join('')}</div>
+      </div>
+      ${this.navTabs()}`;
+    },
+    itemCard(item){
+      const meta = Inventory.statusMeta(item);
+      const pct = item.min > 0 ? Math.min(100, Math.round(item.stock / item.min * 100)) : 100;
+      return `<button class="card item-card" data-action="open-item" data-id="${item.id}">
+        <div class="row" style="justify-content:space-between;align-items:flex-start">
+          <div style="flex:1;min-width:0;text-align:left">
+            <div class="item-name">${Utils.esc(item.name)}</div>
+            <div class="meta">${Utils.esc(item.cat)}${item.subcat ? ` · ${Utils.esc(item.subcat)}` : ''}</div>
+            ${item.alert ? `<div class="meta" style="margin-top:6px;color:var(--warn)">${Utils.esc(item.alert)}</div>` : ''}
           </div>
-        `;
-      }
-
-      function formatSyncLabel(iso) {
-        const date = new Date(iso);
-        if (Number.isNaN(date.getTime())) return "hace un momento";
-        return date.toLocaleString("es-CL", {
-          day: "2-digit",
-          month: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-      }
-
-      function attachGlobalEvents() {
-        appEl.querySelectorAll("[data-tab]").forEach((btn) => {
-          btn.addEventListener("click", () => changeTab(btn.dataset.tab));
-        });
-
-        appEl.querySelectorAll("[data-item-id]").forEach((btn) => {
-          btn.addEventListener("click", () => openItem(btn.dataset.itemId));
-        });
-
-        appEl.querySelectorAll("[data-category]").forEach((btn) => {
-          btn.addEventListener("click", () => openCategory(btn.dataset.category));
-        });
-
-        appEl.querySelectorAll("[data-subcategory]").forEach((btn) => {
-          btn.addEventListener("click", () => openSubcategory(btn.dataset.subcategory));
-        });
-
-        appEl.querySelectorAll("[data-search-status]").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            state.ui.searchStatus = btn.dataset.searchStatus;
-            render();
-          });
-        });
-
-        appEl.querySelectorAll("[data-sheet-mode][data-sheet-item]").forEach((btn) => {
-          btn.addEventListener("click", () => openSheet(btn.dataset.sheetMode, btn.dataset.sheetItem));
-        });
-
-        appEl.querySelectorAll("[data-action]").forEach((btn) => {
-          btn.addEventListener("click", () => dispatchAction(btn.dataset.action));
-        });
-
-        scrimEl.onclick = () => closeSheet();
-        sheetEl.querySelectorAll("[data-action='close-sheet']").forEach((btn) => {
-          btn.addEventListener("click", () => closeSheet());
-        });
-      }
-
-      function dispatchAction(action) {
-        switch (action) {
-          case "sync": syncAll(); break;
-          case "logout": logout(); break;
-          case "go-home": navigateHome(); break;
-          case "back": goBack(); break;
-          case "generate-report": exportPrintableReport(); break;
-          case "open-sheet-url": window.open(CONFIG.sheetUrl, "_blank"); break;
-          case "clear-search": state.ui.query = ""; render(); break;
-          case "close-sheet": closeSheet(); break;
-          default: break;
+          <div style="text-align:right">
+            <div class="stock" style="color:${meta.color}">${Utils.fmtInt(item.stock)}</div>
+            <div class="meta">${Utils.esc(item.unit)}</div>
+          </div>
+        </div>
+        <div class="progress"><div style="width:${pct}%;background:${meta.color}"></div></div>
+        <div class="row" style="justify-content:space-between;margin-top:10px">
+          <div class="meta">mínimo ${item.min}</div>
+          <div class="status-chip ${meta.className}">${meta.label}</div>
+        </div>
+      </button>`;
+    },
+    detailView(){
+      const item = Inventory.itemById(Store.state.selectedItemId);
+      const meta = Inventory.statusMeta(item);
+      const proj = Utils.projection(item, Store.state.history);
+      const pct = item.min > 0 ? Math.min(100, Math.round(item.stock / item.min * 100)) : 100;
+      const history = Store.state.history.filter(h => h.id === item.id).slice(0, 12);
+      return `${this.topBar(item.name, `${item.cat}${item.subcat ? ` · ${item.subcat}` : ''}`)}
+      <div class="content stack">
+        <div class="section-title"><button class="link-btn" data-action="back">← Volver</button></div>
+        <section class="sheet stack">
+          <div class="detail-top">
+            <div>
+              <div class="meta">Stock actual</div>
+              <div class="detail-stock">${Utils.fmtInt(item.stock)}</div>
+              <div class="meta">${Utils.esc(item.unit)} · mínimo ${item.min}</div>
+            </div>
+            <div class="status-chip ${meta.className}">${meta.label}</div>
+          </div>
+          <div class="progress"><div style="width:${pct}%;background:${meta.color}"></div></div>
+          ${item.alert ? `<div class="card" style="padding:12px;background:var(--warn-soft);color:var(--warn);border-color:#f0cf9b">${Utils.esc(item.alert)}</div>` : ''}
+          <div class="metric-grid">
+            <div class="metric"><strong>${proj.days}</strong><span>Días restantes</span></div>
+            <div class="metric"><strong>${proj.use}</strong><span>Uso diario</span></div>
+            <div class="metric"><strong>${proj.date}</strong><span>Fecha agot.</span></div>
+          </div>
+        </section>
+        <section class="stack">
+          <div class="fab-row">
+            <button class="action-btn btn-soft-success" data-action="set-adjust" data-mode="in">＋ Ingreso</button>
+            <button class="action-btn btn-soft-error" data-action="set-adjust" data-mode="out">－ Salida</button>
+            <button class="action-btn btn-tonal" data-action="set-adjust" data-mode="set">✎ Ajustar</button>
+          </div>
+          ${Store.state.adjustMode ? this.adjustForm(item) : ''}
+        </section>
+        <section class="card">
+          <div class="section-title"><h2>Historial</h2></div>
+          ${history.length ? history.map(h => {
+            const delta = Number(h.ns) - Number(h.os);
+            const up = delta >= 0;
+            return `<div class="history-row">
+              <div class="history-dot" style="background:${up ? 'var(--success-soft)' : 'var(--error-soft)'};color:${up ? 'var(--success)' : 'var(--error)'}">${up ? '+' : '−'}</div>
+              <div style="flex:1;min-width:0">
+                <div class="item-name" style="font-size:13px">${h.os} → ${h.ns}${h.nt ? ` · ${Utils.esc(h.nt)}` : ''}</div>
+                <div class="meta">${Utils.esc(h.ts)} · ${Utils.esc(h.u)}</div>
+              </div>
+              <div class="stock" style="font-size:16px;color:${up ? 'var(--success)' : 'var(--error)'}">${delta > 0 ? '+' : ''}${delta}</div>
+            </div>`;
+          }).join('') : '<div class="empty">Sin movimientos registrados</div>'}
+        </section>
+      </div>
+      ${this.navTabs()}`;
+    },
+    adjustForm(item){
+      const mode = Store.state.adjustMode;
+      const labels = { in:'Registrar ingreso', out:'Registrar salida', set:'Ajustar stock' };
+      return `<div class="card stack">
+        <div class="item-name">${labels[mode]}</div>
+        <input class="field" data-action="bind-adjust-value" value="${Utils.esc(Store.state.adjustValue)}" inputmode="numeric" type="number" placeholder="${mode === 'set' ? 'Nuevo stock' : 'Cantidad'}" />
+        <input class="field" data-action="bind-adjust-note" value="${Utils.esc(Store.state.adjustNote)}" placeholder="Nota opcional" />
+        <div class="fab-row">
+          <button class="action-btn btn-tonal" data-action="cancel-adjust">Cancelar</button>
+          <button class="action-btn btn-primary" data-action="confirm-adjust" data-id="${item.id}">Guardar</button>
+        </div>
+      </div>`;
+    },
+    searchView(){
+      const results = Inventory.searchResults(Store.state.search);
+      return `${this.topBar('Buscar', 'Nombre, categoría, subcategoría o alerta')}
+      <div class="content stack">
+        <input class="search-box" data-action="bind-search" value="${Utils.esc(Store.state.search)}" placeholder="Buscar producto…" />
+        ${Store.state.search.trim() ? `<div class="list">${results.length ? results.map(item => this.itemCard(item)).join('') : '<div class="empty">Sin resultados</div>'}</div>` : '<div class="empty">Escribe para buscar</div>'}
+      </div>
+      ${this.navTabs()}`;
+    },
+    alertsView(){
+      const alerts = Inventory.alerts();
+      return `${this.topBar('Alertas', `${alerts.length} activas`)}
+      <div class="content stack">
+        ${alerts.length ? `<div class="list">${alerts.map(item => this.itemCard(item)).join('')}</div>` : '<div class="empty">Todo en orden</div>'}
+      </div>
+      ${this.navTabs()}`;
+    },
+    historyView(){
+      const history = Store.state.history.slice(0, 80);
+      return `${this.topBar('Historial', 'Movimientos recientes')}
+      <div class="content">
+        <section class="card">
+          ${history.length ? history.map(h => {
+            const delta = Number(h.ns) - Number(h.os);
+            return `<button class="history-row" data-action="open-item" data-id="${h.id}" style="width:100%;border:none;background:none;text-align:left">
+              <div class="history-dot" style="background:${delta >= 0 ? 'var(--success-soft)' : 'var(--error-soft)'};color:${delta >= 0 ? 'var(--success)' : 'var(--error)'}">${delta >= 0 ? '+' : '−'}</div>
+              <div style="flex:1;min-width:0">
+                <div class="item-name" style="font-size:13px">${Utils.esc(h.nm)}</div>
+                <div class="meta">${Utils.esc(h.cat)} · ${Utils.esc(h.ts)} · ${Utils.esc(h.u)}${h.nt ? ` · ${Utils.esc(h.nt)}` : ''}</div>
+              </div>
+              <div style="text-align:right">
+                <div class="meta">${h.os} → ${h.ns}</div>
+                <div class="stock" style="font-size:16px;color:${delta >= 0 ? 'var(--success)' : 'var(--error)'}">${delta > 0 ? '+' : ''}${delta}</div>
+              </div>
+            </button>`;
+          }).join('') : '<div class="empty">Sin movimientos</div>'}
+        </section>
+      </div>
+      ${this.navTabs()}`;
+    },
+    reportView(){
+      const m = Inventory.metrics();
+      return `${this.topBar('Reporte', 'Resumen exportable')}
+      <div class="content stack">
+        <section class="card stack">
+          <div class="grid-2">
+            <div class="metric"><strong>${m.total}</strong><span>Productos</span></div>
+            <div class="metric"><strong>${Utils.fmtInt(m.totalStock)}</strong><span>Stock total</span></div>
+            <div class="metric"><strong>${m.critical + m.zero}</strong><span>Críticos</span></div>
+            <div class="metric"><strong>${m.low}</strong><span>Bajo mínimo</span></div>
+          </div>
+          <button class="action-btn btn-primary" data-action="export-report">Descargar reporte HTML / PDF</button>
+          <button class="action-btn btn-tonal" data-action="open-sheet">Abrir base en Google Sheets</button>
+          <div class="meta">El reporte usa la misma proyección de agotamiento de la vista de detalle, corrigiendo la inconsistencia del archivo original.</div>
+        </section>
+      </div>
+      ${this.navTabs()}`;
+    },
+    render(){
+      const state = Store.state;
+      let html = state.user ? '' : this.loginView();
+      if(state.user){
+        if(state.selectedItemId){
+          html = this.detailView();
+        } else if(state.selectedCategory && state.selectedSubcategory){
+          html = this.subcategoryView();
+        } else if(state.selectedCategory){
+          html = this.categoryView();
+        } else if(state.route === 'home'){
+          html = this.homeView();
+        } else if(state.route === 'search'){
+          html = this.searchView();
+        } else if(state.route === 'alerts'){
+          html = this.alertsView();
+        } else if(state.route === 'history'){
+          html = this.historyView();
+        } else if(state.route === 'report'){
+          html = this.reportView();
         }
       }
-
-      function attachSwipeBack() {
-        let startX = 0;
-        let startY = 0;
-        document.addEventListener("touchstart", (event) => {
-          if (!event.touches[0]) return;
-          startX = event.touches[0].clientX;
-          startY = event.touches[0].clientY;
-        }, { passive: true });
-        document.addEventListener("touchend", (event) => {
-          if (!event.changedTouches[0]) return;
-          const dx = event.changedTouches[0].clientX - startX;
-          const dy = Math.abs(event.changedTouches[0].clientY - startY);
-          if (dx > 82 && dy < 80) goBack();
-        }, { passive: true });
+      this.app.innerHTML = `${state.toast ? `<div class="toast">${Utils.esc(state.toast.message)}</div>` : ''}<div class="app-shell">${html}</div>`;
+      const pin = document.getElementById('pin-input');
+      if(pin){
+        pin.focus();
+        pin.oninput = () => {
+          if(pin.value.length !== 4) return;
+          const user = CONFIG.USERS.find(u => u.pin === pin.value);
+          if(!user){ this.toast('PIN incorrecto', 'err'); pin.value=''; return; }
+          Store.set({ user, route:'home' });
+          Store.persist();
+          this.toast(`Hola, ${user.name}`);
+          Api.sync({ force:true });
+        };
       }
+    }
+  };
 
-      hydrate();
-      attachSwipeBack();
-      render();
-      if (state.session.user) syncAll();
-    })();
+  function goHome(){
+    Store.set({ route:'home', selectedCategory:null, selectedSubcategory:null, selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+  }
+
+  function exportReport(){
+    const items = [...Store.state.items].sort((a,b)=>a.cat.localeCompare(b.cat) || (a.subcat || '').localeCompare(b.subcat || '') || a.name.localeCompare(b.name));
+    const rows = items.map(item => {
+      const status = Inventory.statusMeta(item);
+      const proj = Utils.projection(item, Store.state.history);
+      return `<tr>
+        <td>${Utils.esc(item.cat)}</td>
+        <td>${Utils.esc(item.subcat || 'General')}</td>
+        <td>${Utils.esc(item.name)}</td>
+        <td>${item.stock}</td>
+        <td>${item.min}</td>
+        <td>${status.label}</td>
+        <td>${proj.use}</td>
+        <td>${proj.days}</td>
+        <td>${proj.date}</td>
+      </tr>`;
+    }).join('');
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>Reporte Kawas</title><style>
+      body{font-family:Arial,sans-serif;padding:24px;color:#222} h1{margin:0 0 8px} p{color:#666}
+      table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ddd;padding:8px;text-align:left} th{background:#f2f2f2}
+      .btn{display:inline-block;margin:0 0 16px;padding:10px 16px;background:#6750a4;color:#fff;border-radius:10px;text-decoration:none}
+    </style></head><body><button class="btn" onclick="window.print()">Guardar como PDF</button><h1>Reporte Kawas Stock Pro</h1><p>Generado ${new Date().toLocaleString('es-ES')}</p><table><thead><tr><th>Categoría</th><th>Subcategoría</th><th>Producto</th><th>Stock</th><th>Mín.</th><th>Estado</th><th>Uso/día</th><th>Días</th><th>Agot.</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
+    const w = window.open('', '_blank');
+    if(!w){ UI.toast('El navegador bloqueó la ventana del reporte', 'warn'); return; }
+    w.document.write(html);
+    w.document.close();
+  }
+
+  document.addEventListener('click', async (e) => {
+    const target = e.target.closest('[data-action]');
+    if(!target) return;
+    const action = target.dataset.action;
+    if(action === 'go-tab'){
+      Store.set({ route:target.dataset.tab, selectedCategory:null, selectedSubcategory:null, selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+    }
+    if(action === 'sync-manual'){
+      UI.toast('Sincronizando…');
+      await Api.sync({ force:true });
+      await Api.flushQueue();
+      UI.toast('Sync completado');
+    }
+    if(action === 'open-category') Store.set({ selectedCategory:target.dataset.category, selectedSubcategory:null, selectedItemId:null });
+    if(action === 'open-subcategory') Store.set({ selectedSubcategory:target.dataset.subcategory, selectedItemId:null });
+    if(action === 'open-item') Store.set({ selectedItemId:target.dataset.id, adjustMode:null, adjustValue:'', adjustNote:'' });
+    if(action === 'back'){
+      if(Store.state.selectedItemId) Store.set({ selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+      else if(Store.state.selectedSubcategory) Store.set({ selectedSubcategory:null });
+      else if(Store.state.selectedCategory) Store.set({ selectedCategory:null });
+      else goHome();
+    }
+    if(action === 'set-adjust') Store.set({ adjustMode:target.dataset.mode, adjustValue:'', adjustNote:'' });
+    if(action === 'cancel-adjust') Store.set({ adjustMode:null, adjustValue:'', adjustNote:'' });
+    if(action === 'confirm-adjust'){
+      const item = Inventory.itemById(target.dataset.id);
+      const value = Number(Store.state.adjustValue);
+      if(Number.isNaN(value) || value < 0){ UI.toast('Valor inválido', 'err'); return; }
+      const oldStock = item.stock;
+      const newStock = Store.state.adjustMode === 'in' ? oldStock + value : Store.state.adjustMode === 'out' ? Math.max(0, oldStock - value) : value;
+      const type = Store.state.adjustMode === 'in' ? 'ingreso' : Store.state.adjustMode === 'out' ? 'salida' : 'ajuste';
+      Inventory.recordMovement({ itemId:item.id, newStock, type, note:Store.state.adjustNote, userName:Store.state.user.name });
+      Store.set({ selectedItemId:item.id, adjustMode:null, adjustValue:'', adjustNote:'' });
+      UI.toast(`${item.name}: ${oldStock} → ${newStock}`);
+    }
+    if(action === 'export-report') exportReport();
+    if(action === 'open-sheet') window.open(CONFIG.SHEET_URL, '_blank');
+  });
+
+  document.addEventListener('input', (e) => {
+    const target = e.target;
+    const action = target.dataset.action;
+    if(action === 'bind-search') Store.set({ search:target.value });
+    if(action === 'bind-adjust-value') Store.set({ adjustValue:target.value });
+    if(action === 'bind-adjust-note') Store.set({ adjustNote:target.value });
+  });
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive:true });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+    if(dx > 85 && dy < 75){
+      if(Store.state.selectedItemId) Store.set({ selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+      else if(Store.state.selectedSubcategory) Store.set({ selectedSubcategory:null });
+      else if(Store.state.selectedCategory) Store.set({ selectedCategory:null });
+    }
+  }, { passive:true });
+
+  window.addEventListener('online', () => { Api.sync({ force:true }); Api.flushQueue(); UI.toast('Conexión restablecida'); });
+
+  Store.subscribe(() => { Store.persist(); UI.render(); });
+  Store.hydrate();
+  UI.render();
+  if(Store.state.user) Api.sync({ force:false });
   </script>
 </body>
 </html>
