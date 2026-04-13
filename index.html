@@ -34,11 +34,12 @@
       --app-width:520px;
     }
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    html,body{height:100%;margin:0;background:radial-gradient(circle at top,#fcfbff 0%,#f7f2fa 55%,#efe7f8 100%);font-family:Roboto,system-ui,sans-serif;color:var(--text)}
-    body{overflow:hidden}
+    html,body,#app{height:100%;min-height:100dvh;margin:0}
+    html,body{background:radial-gradient(circle at top,#fcfbff 0%,#f7f2fa 55%,#efe7f8 100%);font-family:Roboto,system-ui,sans-serif;color:var(--text)}
+    body{overflow:auto}
     button,input,select{font:inherit}
     button{cursor:pointer}
-    .app-shell{height:100%;max-width:var(--app-width);margin:0 auto;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,255,255,.96));backdrop-filter:blur(20px)}
+    .app-shell{height:100dvh;min-height:100dvh;max-width:var(--app-width);margin:0 auto;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,255,255,.96));backdrop-filter:blur(20px)}
     .topbar{padding:22px 18px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
     .brand-mark{width:42px;height:42px;border-radius:16px;background:linear-gradient(135deg,#20104a,#6750a4 65%,#b39ddb);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:var(--shadow)}
@@ -52,7 +53,7 @@
     .mini-kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:12px;text-align:center}
     .mini-kpi strong{display:block;font-size:22px;font-family:"Roboto Mono",monospace}
     .mini-kpi span{font-size:10px;opacity:.86;text-transform:uppercase;letter-spacing:.08em}
-    .content{flex:1;overflow:auto;padding:0 18px 104px}
+    .content{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 18px 104px}
     .section-title{display:flex;align-items:center;justify-content:space-between;margin:12px 0 10px}
     .section-title h2{font-size:13px;text-transform:uppercase;letter-spacing:.10em;color:var(--muted);margin:0}
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -101,7 +102,7 @@
     .nav-btn.active{background:var(--primary-soft);color:var(--primary)}
     .nav-dot{width:7px;height:7px;border-radius:50%;background:var(--error);position:absolute;top:8px;right:calc(50% - 14px)}
     .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:20;max-width:min(92vw,460px);background:#1d1b20;color:#fff;padding:14px 18px;border-radius:18px;box-shadow:0 18px 38px rgba(0,0,0,.24);font-size:13px}
-    .login{height:100%;display:grid;place-items:center;padding:24px}
+    .login{min-height:100dvh;display:grid;place-items:center;padding:24px}
     .login-card{width:min(100%,400px);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:34px;padding:28px;box-shadow:0 22px 40px rgba(34,24,60,.12);text-align:center}
     .pin{font-size:32px;letter-spacing:.45em;text-align:center;font-family:"Roboto Mono",monospace}
     .small{font-size:12px;color:var(--muted)}
