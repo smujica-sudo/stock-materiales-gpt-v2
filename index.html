@@ -39,7 +39,7 @@
     body{overflow:auto}
     button,input,select{font:inherit}
     button{cursor:pointer}
-    .app-shell{height:100dvh;min-height:100dvh;max-width:var(--app-width);margin:0 auto;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,255,255,.96));backdrop-filter:blur(20px)}
+    .app-shell{position:relative;height:100dvh;min-height:100dvh;max-width:var(--app-width);margin:0 auto;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(255,255,255,.96));backdrop-filter:blur(20px)}
     .topbar{padding:22px 18px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
     .brand-mark{width:42px;height:42px;border-radius:16px;background:linear-gradient(135deg,#20104a,#6750a4 65%,#b39ddb);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:var(--shadow)}
@@ -107,6 +107,64 @@
     .pin{font-size:32px;letter-spacing:.45em;text-align:center;font-family:"Roboto Mono",monospace}
     .small{font-size:12px;color:var(--muted)}
     .link-btn{border:none;background:none;color:var(--primary);font-weight:700}
+
+    @media (min-width:1025px){
+      :root{--app-width:min(1400px,calc(100vw - 40px))}
+      body{overflow:hidden}
+      .app-shell{
+        position:relative;
+        height:calc(100dvh - 24px);
+        min-height:calc(100dvh - 24px);
+        margin:12px auto;
+        border:1px solid rgba(231,224,236,.9);
+        border-radius:32px;
+        box-shadow:0 28px 80px rgba(26,18,44,.16);
+        overflow:hidden;
+        padding-left:104px;
+      }
+      .topbar{padding:24px 28px 14px}
+      .hero{padding:0 28px 20px}
+      .content{padding:0 28px 28px;overscroll-behavior:auto}
+      .hero-card{padding:24px 26px}
+      .hero-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+      .grid-2{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+      .list{gap:12px}
+      .item-card{padding:16px 18px}
+      .login{padding:40px}
+      .login-card{width:min(100%,440px)}
+      .bottom-nav{
+        position:absolute;
+        left:18px;
+        top:18px;
+        bottom:18px;
+        transform:none;
+        width:72px;
+        height:auto;
+        max-height:none;
+        border-radius:28px;
+        padding:12px 8px;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:flex-start;
+        gap:8px;
+      }
+      .nav-btn{
+        min-height:64px;
+        border-radius:20px;
+        padding:12px 6px;
+      }
+      .nav-dot{
+        top:10px;
+        right:12px;
+      }
+      .toast{
+        left:auto;
+        right:28px;
+        transform:none;
+      }
+    }
+
     @media (max-width:430px){
       .hero-grid,.metric-grid{grid-template-columns:repeat(2,1fr)}
       .detail-stock{font-size:44px}
@@ -120,8 +178,8 @@
   <div id="app"></div>
   <script>
 const CONFIG = {
-  API_URL: 'https://script.google.com/macros/s/AKfycbxFXCICplG7DLCbzIMwMf_XOsmOKtwLwqlSm74eUdPlM5p_43NkYNWeGQkJU1fU2auRJg/exec',
-  SHEET_URL: 'https://docs.google.com/spreadsheets/d/1eF4MZHXzz_UQOvNbni-g0ljoD1fJIeg_QsHG8H6ievo/edit?gid=1150942816#gid=1150942816',
+  API_URL: 'https://script.google.com/macros/s/AKfycbw7fYjeLmYICIfKHXWJlv0uN-6SS2nS_7ji9VdfDNkSR6lHAdhDkLPo_Ap2xnNo4Ndhyw/exec',
+  SHEET_URL: 'https://docs.google.com/spreadsheets/d/1eF4MZHXzz_UQOvNbni-g0ljoD1fJIeg_QsHG8H6ievo/edit',
   STORAGE_KEY: 'kawas-stock-pro-phase2',
   SYNC_TTL_MS: 60 * 1000,
   USERS: [
