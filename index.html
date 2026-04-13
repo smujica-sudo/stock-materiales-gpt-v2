@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f7f2fa" />
-  <title>Kawas Stock Pro</title>
+  <title>Kawas Stock Pro · Phase 2 Direct</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;600;700&display=swap');
     :root{
       color-scheme:light;
       --bg:#f7f2fa;
@@ -112,160 +112,160 @@
       .grid-2{grid-template-columns:1fr}
       .fab-row{grid-template-columns:1fr}
     }
-  </style>
+
+</style>
 </head>
 <body>
   <div id="app"></div>
   <script>
-  const CONFIG = {
-    API_URL: 'https://script.google.com/macros/s/AKfycbw7fYjeLmYICIfKHXWJlv0uN-6SS2nS_7ji9VdfDNkSR6lHAdhDkLPo_Ap2xnNo4Ndhyw/exec',
-    SHEET_URL: 'https://docs.google.com/spreadsheets/d/1eF4MZHXzz_UQOvNbni-g0ljoD1fJIeg_QsHG8H6ievo/edit',
-    STORAGE_KEY: 'kawas-stock-pro-v2',
-    SYNC_TTL_MS: 60 * 1000,
-    USERS: [
-      { name:'Admin', pin:'1234' },
-      { name:'Bodega', pin:'5678' },
-      { name:'Producción', pin:'9012' }
-    ]
-  };
+const CONFIG = {
+  API_URL: 'https://script.google.com/macros/s/AKfycbw7fYjeLmYICIfKHXWJlv0uN-6SS2nS_7ji9VdfDNkSR6lHAdhDkLPo_Ap2xnNo4Ndhyw/exec',
+  SHEET_URL: 'https://docs.google.com/spreadsheets/d/1eF4MZHXzz_UQOvNbni-g0ljoD1fJIeg_QsHG8H6ievo/edit',
+  STORAGE_KEY: 'kawas-stock-pro-phase2',
+  SYNC_TTL_MS: 60 * 1000,
+  USERS: [
+    { name: 'Admin', pin: '1234' },
+    { name: 'Bodega', pin: '5678' },
+    { name: 'Producción', pin: '9012' }
+  ]
+};
 
-  const SEED_ITEMS = [
-    {id:'e1',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Original',stock:600,min:100,unit:'uds',alert:''},
-    {id:'e2',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Frutal',stock:142,min:150,unit:'uds',alert:'Pedir pronto'},
-    {id:'e3',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Bolivia Caranavi Regional',stock:230,min:200,unit:'uds',alert:'Pedir pronto'},
-    {id:'e4',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Colombia Regional',stock:297,min:200,unit:'uds',alert:'Pedir pronto'},
-    {id:'e5',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Brasil Regional',stock:464,min:100,unit:'uds',alert:''},
-    {id:'e6',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Colombia Decaf',stock:114,min:40,unit:'uds',alert:''},
-    {id:'e7',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Peru Cusco',stock:65,min:50,unit:'uds',alert:''},
-    {id:'e8',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Crema',stock:410,min:100,unit:'uds',alert:''},
-    {id:'e9',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Peru Pangoa',stock:457,min:150,unit:'uds',alert:''},
-    {id:'e10',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Col. Antioquia Gabriela',stock:85,min:50,unit:'uds',alert:''},
-    {id:'e11',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Washed Mosto',stock:41,min:30,unit:'uds',alert:''},
-    {id:'m1',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Original 12x5',stock:1091,min:200,unit:'uds',alert:''},
-    {id:'m2',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Colombia Regional 12x5',stock:690,min:200,unit:'uds',alert:''},
-    {id:'m3',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Colombia Decaf 12x5',stock:252,min:150,unit:'uds',alert:''},
-    {id:'m4',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Brasil Regional 12x5',stock:539,min:150,unit:'uds',alert:''},
-    {id:'m5',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Crema 12x5',stock:455,min:150,unit:'uds',alert:''},
-    {id:'m6',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Bolivia Caranavi 12x5',stock:354,min:200,unit:'uds',alert:''},
-    {id:'m7',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Blend Filtrado 12x5',stock:218,min:100,unit:'uds',alert:''},
-    {id:'m8',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Frutal 12x5',stock:360,min:150,unit:'uds',alert:''},
-    {id:'m9',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Costa Rica 120x50',stock:321,min:100,unit:'uds',alert:''},
-    {id:'m10',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Bolivia Typica 113x47',stock:675,min:200,unit:'uds',alert:''},
-    {id:'m11',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Peru Pangoa (Feyser)',stock:250,min:100,unit:'uds',alert:''},
-    {id:'t1',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Original',stock:452,min:150,unit:'uds',alert:''},
-    {id:'t2',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Colombia Regional',stock:400,min:150,unit:'uds',alert:''},
-    {id:'t3',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Colombia Decaf',stock:226,min:100,unit:'uds',alert:''},
-    {id:'t4',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Brasil Regional',stock:450,min:150,unit:'uds',alert:''},
-    {id:'t5',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Crema',stock:419,min:150,unit:'uds',alert:''},
-    {id:'t6',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Bolivia Caranavi',stock:131,min:100,unit:'uds',alert:''},
-    {id:'t7',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Costa Rica',stock:456,min:100,unit:'uds',alert:''},
-    {id:'t8',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Peru Pangoa',stock:429,min:150,unit:'uds',alert:''},
-    {id:'t9',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Frutal',stock:239,min:100,unit:'uds',alert:''},
-    {id:'t10',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Bolivia Typica',stock:88,min:50,unit:'uds',alert:''},
-    {id:'ml1',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Incahuasi 120g',stock:24,min:20,unit:'uds',alert:''},
-    {id:'ml2',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Java Anoxia',stock:46,min:20,unit:'uds',alert:''},
-    {id:'ml3',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Java Lavado',stock:68,min:30,unit:'uds',alert:''},
-    {id:'ml4',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Pacamara Lavado',stock:78,min:30,unit:'uds',alert:''},
-    {id:'ml5',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Catuai Natural',stock:40,min:30,unit:'uds',alert:''},
-    {id:'ml6',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Andino',stock:14,min:20,unit:'uds',alert:'Stock muy bajo'},
-    {id:'ml7',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Inca',stock:57,min:30,unit:'uds',alert:''},
-    {id:'b1',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Impresas 250g',stock:75,min:500,unit:'uds',alert:''},
-    {id:'b2',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Impresas 250g (lote ant.)',stock:125,min:50,unit:'uds',alert:''},
-    {id:'b3',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Espresso 250g',stock:225,min:200,unit:'uds',alert:''},
-    {id:'b4',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Espresso 250g (lote ant.)',stock:275,min:50,unit:'uds',alert:''},
-    {id:'b5',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK 1Kg c/ ziploc',stock:250,min:200,unit:'uds',alert:''},
-    {id:'b6',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Blancas 1Kg',stock:800,min:300,unit:'uds',alert:''},
-    {id:'b7',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Blancas 250g',stock:250,min:100,unit:'uds',alert:''},
-    {id:'b8',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Negras 1Kg',stock:100,min:200,unit:'uds',alert:''},
-    {id:'b9',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Negras 250g',stock:900,min:200,unit:'uds',alert:''},
-    {id:'c1',cat:'Cajas',subcat:'Kawas Grandes',name:'Caja Kawas SYT 12KG',stock:1850,min:500,unit:'uds',alert:''},
-    {id:'c2',cat:'Cajas',subcat:'Kawas Grandes',name:'Cajas formato nuevo 58x30x21',stock:41,min:50,unit:'uds',alert:'Crítico'},
-    {id:'c3',cat:'Cajas',subcat:'Kawas Grandes',name:'Cajas 30x20x20 Castaño',stock:150,min:100,unit:'uds',alert:''},
-    {id:'c4',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Cajas 40x30x20 Kawas 6kg',stock:0,min:50,unit:'uds',alert:''},
-    {id:'c5',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Caja 20x15x10 multibox',stock:63,min:30,unit:'uds',alert:''},
-    {id:'c6',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Caja 25x25x10 multibox 6u',stock:0,min:20,unit:'uds',alert:''},
-    {id:'p1',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Pequeña 20x30x10',stock:117,min:50,unit:'uds',alert:''},
-    {id:'p2',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Mediana 31x33x11',stock:300,min:100,unit:'uds',alert:''},
-    {id:'p3',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Grande 38x44x17',stock:200,min:50,unit:'uds',alert:''},
-    {id:'p4',cat:'Empaque y Despacho',subcat:'',name:'Cinta embalaje Kraft',stock:36,min:20,unit:'rollos',alert:'Pedir'},
-    {id:'p5',cat:'Empaque y Despacho',subcat:'',name:'Cinta embalaje Plástica',stock:24,min:30,unit:'rollos',alert:'Pedir'},
-    {id:'cb1',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Cold Brew Latte Vainilla',stock:139,min:50,unit:'uds',alert:''},
-    {id:'cb2',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Botellas ámbar 200ml',stock:411,min:100,unit:'uds',alert:''},
-    {id:'cb3',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Botellas transparentes 200ml',stock:12,min:50,unit:'uds',alert:'Pedir urgente'},
-    {id:'cb4',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Tapas Negras 200ml',stock:332,min:100,unit:'uds',alert:''},
-    {id:'cb5',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Tapas Blancas 200ml',stock:8,min:50,unit:'uds',alert:'Pedir urgente'},
-    {id:'cb6',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. Nitro Lata 310cc',stock:41,min:30,unit:'uds',alert:''},
-    {id:'cb7',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. CB Original Botella',stock:114,min:50,unit:'uds',alert:''},
-    {id:'cb8',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. CB Avena Botella',stock:70,min:30,unit:'uds',alert:''},
-    {id:'o1',cat:'Otros',subcat:'Sellos Kawas',name:'Sello Redondo 40x40',stock:150,min:100,unit:'uds',alert:'Pedir'},
-    {id:'o2',cat:'Otros',subcat:'Sellos Kawas',name:'Sello Redondo 50x50',stock:0,min:50,unit:'uds',alert:''},
-    {id:'o3',cat:'Otros',subcat:'Marsol',name:'Marsol Mokai',stock:219,min:50,unit:'uds',alert:''},
-    {id:'o4',cat:'Otros',subcat:'Marsol',name:'Marsol Lume',stock:230,min:50,unit:'uds',alert:''}
-  ];
+const SEED_ITEMS = [
+  {id:'e1',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Original',stock:600,min:100,unit:'uds',alert:''},
+  {id:'e2',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Frutal',stock:142,min:150,unit:'uds',alert:'Pedir pronto'},
+  {id:'e3',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Bolivia Caranavi Regional',stock:230,min:200,unit:'uds',alert:'Pedir pronto'},
+  {id:'e4',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Colombia Regional',stock:297,min:200,unit:'uds',alert:'Pedir pronto'},
+  {id:'e5',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Brasil Regional',stock:464,min:100,unit:'uds',alert:''},
+  {id:'e6',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Colombia Decaf',stock:114,min:40,unit:'uds',alert:''},
+  {id:'e7',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Peru Cusco',stock:65,min:50,unit:'uds',alert:''},
+  {id:'e8',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Espresso Crema',stock:410,min:100,unit:'uds',alert:''},
+  {id:'e9',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Peru Pangoa',stock:457,min:150,unit:'uds',alert:''},
+  {id:'e10',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Col. Antioquia Gabriela',stock:85,min:50,unit:'uds',alert:''},
+  {id:'e11',cat:'Etiquetas Adhesivas',subcat:'1Kg Funsmart 90×60',name:'Washed Mosto',stock:41,min:30,unit:'uds',alert:''},
+  {id:'m1',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Original 12x5',stock:1091,min:200,unit:'uds',alert:''},
+  {id:'m2',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Colombia Regional 12x5',stock:690,min:200,unit:'uds',alert:''},
+  {id:'m3',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Colombia Decaf 12x5',stock:252,min:150,unit:'uds',alert:''},
+  {id:'m4',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Brasil Regional 12x5',stock:539,min:150,unit:'uds',alert:''},
+  {id:'m5',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Crema 12x5',stock:455,min:150,unit:'uds',alert:''},
+  {id:'m6',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Bolivia Caranavi 12x5',stock:354,min:200,unit:'uds',alert:''},
+  {id:'m7',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Blend Filtrado 12x5',stock:218,min:100,unit:'uds',alert:''},
+  {id:'m8',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Espresso Frutal 12x5',stock:360,min:150,unit:'uds',alert:''},
+  {id:'m9',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Costa Rica 120x50',stock:321,min:100,unit:'uds',alert:''},
+  {id:'m10',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Bolivia Typica 113x47',stock:675,min:200,unit:'uds',alert:''},
+  {id:'m11',cat:'Etiquetas Adhesivas',subcat:'250g MTPACK 120×50',name:'Peru Pangoa (Feyser)',stock:250,min:100,unit:'uds',alert:''},
+  {id:'t1',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Original',stock:452,min:150,unit:'uds',alert:''},
+  {id:'t2',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Colombia Regional',stock:400,min:150,unit:'uds',alert:''},
+  {id:'t3',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Colombia Decaf',stock:226,min:100,unit:'uds',alert:''},
+  {id:'t4',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Brasil Regional',stock:450,min:150,unit:'uds',alert:''},
+  {id:'t5',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Crema',stock:419,min:150,unit:'uds',alert:''},
+  {id:'t6',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Bolivia Caranavi',stock:131,min:100,unit:'uds',alert:''},
+  {id:'t7',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Costa Rica',stock:456,min:100,unit:'uds',alert:''},
+  {id:'t8',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Peru Pangoa',stock:429,min:150,unit:'uds',alert:''},
+  {id:'t9',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Espresso Frutal',stock:239,min:100,unit:'uds',alert:''},
+  {id:'t10',cat:'Etiquetas Adhesivas',subcat:'1Kg MTPACK 60×80',name:'Bolivia Typica',stock:88,min:50,unit:'uds',alert:''},
+  {id:'ml1',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Incahuasi 120g',stock:24,min:20,unit:'uds',alert:''},
+  {id:'ml2',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Java Anoxia',stock:46,min:20,unit:'uds',alert:''},
+  {id:'ml3',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Java Lavado',stock:68,min:30,unit:'uds',alert:''},
+  {id:'ml4',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Pacamara Lavado',stock:78,min:30,unit:'uds',alert:''},
+  {id:'ml5',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Catuai Natural',stock:40,min:30,unit:'uds',alert:''},
+  {id:'ml6',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Andino',stock:14,min:20,unit:'uds',alert:'Stock muy bajo'},
+  {id:'ml7',cat:'Etiquetas Adhesivas',subcat:'Microlotes',name:'Geisha Inca',stock:57,min:30,unit:'uds',alert:''},
+  {id:'b1',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Impresas 250g',stock:75,min:500,unit:'uds',alert:''},
+  {id:'b2',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Impresas 250g (lote ant.)',stock:125,min:50,unit:'uds',alert:''},
+  {id:'b3',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Espresso 250g',stock:225,min:200,unit:'uds',alert:''},
+  {id:'b4',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK Espresso 250g (lote ant.)',stock:275,min:50,unit:'uds',alert:''},
+  {id:'b5',cat:'Bolsas',subcat:'MTPACK Impresas',name:'MTPACK 1Kg c/ ziploc',stock:250,min:200,unit:'uds',alert:''},
+  {id:'b6',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Blancas 1Kg',stock:800,min:300,unit:'uds',alert:''},
+  {id:'b7',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Blancas 250g',stock:250,min:100,unit:'uds',alert:''},
+  {id:'b8',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Negras 1Kg',stock:100,min:200,unit:'uds',alert:''},
+  {id:'b9',cat:'Bolsas',subcat:'Funsmart',name:'Funsmart Negras 250g',stock:900,min:200,unit:'uds',alert:''},
+  {id:'c1',cat:'Cajas',subcat:'Kawas Grandes',name:'Caja Kawas SYT 12KG',stock:1850,min:500,unit:'uds',alert:''},
+  {id:'c2',cat:'Cajas',subcat:'Kawas Grandes',name:'Cajas formato nuevo 58x30x21',stock:41,min:50,unit:'uds',alert:'Crítico'},
+  {id:'c3',cat:'Cajas',subcat:'Kawas Grandes',name:'Cajas 30x20x20 Castaño',stock:150,min:100,unit:'uds',alert:''},
+  {id:'c4',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Cajas 40x30x20 Kawas 6kg',stock:0,min:50,unit:'uds',alert:''},
+  {id:'c5',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Caja 20x15x10 multibox',stock:63,min:30,unit:'uds',alert:''},
+  {id:'c6',cat:'Cajas',subcat:'Multibox / Pequeñas',name:'Caja 25x25x10 multibox 6u',stock:0,min:20,unit:'uds',alert:''},
+  {id:'p1',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Pequeña 20x30x10',stock:117,min:50,unit:'uds',alert:''},
+  {id:'p2',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Mediana 31x33x11',stock:300,min:100,unit:'uds',alert:''},
+  {id:'p3',cat:'Empaque y Despacho',subcat:'',name:'Bolsa Kraft Grande 38x44x17',stock:200,min:50,unit:'uds',alert:''},
+  {id:'p4',cat:'Empaque y Despacho',subcat:'',name:'Cinta embalaje Kraft',stock:36,min:20,unit:'rollos',alert:'Pedir'},
+  {id:'p5',cat:'Empaque y Despacho',subcat:'',name:'Cinta embalaje Plástica',stock:24,min:30,unit:'rollos',alert:'Pedir'},
+  {id:'cb1',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Cold Brew Latte Vainilla',stock:139,min:50,unit:'uds',alert:''},
+  {id:'cb2',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Botellas ámbar 200ml',stock:411,min:100,unit:'uds',alert:''},
+  {id:'cb3',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Botellas transparentes 200ml',stock:12,min:50,unit:'uds',alert:'Pedir urgente'},
+  {id:'cb4',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Tapas Negras 200ml',stock:332,min:100,unit:'uds',alert:''},
+  {id:'cb5',cat:'Cold Brew',subcat:'Botellas y Tapas',name:'Tapas Blancas 200ml',stock:8,min:50,unit:'uds',alert:'Pedir urgente'},
+  {id:'cb6',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. Nitro Lata 310cc',stock:41,min:30,unit:'uds',alert:''},
+  {id:'cb7',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. CB Original Botella',stock:114,min:50,unit:'uds',alert:''},
+  {id:'cb8',cat:'Cold Brew',subcat:'Etiquetas Cold Brew',name:'Etiq. CB Avena Botella',stock:70,min:30,unit:'uds',alert:''},
+  {id:'o1',cat:'Otros',subcat:'Sellos Kawas',name:'Sello Redondo 40x40',stock:150,min:100,unit:'uds',alert:'Pedir'},
+  {id:'o2',cat:'Otros',subcat:'Sellos Kawas',name:'Sello Redondo 50x50',stock:0,min:50,unit:'uds',alert:''},
+  {id:'o3',cat:'Otros',subcat:'Marsol',name:'Marsol Mokai',stock:219,min:50,unit:'uds',alert:''},
+  {id:'o4',cat:'Otros',subcat:'Marsol',name:'Marsol Lume',stock:230,min:50,unit:'uds',alert:''}
+];
 
-  const ICONS = {
-    'Etiquetas Adhesivas':'🏷️',
-    'Bolsas':'👜',
-    'Cajas':'📦',
-    'Empaque y Despacho':'🚚',
-    'Cold Brew':'🥤',
-    'Otros':'✨'
-  };
+const ICONS = {
+  'Etiquetas Adhesivas':'🏷️',
+  'Bolsas':'👜',
+  'Cajas':'📦',
+  'Empaque y Despacho':'🚚',
+  'Cold Brew':'🥤',
+  'Otros':'✨'
+};
 
-  const COLORS = {
-    'Etiquetas Adhesivas':'#4f46b8',
-    'Bolsas':'#0f766e',
-    'Cajas':'#b42318',
-    'Empaque y Despacho':'#a15c00',
-    'Cold Brew':'#00639a',
-    'Otros':'#7e57c2'
-  };
+const COLORS = {
+  'Etiquetas Adhesivas':'#4f46b8',
+  'Bolsas':'#0f766e',
+  'Cajas':'#b42318',
+  'Empaque y Despacho':'#a15c00',
+  'Cold Brew':'#00639a',
+  'Otros':'#7e57c2'
+};
 
-  const Utils = {
-    clone: value => JSON.parse(JSON.stringify(value)),
-    esc: str => String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),
-    fmtInt: n => Number(n || 0).toLocaleString('es-ES'),
-    nowLabel(){
-      const d = new Date();
-      return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-    },
-    parseDate(input){
-      if(!input) return null;
-      const direct = new Date(input);
-      if(!Number.isNaN(direct.getTime())) return direct;
-      const m = String(input).match(/^(\d{2})\/(\d{2})(?:\/(\d{2,4}))?\s+(\d{2}):(\d{2})$/);
-      if(!m) return null;
-      let year = Number(m[3] || new Date().getFullYear());
-      if(year < 100) year += 2000;
-      return new Date(year, Number(m[2])-1, Number(m[1]), Number(m[4]), Number(m[5]));
-    },
-    projection(item, history){
-      if(item.stock <= 0) return { title:'Sin stock', days:0, use:'-', date:'-', color:'var(--error)' };
-      const downs = history.filter(h => h.id === item.id && Number(h.ns) < Number(h.os));
-      const totalConsumed = downs.reduce((acc,h) => acc + (Number(h.os) - Number(h.ns)), 0);
-      const dates = downs.map(h => Utils.parseDate(h.ts)).filter(Boolean).sort((a,b) => a-b);
-      let spanDays = 0;
-      if(dates.length >= 2){
-        spanDays = Math.max(1, Math.round((dates.at(-1) - dates[0]) / 86400000));
-      } else if(dates.length === 1){
-        spanDays = Math.max(1, Math.round((Date.now() - dates[0].getTime()) / 86400000));
-      }
-      const fallbackUse = item.min > 0 ? Math.max(1, Math.round(item.min / 14)) : 1;
-      const dailyUse = totalConsumed > 0 && spanDays > 0 ? totalConsumed / spanDays : fallbackUse;
-      const days = Math.max(0, Math.round(item.stock / Math.max(0.1, dailyUse)));
-      const out = new Date(); out.setDate(out.getDate() + days);
-      const color = days <= 7 ? 'var(--error)' : days <= 21 ? 'var(--warn)' : 'var(--success)';
-      return {
-        title: days <= 7 ? 'Agotamiento inminente' : days <= 21 ? 'Pedir pronto' : days <= 45 ? 'Stock moderado' : 'Stock holgado',
-        days,
-        use: dailyUse < 1 ? dailyUse.toFixed(1) : String(Math.round(dailyUse)),
-        date: `${String(out.getDate()).padStart(2,'0')}/${String(out.getMonth()+1).padStart(2,'0')}`,
-        color
-      };
-    }
-  };
+const Utils = {
+  clone: value => JSON.parse(JSON.stringify(value)),
+  esc: str => String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),
+  fmtInt: n => Number(n || 0).toLocaleString('es-ES'),
+  nowLabel(){
+    const d = new Date();
+    return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  },
+  parseDate(input){
+    if(!input) return null;
+    const direct = new Date(input);
+    if(!Number.isNaN(direct.getTime())) return direct;
+    const m = String(input).match(/^(\d{2})\/(\d{2})(?:\/(\d{2,4}))?\s+(\d{2}):(\d{2})$/);
+    if(!m) return null;
+    let year = Number(m[3] || new Date().getFullYear());
+    if(year < 100) year += 2000;
+    return new Date(year, Number(m[2])-1, Number(m[1]), Number(m[4]), Number(m[5]));
+  },
+  projection(item, history){
+    if(item.stock <= 0) return { title:'Sin stock', days:0, use:'-', date:'-', color:'var(--error)' };
+    const downs = history.filter(h => h.id === item.id && Number(h.ns) < Number(h.os));
+    const totalConsumed = downs.reduce((acc,h) => acc + (Number(h.os) - Number(h.ns)), 0);
+    const dates = downs.map(h => Utils.parseDate(h.ts)).filter(Boolean).sort((a,b) => a-b);
+    let spanDays = 0;
+    if(dates.length >= 2) spanDays = Math.max(1, Math.round((dates.at(-1) - dates[0]) / 86400000));
+    else if(dates.length === 1) spanDays = Math.max(1, Math.round((Date.now() - dates[0].getTime()) / 86400000));
+    const fallbackUse = item.min > 0 ? Math.max(1, Math.round(item.min / 14)) : 1;
+    const dailyUse = totalConsumed > 0 && spanDays > 0 ? totalConsumed / spanDays : fallbackUse;
+    const days = Math.max(0, Math.round(item.stock / Math.max(0.1, dailyUse)));
+    const out = new Date(); out.setDate(out.getDate() + days);
+    const color = days <= 7 ? 'var(--error)' : days <= 21 ? 'var(--warn)' : 'var(--success)';
+    return {
+      title: days <= 7 ? 'Agotamiento inminente' : days <= 21 ? 'Pedir pronto' : days <= 45 ? 'Stock moderado' : 'Stock holgado',
+      days,
+      use: dailyUse < 1 ? dailyUse.toFixed(1) : String(Math.round(dailyUse)),
+      date: `${String(out.getDate()).padStart(2,'0')}/${String(out.getMonth()+1).padStart(2,'0')}`,
+      color
+    };
+  }
+};
 
-  const Store = {
+
+function createStore(config){
+  return {
     state: {
       user: null,
       route: 'home',
@@ -285,10 +285,10 @@
     },
     listeners: [],
     subscribe(fn){ this.listeners.push(fn); },
-    set(patch){ Object.assign(this.state, patch); this.emit(); },
     emit(){ this.listeners.forEach(fn => fn(this.state)); },
+    set(patch){ Object.assign(this.state, patch); this.emit(); },
     persist(){
-      localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
+      localStorage.setItem(config.STORAGE_KEY, JSON.stringify({
         user: this.state.user,
         items: this.state.items,
         history: this.state.history,
@@ -298,7 +298,7 @@
     },
     hydrate(){
       try{
-        const raw = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY) || '{}');
+        const raw = JSON.parse(localStorage.getItem(config.STORAGE_KEY) || '{}');
         if(Array.isArray(raw.items) && raw.items.length) this.state.items = raw.items;
         if(Array.isArray(raw.history)) this.state.history = raw.history;
         if(Array.isArray(raw.syncQueue)) this.state.syncQueue = raw.syncQueue;
@@ -307,37 +307,104 @@
       }catch{}
     }
   };
+}
 
-  const Inventory = {
-    get items(){ return Store.state.items; },
-    get history(){ return Store.state.history; },
+function createApi(store, config){
+  let notify = () => {};
+  return {
+    setNotifier(fn){ notify = fn || (()=>{}); },
+    isEnabled(){ return /^https:\/\//.test(config.API_URL); },
+    async request(url, options={}){
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
+      try{
+        const res = await fetch(url, { ...options, signal: controller.signal, cache:'no-store' });
+        if(!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      } finally {
+        clearTimeout(timeout);
+      }
+    },
+    async sync({ force=false }={}){
+      if(!this.isEnabled() || store.state.syncing) return;
+      if(!force && Date.now() - store.state.lastSyncAt < config.SYNC_TTL_MS) return;
+      store.set({ syncing:true });
+      try{
+        const [itemsResp, historyResp] = await Promise.all([
+          this.request(`${config.API_URL}?action=getAll`),
+          this.request(`${config.API_URL}?action=getHistory&limit=120`)
+        ]);
+        if(itemsResp.success && Array.isArray(itemsResp.items)){
+          store.state.items = itemsResp.items.map(x => ({
+            id:String(x.id), cat:String(x.categoria), subcat:String(x.subcategoria || ''), name:String(x.nombre),
+            stock:Number(x.stock) || 0, min:Number(x.minimo) || 0, unit:String(x.unidad || 'uds'), alert:String(x.alerta || '')
+          }));
+        }
+        if(historyResp.success && Array.isArray(historyResp.entries)){
+          store.state.history = historyResp.entries.map(x => ({
+            id:String(x.itemId), nm:String(x.itemNombre), cat:String(x.categoria), tp:String(x.tipo),
+            os:Number(x.stockAnterior) || 0, ns:Number(x.stockNuevo) || 0, nt:String(x.nota || ''),
+            u:String(x.usuario || '?'), ts:x.timestamp ? x.timestamp.substring(0,16).replace('T',' ') : ''
+          }));
+        }
+        store.state.lastSyncAt = Date.now();
+        store.persist();
+        store.emit();
+      } catch (err) {
+        notify(`Sync parcial: ${err.message}`, 'warn');
+      } finally {
+        store.set({ syncing:false });
+      }
+    },
+    async flushQueue(){
+      if(!this.isEnabled() || !store.state.syncQueue.length) return;
+      const batch = [...store.state.syncQueue];
+      for(const entry of batch){
+        try{
+          const body = JSON.stringify({
+            action:'updateStock', itemId:entry.itemId, newStock:entry.newStock, oldStock:entry.oldStock,
+            tipo:entry.type, usuario:entry.user, nota:entry.note
+          });
+          const resp = await this.request(config.API_URL, {
+            method:'POST', body, headers:{ 'Content-Type':'text/plain;charset=utf-8' }
+          });
+          if(!resp.success) throw new Error(resp.error || 'sync');
+          store.state.syncQueue = store.state.syncQueue.filter(q => q !== entry);
+          store.persist();
+        } catch {
+          notify('Cambios guardados localmente. Reintentaré sync.', 'warn');
+          break;
+        }
+      }
+    },
+    flushQueueDebounced: (() => {
+      let timer;
+      return function(fn){
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(), 900);
+      };
+    })()
+  };
+}
+
+
+function createInventory(store, api){
+  return {
+    get items(){ return store.state.items; },
+    get history(){ return store.state.history; },
     itemById(id){ return this.items.find(x => x.id === id); },
     groupedByCategory(){ return this.items.reduce((acc,item) => ((acc[item.cat] ??= []).push(item), acc), {}); },
-    groupedSubcategories(cat){
-      return this.items.filter(i => i.cat === cat).reduce((acc,item)=>((acc[item.subcat || 'General'] ??= []).push(item), acc), {});
-    },
-    status(item){
-      if(item.stock <= 0) return 'zero';
-      if(item.stock < Math.max(1, item.min * 0.3)) return 'critical';
-      if(item.stock < item.min) return 'low';
-      return 'ok';
-    },
+    groupedSubcategories(cat){ return this.items.filter(i => i.cat === cat).reduce((acc,item)=>((acc[item.subcat || 'General'] ??= []).push(item), acc), {}); },
+    status(item){ if(item.stock <= 0) return 'zero'; if(item.stock < Math.max(1, item.min * 0.3)) return 'critical'; if(item.stock < item.min) return 'low'; return 'ok'; },
     statusMeta(item){
       const status = this.status(item);
-      return {
-        status,
-        label: ({ok:'OK',low:'Bajo',critical:'Crítico',zero:'Agotado'})[status],
-        color: ({ok:'var(--success)',low:'var(--warn)',critical:'var(--error)',zero:'var(--error)'})[status],
-        className: `status-${status}`
-      };
+      return { status, label: ({ok:'OK',low:'Bajo',critical:'Crítico',zero:'Agotado'})[status], className:`status-${status}` };
     },
     alerts(){
-      return [...this.items]
-        .filter(item => this.status(item) !== 'ok')
-        .sort((a,b) => {
-          const order = {zero:0,critical:1,low:2,ok:3};
-          return order[this.status(a)] - order[this.status(b)] || a.stock - b.stock;
-        });
+      return [...this.items].filter(item => this.status(item) !== 'ok').sort((a,b) => {
+        const order = {zero:0,critical:1,low:2,ok:3};
+        return order[this.status(a)] - order[this.status(b)] || a.stock - b.stock;
+      });
     },
     metrics(){
       return {
@@ -351,563 +418,217 @@
     searchResults(q){
       const needle = q.trim().toLowerCase();
       if(!needle) return [];
-      return this.items.filter(item => [item.name,item.cat,item.subcat,item.alert]
-        .filter(Boolean)
-        .some(value => value.toLowerCase().includes(needle)));
+      return this.items.filter(item => [item.name,item.cat,item.subcat,item.alert].filter(Boolean).some(value => value.toLowerCase().includes(needle)));
     },
     recordMovement({ itemId, newStock, type, note, userName }){
       const item = this.itemById(itemId);
       if(!item) return;
       const oldStock = Number(item.stock);
       item.stock = Number(newStock);
-      Store.state.history.unshift({
-        id: item.id,
-        nm: item.name,
-        cat: item.cat,
-        tp: type,
-        os: oldStock,
-        ns: Number(newStock),
-        nt: note || '',
-        u: userName,
-        ts: Utils.nowLabel()
-      });
-      Store.state.syncQueue.push({ itemId:item.id, oldStock, newStock:Number(newStock), type, note:note || '', user:userName, createdAt:Date.now() });
-      Store.persist();
-      Store.emit();
-      Api.flushQueueDebounced();
-    }
+      store.state.history.unshift({ id:item.id, nm:item.name, cat:item.cat, tp:type, os:oldStock, ns:Number(newStock), nt:note || '', u:userName, ts:Utils.nowLabel() });
+      store.state.syncQueue.push({ itemId:item.id, oldStock, newStock:Number(newStock), type, note:note || '', user:userName, createdAt:Date.now() });
+      store.persist();
+      store.emit();
+      api.flushQueueDebounced(() => api.flushQueue());
+    },
+    projection(item){ return Utils.projection(item, this.history); }
   };
+}
 
-  const Api = {
-    activeSyncController: null,
-    isEnabled(){ return /^https:\/\//.test(CONFIG.API_URL); },
-    async request(url, options={}){
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 12000);
-      try{
-        const res = await fetch(url, { ...options, signal: controller.signal, cache:'no-store' });
-        if(!res.ok) throw new Error(`HTTP ${res.status}`);
-        return await res.json();
-      } finally {
-        clearTimeout(timeout);
-      }
-    },
-    async sync({ force=false } = {}){
-      if(!this.isEnabled()) return;
-      if(Store.state.syncing) return;
-      if(!force && Date.now() - Store.state.lastSyncAt < CONFIG.SYNC_TTL_MS) return;
-      Store.set({ syncing:true });
-      try{
-        const [itemsResp, historyResp] = await Promise.all([
-          this.request(`${CONFIG.API_URL}?action=getAll`),
-          this.request(`${CONFIG.API_URL}?action=getHistory&limit=120`)
-        ]);
-        if(itemsResp.success && Array.isArray(itemsResp.items)){
-          Store.state.items = itemsResp.items.map(x => ({
-            id:String(x.id),
-            cat:String(x.categoria),
-            subcat:String(x.subcategoria || ''),
-            name:String(x.nombre),
-            stock:Number(x.stock) || 0,
-            min:Number(x.minimo) || 0,
-            unit:String(x.unidad || 'uds'),
-            alert:String(x.alerta || '')
-          }));
-        }
-        if(historyResp.success && Array.isArray(historyResp.entries)){
-          Store.state.history = historyResp.entries.map(x => ({
-            id:String(x.itemId),
-            nm:String(x.itemNombre),
-            cat:String(x.categoria),
-            tp:String(x.tipo),
-            os:Number(x.stockAnterior) || 0,
-            ns:Number(x.stockNuevo) || 0,
-            nt:String(x.nota || ''),
-            u:String(x.usuario || '?'),
-            ts:x.timestamp ? x.timestamp.substring(0,16).replace('T',' ') : ''
-          }));
-        }
-        Store.state.lastSyncAt = Date.now();
-        Store.persist();
-        Store.emit();
-      } catch (err) {
-        UI.toast(`Sync parcial: ${err.message}`, 'warn');
-      } finally {
-        Store.set({ syncing:false });
-      }
-    },
-    async flushQueue(){
-      if(!this.isEnabled() || !Store.state.syncQueue.length) return;
-      const batch = [...Store.state.syncQueue];
-      for(const entry of batch){
-        try{
-          const body = JSON.stringify({
-            action:'updateStock',
-            itemId:entry.itemId,
-            newStock:entry.newStock,
-            oldStock:entry.oldStock,
-            tipo:entry.type,
-            usuario:entry.user,
-            nota:entry.note
-          });
-          const resp = await this.request(CONFIG.API_URL, {
-            method:'POST',
-            body,
-            headers:{ 'Content-Type':'text/plain;charset=utf-8' }
-          });
-          if(!resp.success) throw new Error(resp.error || 'sync');
-          Store.state.syncQueue = Store.state.syncQueue.filter(q => q !== entry);
-          Store.persist();
-        } catch (err) {
-          UI.toast('Cambios guardados localmente. Reintentaré sync.', 'warn');
-          break;
-        }
-      }
-    },
-    flushQueueDebounced: (() => {
-      let timer;
-      return () => {
-        clearTimeout(timer);
-        timer = setTimeout(() => Api.flushQueue(), 900);
-      };
-    })()
-  };
-
-  const UI = {
+function createUI({ store, inventory, api, config, icons, colors, utils }){
+  const ui = {
     app: document.getElementById('app'),
+    toastTimer: null,
     toast(message, type='ok'){
-      Store.state.toast = { message, type };
-      Store.emit();
+      store.state.toast = { message, type };
+      store.emit();
       clearTimeout(this.toastTimer);
-      this.toastTimer = setTimeout(() => {
-        Store.state.toast = null;
-        Store.emit();
-      }, 2400);
+      this.toastTimer = setTimeout(() => { store.state.toast = null; store.emit(); }, 2400);
     },
-    icon(cat){ return ICONS[cat] || '📁'; },
-    accent(cat){ return COLORS[cat] || '#6750a4'; },
+    icon(cat){ return icons[cat] || '📁'; },
+    accent(cat){ return colors[cat] || '#6750a4'; },
     navTabs(){
-      const tabs = [
-        ['home','Inicio','⌂'],
-        ['search','Buscar','⌕'],
-        ['alerts','Alertas','⚠'],
-        ['history','Historial','◷'],
-        ['report','Reporte','⎙']
-      ];
-      const hasCritical = Inventory.alerts().some(x => ['zero','critical'].includes(Inventory.status(x)));
-      return `<nav class="bottom-nav">${tabs.map(([id,label,icon]) => `
-        <button class="nav-btn ${Store.state.route === id ? 'active' : ''}" data-action="go-tab" data-tab="${id}" style="position:relative">
-          <span>${icon}</span><span>${label}</span>${id === 'alerts' && hasCritical ? '<i class="nav-dot"></i>' : ''}
-        </button>`).join('')}</nav>`;
+      const tabs = [['home','Inicio','⌂'],['search','Buscar','⌕'],['alerts','Alertas','⚠'],['history','Historial','◷'],['report','Reporte','⎙']];
+      const hasCritical = inventory.alerts().some(x => ['zero','critical'].includes(inventory.status(x)));
+      return `<nav class="bottom-nav">${tabs.map(([id,label,icon]) => `<button class="nav-btn ${store.state.route === id ? 'active' : ''}" data-action="go-tab" data-tab="${id}" style="position:relative"><span>${icon}</span><span>${label}</span>${id === 'alerts' && hasCritical ? '<i class="nav-dot"></i>' : ''}</button>`).join('')}</nav>`;
     },
-    topBar(title='Kawas Stock Pro', subtitle='Inventario inteligente'){
-      return `<header class="topbar">
-        <div class="brand">
-          <div class="brand-mark">K</div>
-          <div><h1>${title}</h1><p>${subtitle}</p></div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center">
-          <span class="pill">${Store.state.user?.name || 'Invitado'}${Store.state.syncQueue.length ? ` · ${Store.state.syncQueue.length} pendientes` : ''}</span>
-          <button class="icon-btn" data-action="sync-manual">↻</button>
-        </div>
-      </header>`;
+    topBar(title='Kawas Stock Pro', subtitle='Arquitectura modular phase 2'){
+      return `<header class="topbar"><div class="brand"><div class="brand-mark">K</div><div><h1>${title}</h1><p>${subtitle}</p></div></div><div style="display:flex;gap:10px;align-items:center"><span class="pill">${store.state.user?.name || 'Invitado'}${store.state.syncQueue.length ? ` · ${store.state.syncQueue.length} pendientes` : ''}</span><button class="icon-btn" data-action="sync-manual">↻</button></div></header>`;
     },
     loginView(){
-      return `<div class="login">
-        <div class="login-card">
-          <div class="brand-mark" style="margin:0 auto 16px">K</div>
-          <h1 style="margin:0 0 8px">Kawas Stock Pro</h1>
-          <p class="small" style="margin:0 0 18px">Refactor Material 3 · mobile first · Google Sheets sync</p>
-          <input class="field pin" id="pin-input" maxlength="4" inputmode="numeric" placeholder="••••" />
-          <p class="small" style="margin-top:16px">PIN demo: 1234 · 5678 · 9012</p>
-        </div>
-      </div>`;
+      return `<div class="login"><div class="login-card"><div class="brand-mark" style="margin:0 auto 16px">K</div><h1 style="margin:0 0 8px">Kawas Stock Pro</h1><p class="small" style="margin:0 0 18px">Material 3 · módulos ES · sync optimista</p><input class="field pin" id="pin-input" maxlength="4" inputmode="numeric" placeholder="••••" /><p class="small" style="margin-top:16px">PIN demo: 1234 · 5678 · 9012</p></div></div>`;
     },
     homeView(){
-      const m = Inventory.metrics();
-      const grouped = Inventory.groupedByCategory();
-      const actionItems = Inventory.alerts().slice(0,6);
-      return `${this.topBar()}
-      <div class="content">
-        <section class="hero">
-          <div class="hero-card">
-            <div class="row" style="justify-content:space-between;align-items:flex-start">
-              <div>
-                <div style="font-size:12px;opacity:.86;text-transform:uppercase;letter-spacing:.1em">Resumen operativo</div>
-                <div style="font-size:26px;font-weight:700;margin-top:6px">${m.totalStock.toLocaleString('es-ES')} unidades</div>
-                <div style="font-size:13px;opacity:.9;margin-top:6px">Stock consolidado con alertas, proyecciones y sync optimista.</div>
-              </div>
-              <div class="pill" style="background:rgba(255,255,255,.14);color:#fff">${Store.state.syncing ? 'Sincronizando…' : 'Actualizado'}</div>
-            </div>
-            <div class="hero-grid">
-              <div class="mini-kpi"><strong>${m.total}</strong><span>Items</span></div>
-              <div class="mini-kpi"><strong>${m.low}</strong><span>Bajo</span></div>
-              <div class="mini-kpi"><strong>${m.critical}</strong><span>Crítico</span></div>
-              <div class="mini-kpi"><strong>${m.zero}</strong><span>Agotado</span></div>
-            </div>
-          </div>
-        </section>
-        ${actionItems.length ? `
-        <section class="stack">
-          <div class="section-title"><h2>Requieren acción</h2><button class="link-btn" data-action="go-tab" data-tab="alerts">Ver todo</button></div>
-          <div class="card alert-panel list">${actionItems.map(item => this.alertRow(item)).join('')}</div>
-        </section>` : ''}
-        <section>
-          <div class="section-title"><h2>Categorías</h2></div>
-          <div class="grid-2">
-            ${Object.entries(grouped).map(([cat,items]) => {
-              const bad = items.filter(i => Inventory.status(i) !== 'ok').length;
-              return `<button class="card category-card" data-action="open-category" data-category="${Utils.esc(cat)}">
-                <div>
-                  <div class="row" style="justify-content:space-between;align-items:flex-start">
-                    <div style="font-size:24px">${this.icon(cat)}</div>
-                    <span class="badge ${bad ? 'badge-critical' : 'badge-ok'}">${bad || 'OK'}</span>
-                  </div>
-                  <div style="font-size:15px;font-weight:700;margin-top:14px;text-align:left">${Utils.esc(cat)}</div>
-                  <div class="meta" style="margin-top:4px;text-align:left">${items.length} ítems · ${Object.keys(Inventory.groupedSubcategories(cat)).length} grupos</div>
-                </div>
-                <div class="accent" style="background:${this.accent(cat)}"></div>
-              </button>`;
-            }).join('')}
-          </div>
-        </section>
-      </div>
-      ${this.navTabs()}`;
-    },
-    alertRow(item){
-      const meta = Inventory.statusMeta(item);
-      return `<button class="row" data-action="open-item" data-id="${item.id}" style="border:none;background:none;padding:0;text-align:left">
-        <div class="status-chip ${meta.className}">${meta.label}</div>
-        <div style="flex:1;min-width:0">
-          <div class="item-name">${Utils.esc(item.name)}</div>
-          <div class="meta">${Utils.esc(item.cat)}${item.subcat ? ` · ${Utils.esc(item.subcat)}` : ''}</div>
-        </div>
-        <div class="stock" style="font-size:18px;color:${meta.color}">${Utils.fmtInt(item.stock)}</div>
-      </button>`;
+      const m = inventory.metrics();
+      const grouped = inventory.groupedByCategory();
+      const actionItems = inventory.alerts().slice(0,6);
+      return `${this.topBar()}<div class="content"><section class="hero"><div class="hero-card"><div class="row" style="justify-content:space-between;align-items:flex-start"><div><div style="font-size:12px;opacity:.86;text-transform:uppercase;letter-spacing:.1em">Resumen operativo</div><div style="font-size:26px;font-weight:700;margin-top:6px">${m.totalStock.toLocaleString('es-ES')} unidades</div><div style="font-size:13px;opacity:.9;margin-top:6px">Stock consolidado con alertas, proyecciones y sync optimista.</div></div><span class="pill" style="background:rgba(255,255,255,.12);color:#fff">${m.total} SKUs</span></div><div class="hero-grid"><div class="mini-kpi"><strong>${m.low}</strong><span>Bajo</span></div><div class="mini-kpi"><strong>${m.critical}</strong><span>Crítico</span></div><div class="mini-kpi"><strong>${m.zero}</strong><span>Agotado</span></div><div class="mini-kpi"><strong>${store.state.syncQueue.length}</strong><span>Pendiente</span></div></div></div></section>${actionItems.length ? `<section class="stack"><div class="section-title"><h2>Acción inmediata</h2><button class="link-btn" data-action="go-tab" data-tab="alerts">Ver todo</button></div><div class="card alert-panel list">${actionItems.map(item => this.itemRow(item, true)).join('')}</div></section>` : ''}<section><div class="section-title"><h2>Categorías</h2><span class="pill">${Object.keys(grouped).length} grupos</span></div><div class="grid-2">${Object.entries(grouped).map(([cat, items]) => `<button class="card category-card" data-action="open-category" data-category="${utils.esc(cat)}"><div class="row" style="justify-content:space-between;align-items:flex-start"><div style="font-size:26px">${this.icon(cat)}</div><span class="badge ${items.some(i => inventory.status(i) !== 'ok') ? 'badge-critical' : 'badge-ok'}">${items.filter(i => inventory.status(i) !== 'ok').length || 'OK'}</span></div><div><div style="font-size:16px;font-weight:700">${utils.esc(cat)}</div><div class="meta">${items.length} ítems</div></div><div class="accent" style="background:${this.accent(cat)}"></div></button>`).join('')}</div></section></div>${this.navTabs()}`;
     },
     categoryView(){
-      const cat = Store.state.selectedCategory;
-      const groups = Inventory.groupedSubcategories(cat);
-      const entries = Object.entries(groups);
-      return `${this.topBar(cat, 'Subcategorías')}
-      <div class="content">
-        <div class="section-title"><button class="link-btn" data-action="back">← Volver</button></div>
-        <div class="list">${entries.map(([sub,items]) => {
-          const issues = items.filter(i => Inventory.status(i) !== 'ok').length;
-          const totalStock = items.reduce((sum,i)=>sum+i.stock,0);
-          return `<button class="card row" data-action="open-subcategory" data-subcategory="${Utils.esc(sub)}" style="justify-content:space-between">
-            <div>
-              <div class="item-name">${Utils.esc(sub)}</div>
-              <div class="meta">${items.length} productos</div>
-            </div>
-            <div style="text-align:right">
-              <div class="stock" style="font-size:18px">${Utils.fmtInt(totalStock)}</div>
-              <div class="meta">${issues ? `${issues} alertas` : 'Sin alertas'}</div>
-            </div>
-          </button>`;
-        }).join('')}</div>
-      </div>
-      ${this.navTabs()}`;
+      const subgroups = inventory.groupedSubcategories(store.state.selectedCategory);
+      const keys = Object.keys(subgroups);
+      return `${this.topBar(store.state.selectedCategory, 'Subcategorías')}<div class="content"><div class="section-title"><button class="link-btn" data-action="back">← Volver</button><span class="pill">${keys.length} grupos</span></div><div class="stack">${keys.map(key => `<button class="card row" data-action="open-subcategory" data-subcategory="${utils.esc(key)}" style="justify-content:space-between"><div><div style="font-size:15px;font-weight:700">${utils.esc(key)}</div><div class="meta">${subgroups[key].length} ítems</div></div><span class="pill">${subgroups[key].reduce((sum, item) => sum + Number(item.stock || 0), 0)} uds</span></button>`).join('')}</div></div>${this.navTabs()}`;
     },
     subcategoryView(){
-      const cat = Store.state.selectedCategory;
-      const sub = Store.state.selectedSubcategory;
-      const items = [...(Inventory.groupedSubcategories(cat)[sub] || [])].sort((a,b) => {
-        const order = {zero:0,critical:1,low:2,ok:3};
-        return order[Inventory.status(a)] - order[Inventory.status(b)] || a.name.localeCompare(b.name);
-      });
-      return `${this.topBar(sub, cat)}
-      <div class="content">
-        <div class="section-title"><button class="link-btn" data-action="back">← Volver</button></div>
-        <div class="list">${items.map(item => this.itemCard(item)).join('')}</div>
-      </div>
-      ${this.navTabs()}`;
+      const items = Object.values(inventory.groupedSubcategories(store.state.selectedCategory)[store.state.selectedSubcategory] || []).flat();
+      return `${this.topBar(store.state.selectedSubcategory, store.state.selectedCategory)}<div class="content"><div class="section-title"><button class="link-btn" data-action="back">← Volver</button><span class="pill">${items.length} ítems</span></div><div class="list">${items.map(item => this.itemCard(item)).join('')}</div></div>${this.navTabs()}`;
+    },
+    itemRow(item, compact=false){
+      const meta = inventory.statusMeta(item);
+      return `<button class="row ${compact ? '' : 'card item-card'}" data-action="open-item" data-id="${item.id}" style="justify-content:space-between;width:100%;text-align:left"><div style="flex:1;min-width:0"><div class="item-name">${utils.esc(item.name)}</div><div class="meta">${utils.esc(item.cat)}${item.subcat ? ` · ${utils.esc(item.subcat)}` : ''}</div></div><div style="text-align:right"><div class="stock">${utils.fmtInt(item.stock)}</div><div class="status-chip ${meta.className}">${meta.label}</div></div></button>`;
     },
     itemCard(item){
-      const meta = Inventory.statusMeta(item);
-      const pct = item.min > 0 ? Math.min(100, Math.round(item.stock / item.min * 100)) : 100;
-      return `<button class="card item-card" data-action="open-item" data-id="${item.id}">
-        <div class="row" style="justify-content:space-between;align-items:flex-start">
-          <div style="flex:1;min-width:0;text-align:left">
-            <div class="item-name">${Utils.esc(item.name)}</div>
-            <div class="meta">${Utils.esc(item.cat)}${item.subcat ? ` · ${Utils.esc(item.subcat)}` : ''}</div>
-            ${item.alert ? `<div class="meta" style="margin-top:6px;color:var(--warn)">${Utils.esc(item.alert)}</div>` : ''}
-          </div>
-          <div style="text-align:right">
-            <div class="stock" style="color:${meta.color}">${Utils.fmtInt(item.stock)}</div>
-            <div class="meta">${Utils.esc(item.unit)}</div>
-          </div>
-        </div>
-        <div class="progress"><div style="width:${pct}%;background:${meta.color}"></div></div>
-        <div class="row" style="justify-content:space-between;margin-top:10px">
-          <div class="meta">mínimo ${item.min}</div>
-          <div class="status-chip ${meta.className}">${meta.label}</div>
-        </div>
-      </button>`;
+      const meta = inventory.statusMeta(item);
+      const pct = item.min > 0 ? Math.min(100, Math.round((item.stock / item.min) * 100)) : 100;
+      const bar = pct > 100 ? 'var(--success)' : pct > 50 ? 'var(--primary)' : 'var(--error)';
+      return `<button class="card item-card" data-action="open-item" data-id="${item.id}" style="width:100%;text-align:left"><div class="row" style="justify-content:space-between;align-items:flex-start"><div style="flex:1;min-width:0"><div class="item-name">${utils.esc(item.name)}</div><div class="meta">Mínimo ${item.min} ${utils.esc(item.unit)}</div>${item.alert ? `<div class="meta" style="color:var(--warn);margin-top:4px">${utils.esc(item.alert)}</div>` : ''}</div><div style="text-align:right"><div class="stock">${utils.fmtInt(item.stock)}</div><div class="status-chip ${meta.className}">${meta.label}</div></div></div><div class="progress"><div style="width:${pct}%;background:${bar}"></div></div></button>`;
     },
     detailView(){
-      const item = Inventory.itemById(Store.state.selectedItemId);
-      const meta = Inventory.statusMeta(item);
-      const proj = Utils.projection(item, Store.state.history);
-      const pct = item.min > 0 ? Math.min(100, Math.round(item.stock / item.min * 100)) : 100;
-      const history = Store.state.history.filter(h => h.id === item.id).slice(0, 12);
-      return `${this.topBar(item.name, `${item.cat}${item.subcat ? ` · ${item.subcat}` : ''}`)}
-      <div class="content stack">
-        <div class="section-title"><button class="link-btn" data-action="back">← Volver</button></div>
-        <section class="sheet stack">
-          <div class="detail-top">
-            <div>
-              <div class="meta">Stock actual</div>
-              <div class="detail-stock">${Utils.fmtInt(item.stock)}</div>
-              <div class="meta">${Utils.esc(item.unit)} · mínimo ${item.min}</div>
-            </div>
-            <div class="status-chip ${meta.className}">${meta.label}</div>
-          </div>
-          <div class="progress"><div style="width:${pct}%;background:${meta.color}"></div></div>
-          ${item.alert ? `<div class="card" style="padding:12px;background:var(--warn-soft);color:var(--warn);border-color:#f0cf9b">${Utils.esc(item.alert)}</div>` : ''}
-          <div class="metric-grid">
-            <div class="metric"><strong>${proj.days}</strong><span>Días restantes</span></div>
-            <div class="metric"><strong>${proj.use}</strong><span>Uso diario</span></div>
-            <div class="metric"><strong>${proj.date}</strong><span>Fecha agot.</span></div>
-          </div>
-        </section>
-        <section class="stack">
-          <div class="fab-row">
-            <button class="action-btn btn-soft-success" data-action="set-adjust" data-mode="in">＋ Ingreso</button>
-            <button class="action-btn btn-soft-error" data-action="set-adjust" data-mode="out">－ Salida</button>
-            <button class="action-btn btn-tonal" data-action="set-adjust" data-mode="set">✎ Ajustar</button>
-          </div>
-          ${Store.state.adjustMode ? this.adjustForm(item) : ''}
-        </section>
-        <section class="card">
-          <div class="section-title"><h2>Historial</h2></div>
-          ${history.length ? history.map(h => {
-            const delta = Number(h.ns) - Number(h.os);
-            const up = delta >= 0;
-            return `<div class="history-row">
-              <div class="history-dot" style="background:${up ? 'var(--success-soft)' : 'var(--error-soft)'};color:${up ? 'var(--success)' : 'var(--error)'}">${up ? '+' : '−'}</div>
-              <div style="flex:1;min-width:0">
-                <div class="item-name" style="font-size:13px">${h.os} → ${h.ns}${h.nt ? ` · ${Utils.esc(h.nt)}` : ''}</div>
-                <div class="meta">${Utils.esc(h.ts)} · ${Utils.esc(h.u)}</div>
-              </div>
-              <div class="stock" style="font-size:16px;color:${up ? 'var(--success)' : 'var(--error)'}">${delta > 0 ? '+' : ''}${delta}</div>
-            </div>`;
-          }).join('') : '<div class="empty">Sin movimientos registrados</div>'}
-        </section>
-      </div>
-      ${this.navTabs()}`;
-    },
-    adjustForm(item){
-      const mode = Store.state.adjustMode;
-      const labels = { in:'Registrar ingreso', out:'Registrar salida', set:'Ajustar stock' };
-      return `<div class="card stack">
-        <div class="item-name">${labels[mode]}</div>
-        <input class="field" data-action="bind-adjust-value" value="${Utils.esc(Store.state.adjustValue)}" inputmode="numeric" type="number" placeholder="${mode === 'set' ? 'Nuevo stock' : 'Cantidad'}" />
-        <input class="field" data-action="bind-adjust-note" value="${Utils.esc(Store.state.adjustNote)}" placeholder="Nota opcional" />
-        <div class="fab-row">
-          <button class="action-btn btn-tonal" data-action="cancel-adjust">Cancelar</button>
-          <button class="action-btn btn-primary" data-action="confirm-adjust" data-id="${item.id}">Guardar</button>
-        </div>
-      </div>`;
+      const item = inventory.itemById(store.state.selectedItemId);
+      if(!item) return this.homeView();
+      const meta = inventory.statusMeta(item);
+      const projection = inventory.projection(item);
+      const history = store.state.history.filter(x => x.id === item.id).slice(0, 12);
+      return `${this.topBar(item.name, item.cat)}<div class="content"><div class="section-title"><button class="link-btn" data-action="back">← Volver</button><span class="status-chip ${meta.className}">${meta.label}</span></div><section class="sheet stack"><div class="detail-top"><div><div class="meta">${utils.esc(item.subcat || 'General')}</div><div class="detail-stock">${utils.fmtInt(item.stock)}</div><div class="meta">${utils.esc(item.unit)} · mínimo ${item.min}</div></div><div class="pill">${projection.title}</div></div><div class="metric-grid"><div class="metric"><strong>${projection.days}</strong><span>Días</span></div><div class="metric"><strong>${projection.use}</strong><span>Uso / día</span></div><div class="metric"><strong>${projection.date}</strong><span>Fecha</span></div></div><div class="fab-row"><button class="action-btn btn-soft-success" data-action="set-adjust-mode" data-mode="in">＋ Ingreso</button><button class="action-btn btn-soft-error" data-action="set-adjust-mode" data-mode="out">－ Salida</button><button class="action-btn btn-tonal" data-action="set-adjust-mode" data-mode="set">✎ Ajustar</button></div>${store.state.adjustMode ? `<div class="stack"><input class="field" data-action="bind-adjust-value" value="${utils.esc(store.state.adjustValue)}" placeholder="${store.state.adjustMode === 'set' ? 'Nuevo stock' : 'Cantidad'}" type="number" /><input class="field" data-action="bind-adjust-note" value="${utils.esc(store.state.adjustNote)}" placeholder="Nota opcional" /><div class="row"><button class="action-btn btn-tonal" data-action="cancel-adjust" style="flex:1">Cancelar</button><button class="action-btn btn-primary" data-action="confirm-adjust" style="flex:1">Confirmar</button></div></div>` : ''}</section><section class="sheet"><div class="section-title"><h2>Historial</h2><span class="pill">${history.length} mov.</span></div>${history.length ? history.map(row => `<div class="history-row"><div class="history-dot ${row.tp === 'ingreso' ? 'status-ok' : row.tp === 'salida' ? 'status-critical' : 'status-low'}">${row.tp === 'ingreso' ? '+' : row.tp === 'salida' ? '−' : '≡'}</div><div style="flex:1"><div style="font-size:13px;font-weight:700">${row.os} → ${row.ns}</div><div class="meta">${utils.esc(row.ts)} · ${utils.esc(row.u)}${row.nt ? ` · ${utils.esc(row.nt)}` : ''}</div></div></div>`).join('') : '<div class="empty">Sin movimientos todavía.</div>'}</section></div>${this.navTabs()}`;
     },
     searchView(){
-      const results = Inventory.searchResults(Store.state.search);
-      return `${this.topBar('Buscar', 'Nombre, categoría, subcategoría o alerta')}
-      <div class="content stack">
-        <input class="search-box" data-action="bind-search" value="${Utils.esc(Store.state.search)}" placeholder="Buscar producto…" />
-        ${Store.state.search.trim() ? `<div class="list">${results.length ? results.map(item => this.itemCard(item)).join('') : '<div class="empty">Sin resultados</div>'}</div>` : '<div class="empty">Escribe para buscar</div>'}
-      </div>
-      ${this.navTabs()}`;
+      const results = inventory.searchResults(store.state.search);
+      return `${this.topBar('Buscar', 'Consulta transversal por producto, categoría y alerta')}<div class="content"><div class="stack"><input class="search-box" data-action="bind-search" placeholder="Buscar producto..." value="${utils.esc(store.state.search)}" />${store.state.search.trim() ? (results.length ? `<div class="list">${results.map(item => this.itemCard(item)).join('')}</div>` : '<div class="empty">Sin resultados.</div>') : '<div class="empty">Escribe para buscar.</div>'}</div></div>${this.navTabs()}`;
     },
     alertsView(){
-      const alerts = Inventory.alerts();
-      return `${this.topBar('Alertas', `${alerts.length} activas`)}
-      <div class="content stack">
-        ${alerts.length ? `<div class="list">${alerts.map(item => this.itemCard(item)).join('')}</div>` : '<div class="empty">Todo en orden</div>'}
-      </div>
-      ${this.navTabs()}`;
+      const alerts = inventory.alerts();
+      return `${this.topBar('Alertas', 'Items por debajo de nivel seguro')}<div class="content"><div class="stack">${alerts.length ? alerts.map(item => this.itemCard(item)).join('') : '<div class="empty">Todo en orden.</div>'}</div></div>${this.navTabs()}`;
     },
     historyView(){
-      const history = Store.state.history.slice(0, 80);
-      return `${this.topBar('Historial', 'Movimientos recientes')}
-      <div class="content">
-        <section class="card">
-          ${history.length ? history.map(h => {
-            const delta = Number(h.ns) - Number(h.os);
-            return `<button class="history-row" data-action="open-item" data-id="${h.id}" style="width:100%;border:none;background:none;text-align:left">
-              <div class="history-dot" style="background:${delta >= 0 ? 'var(--success-soft)' : 'var(--error-soft)'};color:${delta >= 0 ? 'var(--success)' : 'var(--error)'}">${delta >= 0 ? '+' : '−'}</div>
-              <div style="flex:1;min-width:0">
-                <div class="item-name" style="font-size:13px">${Utils.esc(h.nm)}</div>
-                <div class="meta">${Utils.esc(h.cat)} · ${Utils.esc(h.ts)} · ${Utils.esc(h.u)}${h.nt ? ` · ${Utils.esc(h.nt)}` : ''}</div>
-              </div>
-              <div style="text-align:right">
-                <div class="meta">${h.os} → ${h.ns}</div>
-                <div class="stock" style="font-size:16px;color:${delta >= 0 ? 'var(--success)' : 'var(--error)'}">${delta > 0 ? '+' : ''}${delta}</div>
-              </div>
-            </button>`;
-          }).join('') : '<div class="empty">Sin movimientos</div>'}
-        </section>
-      </div>
-      ${this.navTabs()}`;
+      const rows = store.state.history.slice(0, 80);
+      return `${this.topBar('Historial', 'Últimos movimientos')}<div class="content"><section class="sheet">${rows.length ? rows.map(row => `<div class="history-row"><div class="history-dot ${row.tp === 'ingreso' ? 'status-ok' : row.tp === 'salida' ? 'status-critical' : 'status-low'}">${row.tp === 'ingreso' ? '+' : row.tp === 'salida' ? '−' : '≡'}</div><div style="flex:1"><div style="font-size:13px;font-weight:700">${utils.esc(row.nm)}</div><div class="meta">${utils.esc(row.cat)} · ${utils.esc(row.ts)} · ${utils.esc(row.u)}${row.nt ? ` · ${utils.esc(row.nt)}` : ''}</div></div><div class="pill">${row.os}→${row.ns}</div></div>`).join('') : '<div class="empty">Sin movimientos todavía.</div>'}</section></div>${this.navTabs()}`;
     },
     reportView(){
-      const m = Inventory.metrics();
-      return `${this.topBar('Reporte', 'Resumen exportable')}
-      <div class="content stack">
-        <section class="card stack">
-          <div class="grid-2">
-            <div class="metric"><strong>${m.total}</strong><span>Productos</span></div>
-            <div class="metric"><strong>${Utils.fmtInt(m.totalStock)}</strong><span>Stock total</span></div>
-            <div class="metric"><strong>${m.critical + m.zero}</strong><span>Críticos</span></div>
-            <div class="metric"><strong>${m.low}</strong><span>Bajo mínimo</span></div>
-          </div>
-          <button class="action-btn btn-primary" data-action="export-report">Descargar reporte HTML / PDF</button>
-          <button class="action-btn btn-tonal" data-action="open-sheet">Abrir base en Google Sheets</button>
-          <div class="meta">El reporte usa la misma proyección de agotamiento de la vista de detalle, corrigiendo la inconsistencia del archivo original.</div>
-        </section>
-      </div>
-      ${this.navTabs()}`;
+      const m = inventory.metrics();
+      return `${this.topBar('Reporte', 'Exporta un snapshot operativo')}<div class="content"><section class="sheet stack"><div class="grid-2"><div class="metric"><strong>${m.total}</strong><span>Productos</span></div><div class="metric"><strong>${utils.fmtInt(m.totalStock)}</strong><span>Stock total</span></div><div class="metric"><strong>${m.critical + m.zero}</strong><span>Críticos</span></div><div class="metric"><strong>${m.low}</strong><span>Bajo mín.</span></div></div><button class="action-btn btn-primary" data-action="export-report">Descargar reporte</button><button class="action-btn btn-tonal" data-action="open-sheet">Abrir Google Sheets</button></section></div>${this.navTabs()}`;
+    },
+    exportReport(){
+      const items = store.state.items.slice().sort((a,b) => a.cat.localeCompare(b.cat) || a.name.localeCompare(b.name));
+      const html = `<!doctype html><html><head><meta charset="utf-8"><title>Reporte Kawas Stock</title><style>body{font-family:Arial,sans-serif;padding:24px;color:#222}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border:1px solid #ddd;padding:8px;font-size:12px;text-align:left}th{background:#f2f2f2}h1{margin:0 0 8px}p{color:#666}</style></head><body><h1>Kawas Stock Reporte</h1><p>Generado: ${new Date().toLocaleString('es-ES')}</p><table><tr><th>Categoría</th><th>Subcategoría</th><th>Producto</th><th>Stock</th><th>Mín.</th><th>Proyección</th></tr>${items.map(item => { const p = inventory.projection(item); return `<tr><td>${utils.esc(item.cat)}</td><td>${utils.esc(item.subcat || 'General')}</td><td>${utils.esc(item.name)}</td><td>${item.stock}</td><td>${item.min}</td><td>${utils.esc(p.title)} · ${p.days} días</td></tr>`; }).join('')}</table></body></html>`;
+      const blob = new Blob([html], { type:'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `kawas_stock_report_${Date.now()}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+      this.toast('Reporte exportado');
     },
     render(){
-      const state = Store.state;
-      let html = state.user ? '' : this.loginView();
-      if(state.user){
-        if(state.selectedItemId){
-          html = this.detailView();
-        } else if(state.selectedCategory && state.selectedSubcategory){
-          html = this.subcategoryView();
-        } else if(state.selectedCategory){
-          html = this.categoryView();
-        } else if(state.route === 'home'){
-          html = this.homeView();
-        } else if(state.route === 'search'){
-          html = this.searchView();
-        } else if(state.route === 'alerts'){
-          html = this.alertsView();
-        } else if(state.route === 'history'){
-          html = this.historyView();
-        } else if(state.route === 'report'){
-          html = this.reportView();
-        }
+      if(!store.state.user){
+        this.app.innerHTML = `${store.state.toast ? `<div class="toast">${utils.esc(store.state.toast.message)}</div>` : ''}${this.loginView()}`;
+        const pin = document.getElementById('pin-input');
+        if(pin) pin.focus();
+        return;
       }
-      this.app.innerHTML = `${state.toast ? `<div class="toast">${Utils.esc(state.toast.message)}</div>` : ''}<div class="app-shell">${html}</div>`;
-      const pin = document.getElementById('pin-input');
-      if(pin){
-        pin.focus();
-        pin.oninput = () => {
-          if(pin.value.length !== 4) return;
-          const user = CONFIG.USERS.find(u => u.pin === pin.value);
-          if(!user){ this.toast('PIN incorrecto', 'err'); pin.value=''; return; }
-          Store.set({ user, route:'home' });
-          Store.persist();
-          this.toast(`Hola, ${user.name}`);
-          Api.sync({ force:true });
-        };
-      }
+      let view = this.homeView();
+      if(store.state.selectedItemId) view = this.detailView();
+      else if(store.state.selectedCategory && store.state.selectedSubcategory) view = this.subcategoryView();
+      else if(store.state.selectedCategory) view = this.categoryView();
+      else if(store.state.route === 'search') view = this.searchView();
+      else if(store.state.route === 'alerts') view = this.alertsView();
+      else if(store.state.route === 'history') view = this.historyView();
+      else if(store.state.route === 'report') view = this.reportView();
+      this.app.innerHTML = `${store.state.toast ? `<div class="toast">${utils.esc(store.state.toast.message)}</div>` : ''}<div class="app-shell">${view}</div>`;
+      const search = document.querySelector('[data-action="bind-search"]');
+      if(search) search.focus({ preventScroll:true });
     }
   };
+  return ui;
+}
 
-  function goHome(){
-    Store.set({ route:'home', selectedCategory:null, selectedSubcategory:null, selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+
+const store = createStore(CONFIG);
+const api = createApi(store, CONFIG);
+const inventory = createInventory(store, api);
+const ui = createUI({ store, inventory, api, config: CONFIG, icons: ICONS, colors: COLORS, utils: Utils });
+api.setNotifier((message, type) => ui.toast(message, type));
+
+function resetToHome(){
+  store.set({ route:'home', selectedCategory:null, selectedSubcategory:null, selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+}
+
+function loginWithPin(pin){
+  const user = CONFIG.USERS.find(x => x.pin === pin);
+  if(!user){ ui.toast('PIN incorrecto', 'warn'); return; }
+  store.set({ user, route:'home' });
+  api.sync({ force:true });
+  ui.toast(`Hola, ${user.name}`);
+}
+
+document.addEventListener('click', async (e) => {
+  const target = e.target.closest('[data-action]');
+  if(!target) return;
+  const action = target.dataset.action;
+  if(action === 'go-tab') store.set({ route:target.dataset.tab, selectedCategory:null, selectedSubcategory:null, selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+  if(action === 'open-category') store.set({ selectedCategory:target.dataset.category, selectedSubcategory:null, selectedItemId:null });
+  if(action === 'open-subcategory') store.set({ selectedSubcategory:target.dataset.subcategory, selectedItemId:null });
+  if(action === 'open-item') store.set({ selectedItemId:target.dataset.id, adjustMode:null, adjustValue:'', adjustNote:'' });
+  if(action === 'back'){
+    if(store.state.selectedItemId) store.set({ selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+    else if(store.state.selectedSubcategory) store.set({ selectedSubcategory:null });
+    else if(store.state.selectedCategory) store.set({ selectedCategory:null });
+    else resetToHome();
   }
-
-  function exportReport(){
-    const items = [...Store.state.items].sort((a,b)=>a.cat.localeCompare(b.cat) || (a.subcat || '').localeCompare(b.subcat || '') || a.name.localeCompare(b.name));
-    const rows = items.map(item => {
-      const status = Inventory.statusMeta(item);
-      const proj = Utils.projection(item, Store.state.history);
-      return `<tr>
-        <td>${Utils.esc(item.cat)}</td>
-        <td>${Utils.esc(item.subcat || 'General')}</td>
-        <td>${Utils.esc(item.name)}</td>
-        <td>${item.stock}</td>
-        <td>${item.min}</td>
-        <td>${status.label}</td>
-        <td>${proj.use}</td>
-        <td>${proj.days}</td>
-        <td>${proj.date}</td>
-      </tr>`;
-    }).join('');
-    const html = `<!doctype html><html><head><meta charset="utf-8"><title>Reporte Kawas</title><style>
-      body{font-family:Arial,sans-serif;padding:24px;color:#222} h1{margin:0 0 8px} p{color:#666}
-      table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ddd;padding:8px;text-align:left} th{background:#f2f2f2}
-      .btn{display:inline-block;margin:0 0 16px;padding:10px 16px;background:#6750a4;color:#fff;border-radius:10px;text-decoration:none}
-    </style></head><body><button class="btn" onclick="window.print()">Guardar como PDF</button><h1>Reporte Kawas Stock Pro</h1><p>Generado ${new Date().toLocaleString('es-ES')}</p><table><thead><tr><th>Categoría</th><th>Subcategoría</th><th>Producto</th><th>Stock</th><th>Mín.</th><th>Estado</th><th>Uso/día</th><th>Días</th><th>Agot.</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
-    const w = window.open('', '_blank');
-    if(!w){ UI.toast('El navegador bloqueó la ventana del reporte', 'warn'); return; }
-    w.document.write(html);
-    w.document.close();
+  if(action === 'sync-manual'){ ui.toast('Sincronizando...'); await api.sync({ force:true }); await api.flushQueue(); }
+  if(action === 'set-adjust-mode') store.set({ adjustMode:target.dataset.mode, adjustValue:'', adjustNote:'' });
+  if(action === 'cancel-adjust') store.set({ adjustMode:null, adjustValue:'', adjustNote:'' });
+  if(action === 'confirm-adjust'){
+    const item = inventory.itemById(store.state.selectedItemId);
+    const value = Number(store.state.adjustValue);
+    if(!item || Number.isNaN(value) || value < 0){ ui.toast('Valor inválido', 'warn'); return; }
+    const oldStock = Number(item.stock);
+    const newStock = store.state.adjustMode === 'in' ? oldStock + value : store.state.adjustMode === 'out' ? Math.max(0, oldStock - value) : value;
+    const type = store.state.adjustMode === 'in' ? 'ingreso' : store.state.adjustMode === 'out' ? 'salida' : 'ajuste';
+    inventory.recordMovement({ itemId:item.id, newStock, type, note:store.state.adjustNote, userName:store.state.user.name });
+    store.set({ selectedItemId:item.id, adjustMode:null, adjustValue:'', adjustNote:'' });
+    ui.toast(`${item.name}: ${oldStock} → ${newStock}`);
   }
+  if(action === 'export-report') ui.exportReport();
+  if(action === 'open-sheet') window.open(CONFIG.SHEET_URL, '_blank');
+});
 
-  document.addEventListener('click', async (e) => {
-    const target = e.target.closest('[data-action]');
-    if(!target) return;
-    const action = target.dataset.action;
-    if(action === 'go-tab'){
-      Store.set({ route:target.dataset.tab, selectedCategory:null, selectedSubcategory:null, selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
-    }
-    if(action === 'sync-manual'){
-      UI.toast('Sincronizando…');
-      await Api.sync({ force:true });
-      await Api.flushQueue();
-      UI.toast('Sync completado');
-    }
-    if(action === 'open-category') Store.set({ selectedCategory:target.dataset.category, selectedSubcategory:null, selectedItemId:null });
-    if(action === 'open-subcategory') Store.set({ selectedSubcategory:target.dataset.subcategory, selectedItemId:null });
-    if(action === 'open-item') Store.set({ selectedItemId:target.dataset.id, adjustMode:null, adjustValue:'', adjustNote:'' });
-    if(action === 'back'){
-      if(Store.state.selectedItemId) Store.set({ selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
-      else if(Store.state.selectedSubcategory) Store.set({ selectedSubcategory:null });
-      else if(Store.state.selectedCategory) Store.set({ selectedCategory:null });
-      else goHome();
-    }
-    if(action === 'set-adjust') Store.set({ adjustMode:target.dataset.mode, adjustValue:'', adjustNote:'' });
-    if(action === 'cancel-adjust') Store.set({ adjustMode:null, adjustValue:'', adjustNote:'' });
-    if(action === 'confirm-adjust'){
-      const item = Inventory.itemById(target.dataset.id);
-      const value = Number(Store.state.adjustValue);
-      if(Number.isNaN(value) || value < 0){ UI.toast('Valor inválido', 'err'); return; }
-      const oldStock = item.stock;
-      const newStock = Store.state.adjustMode === 'in' ? oldStock + value : Store.state.adjustMode === 'out' ? Math.max(0, oldStock - value) : value;
-      const type = Store.state.adjustMode === 'in' ? 'ingreso' : Store.state.adjustMode === 'out' ? 'salida' : 'ajuste';
-      Inventory.recordMovement({ itemId:item.id, newStock, type, note:Store.state.adjustNote, userName:Store.state.user.name });
-      Store.set({ selectedItemId:item.id, adjustMode:null, adjustValue:'', adjustNote:'' });
-      UI.toast(`${item.name}: ${oldStock} → ${newStock}`);
-    }
-    if(action === 'export-report') exportReport();
-    if(action === 'open-sheet') window.open(CONFIG.SHEET_URL, '_blank');
-  });
+document.addEventListener('input', (e) => {
+  const target = e.target;
+  const action = target.dataset.action;
+  if(action === 'bind-search') store.set({ search:target.value });
+  if(action === 'bind-adjust-value') store.set({ adjustValue:target.value });
+  if(action === 'bind-adjust-note') store.set({ adjustNote:target.value });
+  if(target.id === 'pin-input' && target.value.length === 4) loginWithPin(target.value);
+});
 
-  document.addEventListener('input', (e) => {
-    const target = e.target;
-    const action = target.dataset.action;
-    if(action === 'bind-search') Store.set({ search:target.value });
-    if(action === 'bind-adjust-value') Store.set({ adjustValue:target.value });
-    if(action === 'bind-adjust-note') Store.set({ adjustNote:target.value });
-  });
+let touchStartX = 0;
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].clientX;
+  touchStartY = e.changedTouches[0].clientY;
+}, { passive:true });
 
-  let touchStartX = 0;
-  let touchStartY = 0;
-  document.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].clientX;
-    touchStartY = e.changedTouches[0].clientY;
-  }, { passive:true });
-  document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-    if(dx > 85 && dy < 75){
-      if(Store.state.selectedItemId) Store.set({ selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
-      else if(Store.state.selectedSubcategory) Store.set({ selectedSubcategory:null });
-      else if(Store.state.selectedCategory) Store.set({ selectedCategory:null });
-    }
-  }, { passive:true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+  if(dx > 85 && dy < 75){
+    if(store.state.selectedItemId) store.set({ selectedItemId:null, adjustMode:null, adjustValue:'', adjustNote:'' });
+    else if(store.state.selectedSubcategory) store.set({ selectedSubcategory:null });
+    else if(store.state.selectedCategory) store.set({ selectedCategory:null });
+  }
+}, { passive:true });
 
-  window.addEventListener('online', () => { Api.sync({ force:true }); Api.flushQueue(); UI.toast('Conexión restablecida'); });
+window.addEventListener('online', async () => {
+  ui.toast('Conexión restablecida');
+  await api.sync({ force:true });
+  await api.flushQueue();
+});
 
-  Store.subscribe(() => { Store.persist(); UI.render(); });
-  Store.hydrate();
-  UI.render();
-  if(Store.state.user) Api.sync({ force:false });
-  </script>
+store.subscribe(() => { store.persist(); ui.render(); });
+store.hydrate();
+ui.render();
+if(store.state.user) api.sync({ force:false });
+</script>
 </body>
 </html>
